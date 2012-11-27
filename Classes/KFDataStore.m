@@ -304,12 +304,12 @@
     }];
 }
 
-- (void)performSaveBlock:(void(^)(NSManagedObjectContext* managedObjectContext))saveBlock
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
        completionHandler:(void(^)(void))completionHandler {
     NSManagedObjectContext *managedObjectContext = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 
     [managedObjectContext performBlock:^{
-        saveBlock(managedObjectContext);
+        writeBlock(managedObjectContext);
 
         [managedObjectContext nestedSave];
 
@@ -319,8 +319,8 @@
     }];
 }
 
-- (void)performSaveBlock:(void(^)(NSManagedObjectContext* managedObjectContext))saveBlock {
-    [self performSaveBlock:saveBlock completionHandler:nil];
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock {
+    [self performWriteBlock:writeBlock completionHandler:nil];
 }
 
 @end

@@ -32,9 +32,9 @@
 - (void)performReadBlock:(void(^)(NSManagedObjectContext* managedObjectContext))readBlock;
 
 // Execute a block and then save and merge the context to the main context
-- (void)performSaveBlock:(void(^)(NSManagedObjectContext* managedObjectContext))saveBlock
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
        completionHandler:(void(^)(void))completionHandler;
 
-- (void)performSaveBlock:(void(^)(NSManagedObjectContext* managedObjectContext))saveBlock;
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
 @end
