@@ -6,6 +6,8 @@
 // Copyright (c) 2012 Kyle Fuller. All rights reserved
 //
 
+#import "NSManagedObjectContext+KFData.h"
+
 @implementation NSManagedObjectContext (KFData)
 
 - (BOOL)save {
