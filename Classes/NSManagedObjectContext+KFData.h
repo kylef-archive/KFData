@@ -6,6 +6,8 @@
 // Copyright (c) 2012 Kyle Fuller. All rights reserved
 //
 
+#import <CoreData/CoreData.h>
+
 @interface NSManagedObjectContext (KFData)
 
 // Save (returns if we saved or not)
