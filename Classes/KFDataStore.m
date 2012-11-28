@@ -35,6 +35,11 @@
         if ([fileManager respondsToSelector:@selector(ubiquityIdentityToken)]) {
             id ubiquityIdentityToken = [fileManager ubiquityIdentityToken];
             [self setCurrentUbiquityIdentityToken:ubiquityIdentityToken];
+
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(iCloudAccountAvailabilityChanged:)
+                                                         name:NSUbiquityIdentityDidChangeNotification
+                                                       object:nil];
         } else {
             NSLog(@"KFData doesn't yet support iCloud on iOS5");
 //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -46,11 +51,6 @@
 //                [self asyncLoadPersistentStores];
 //            });
         }
-
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(iCloudAccountAvailabilityChanged:)
-                                                     name:NSUbiquityIdentityDidChangeNotification
-                                                   object:nil];
     }
 
     return self;
