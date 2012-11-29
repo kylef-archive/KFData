@@ -37,4 +37,7 @@
 
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
+// Execute a block on the main (root) context and save
+- (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock completionHandler:(void(^)(void))completionHandler;
+
 @end
