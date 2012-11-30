@@ -323,12 +323,14 @@
     [self performWriteBlock:writeBlock completionHandler:nil];
 }
 
-- (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock completionHandler:(void(^)(void))completionHandler {
+- (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
+                                  completionHandler:(void(^)(void))completionHandler
+{
     [[self managedObjectContext] performBlock:^{
         writeBlock([self managedObjectContext]);
-        
+
         [[self managedObjectContext] save];
-        
+
         if (completionHandler) {
             completionHandler();
         }
