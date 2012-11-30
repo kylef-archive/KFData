@@ -22,5 +22,10 @@
 // Asyncronous nested save
 - (void)performNestedSave;
 
+- (void)performWriteBlock:(void(^)(void))writeBlock;
+
+- (void)performWriteBlock:(void(^)(void))writeBlock
+        completionHandler:(void(^)(void))completionHandler;
+
 @end
 

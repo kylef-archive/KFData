@@ -72,5 +72,28 @@
     }];
 }
 
+#pragma mark -
+
+- (void)performWriteBlock:(void(^)(void))writeBlock {
+    [self performBlock:^{
+        writeBlock();
+        [self save];
+    }];
+}
+
+- (void)performWriteBlock:(void(^)(void))writeBlock
+        completionHandler:(void(^)(void))completionHandler
+{
+    [self performBlock:^{
+        writeBlock();
+
+        [self save];
+
+        if (completionHandler) {
+            completionHandler();
+        }
+    }];
+}
+
 @end
 
