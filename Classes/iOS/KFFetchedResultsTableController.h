@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class KFDataStore;
+
 @protocol KFFetchedResultsTableControllerDelegate <NSObject>
 
 - (NSString*)reuseIdentifierForManagedObject:(NSManagedObject*)managedObject
