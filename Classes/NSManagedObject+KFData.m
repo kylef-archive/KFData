@@ -41,4 +41,25 @@
     return fetchRequest;
 }
 
+#pragma mark -
+
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+    NSFetchRequest *fetchRequest = [self fetchRequestInManagedObjectContext:managedObjectContext];
+
+    NSError *error = nil;
+    NSArray *objects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    NSUInteger removedCount = 0;
+
+    if (error == nil) {
+        removedCount = [objects count];
+
+        for (NSManagedObject *managedObject in objects) {
+            [managedObjectContext deleteObject:managedObject];
+        }
+    }
+
+    return removedCount;
+}
+
 @end

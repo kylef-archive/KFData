@@ -14,4 +14,6 @@
 
 + (NSFetchRequest*)fetchRequestInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 @end
