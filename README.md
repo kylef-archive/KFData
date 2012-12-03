@@ -22,9 +22,14 @@ NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWi
 }];
 
 // You can use helper methods to perform a write or read block
-[dataStore performSaveBlock:^(NSManagedObjectContext*)managedObjectContext {
+[dataStore performWriteBlock:^(NSManagedObjectContext*)managedObjectContext {
     Person *kylef = [Person createInManagedObjectContext:managedObjectContext];
     [kylef setName:@"Kyle Fuller"];
 }];
 ```
+
+## License
+
+KFData is released under the BSD license. See
+[LICENSE](https://github.com/kylef/KFData/blob/master/LICENSE).
 
