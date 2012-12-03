@@ -8,7 +8,15 @@ of code with a `NSManagedObjectContext`.
 ``` objective-c
 KFDataStore *dataStore = [[KFDataStore alloc] init];
 
-// Get an NSManagedObjectContext for the data store
+// You can use helper methods to perform a write or read block
+[dataStore performWriteBlock:^(NSManagedObjectContext*)managedObjectContext {
+    Person *kylef = [Person createInManagedObjectContext:managedObjectContext];
+    [kylef setName:@"Kyle Fuller"];
+}];
+```
+
+``` objective-c
+// Get a NSManagedObjectContext for the data store
 NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 
 // This will return a child managed object context for our main managed
@@ -19,12 +27,6 @@ NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWi
     Person *kylef = [Person createInManagedObjectContext:managedObjectContext];
     [kylef setName:@"Kyle Fuller"];
     [managedObjectContext nestedSave];
-}];
-
-// You can use helper methods to perform a write or read block
-[dataStore performWriteBlock:^(NSManagedObjectContext*)managedObjectContext {
-    Person *kylef = [Person createInManagedObjectContext:managedObjectContext];
-    [kylef setName:@"Kyle Fuller"];
 }];
 ```
 
