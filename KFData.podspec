@@ -6,11 +6,15 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/kylef/KFData'
   s.authors = { 'Kyle Fuller' => 'inbox@kylefuller.co.uk' }
   s.source = { :git => 'https://github.com/kylef/KFData.git', :tag => '0.1' }
-  s.source_files = 'Classes'
 
   s.requires_arc = true
 
   s.ios.deployment_target = '5.0'
   s.ios.frameworks = 'CoreData'
+  s.ios.source_files = 'Classes/*.{h,m}', 'Classes/iOS/*.{h,m}'
+
+  s.osx.deploment_target = '10.7'
+  s.osx.frameworks = 'CoreData'
+  s.osx.source_files = 'Classes/*.{h,m}'
 end
 
