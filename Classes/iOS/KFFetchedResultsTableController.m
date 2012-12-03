@@ -35,9 +35,31 @@
         [self setDelegate:delegate];
 
         [tableView setDataSource:self];
+
+        NSManagedObjectContext *parentContext = [managedObjectContext parentContext];
+        if (parentContext) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(mergeChanges:)
+                                                         name:NSManagedObjectContextDidSaveNotification
+                                                       object:parentContext];
+        }
     }
 
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Notifications
+
+- (void)mergeChanges:(NSNotification*)notification {
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+
+    [managedObjectContext performBlock:^{
+        [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+    }];
 }
 
 - (void)setFetchRequest:(NSFetchRequest *)fetchRequest
