@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.ios.frameworks = 'CoreData'
   s.ios.source_files = 'Classes/*.{h,m}', 'Classes/iOS/*.{h,m}'
 
-  s.osx.deploment_target = '10.7'
+  s.osx.deployment_target = '10.7'
   s.osx.frameworks = 'CoreData'
   s.osx.source_files = 'Classes/*.{h,m}'
 end
