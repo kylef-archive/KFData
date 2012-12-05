@@ -77,7 +77,7 @@
 - (void)performWriteBlock:(void(^)(void))writeBlock {
     [self performBlock:^{
         writeBlock();
-        [self save];
+        [self nestedSave];
     }];
 }
 
@@ -87,7 +87,7 @@
     [self performBlock:^{
         writeBlock();
 
-        [self save];
+        [self nestedSave];
 
         if (completionHandler) {
             completionHandler();
