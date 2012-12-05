@@ -16,4 +16,8 @@
 
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
+// Returns a single object matching a predicate
++ (NSManagedObject*)objectForPredicate:(NSPredicate*)predicate
+                inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 @end

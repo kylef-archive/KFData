@@ -62,4 +62,20 @@
     return removedCount;
 }
 
++ (NSManagedObject*)objectForPredicate:(NSPredicate*)predicate
+                inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [self fetchRequestInManagedObjectContext:managedObjectContext];
+    [fetchRequest setPredicate:predicate];
+
+    NSError *error;
+    NSArray *entries = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    if (error) {
+        NSLog(@"KFData - [NSManagedObject objectForPredicate:inManagedObjectContext:] (%@)", error);
+    }
+
+    return [entries lastObject];
+}
+
 @end
