@@ -8,104 +8,19 @@
 
 #import "KFDataStore.h"
 
+#define kKFDataStoreLocalFilename @"localStore.sqlite"
+
 @interface KFDataStore ()
 @property (nonatomic) id currentUbiquityIdentityToken;
 
 @property (nonatomic) NSPersistentStore *localPersistentStore;
 @property (nonatomic) NSPersistentStore *cloudPersistentStore;
 @property (nonatomic) NSPersistentStore *fallbackPersistentStore;
-
-#define kKFDataStoreLocalConfig @"LocalConfig"
-#define kKFDataStoreCloudConfig @"CloudConfig"
-
-#define kKFDataStoreLocalFilename @"localStore.sqlite"
-#define kKFDataStoreCloudFilename @"cloudStore.sqlite"
-#define kKFDataStoreFallbackFilename @"fallbackStore.sqlite"
 @end
 
 @implementation KFDataStore
 
-- (id)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel {
-    if (self = [super init]) {
-        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
-        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
-
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ([fileManager respondsToSelector:@selector(ubiquityIdentityToken)]) {
-            id ubiquityIdentityToken = [fileManager ubiquityIdentityToken];
-            [self setCurrentUbiquityIdentityToken:ubiquityIdentityToken];
-
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(iCloudAccountAvailabilityChanged:)
-                                                         name:NSUbiquityIdentityDidChangeNotification
-                                                       object:nil];
-        } else {
-            NSLog(@"KFData doesn't yet support iCloud on iOS5");
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                @synchronized(self) {
-//                    NSURL *ubiquityIdentityToken = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-//                    [self setCurrentUbiquityIdentityToken:ubiquityIdentityToken];
-//                }
-//
-//                [self asyncLoadPersistentStores];
-//            });
-        }
-    }
-
-    return self;
-}
-
-- (id)init {
-    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-
-    if (self = [self initWithManagedObjectModel:managedObjectModel]) {
-        [self asyncLoadPersistentStores];
-    }
-
-    return self;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark -
-
-- (void)iCloudAccountAvailabilityChanged:(NSNotification*)notification {
-    [self unloadCloudPersistentStores];
-
-    id ubiquityIdentityToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
-    [self setCurrentUbiquityIdentityToken:ubiquityIdentityToken];
-
-    [self asyncLoadPersistentStores];
-}
-
-- (BOOL)isCloudAvailible {
-#pragma message("iCloud isn't supported yet #7")
-//    return [self currentUbiquityIdentityToken] != nil;
-    return NO;
-}
-
-#pragma mark - Data model
-
-- (BOOL)hasLocalConfig {
-    NSManagedObjectModel *managedObjectModel = [[self persistentStoreCoordinator] managedObjectModel];
-    NSArray *configurations = [managedObjectModel configurations];
-
-    return ([configurations indexOfObject:kKFDataStoreLocalConfig] != NSNotFound);
-}
-
-- (BOOL)hasCloudConfig {
-    NSManagedObjectModel *managedObjectModel = [[self persistentStoreCoordinator] managedObjectModel];
-    NSArray *configurations = [managedObjectModel configurations];
-    
-    return ([configurations indexOfObject:kKFDataStoreCloudConfig] != NSNotFound);
-}
-
-#pragma mark - Persistent stores
-
-- (NSURL*)storesDirectoryURL {
++ (NSURL*)storesDirectoryURL {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSURL *storesDirectoryURL = [NSURL fileURLWithPath:documentsDirectory];
     storesDirectoryURL = [storesDirectoryURL URLByAppendingPathComponent:@"DataStores"];
@@ -127,164 +42,89 @@
     return storesDirectoryURL;
 }
 
-- (NSURL*)localStoreURL {
-    NSURL *storesDirectoryURL = [self storesDirectoryURL];
-    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
-    
-    return storeURL;
-}
-
-#pragma message("Support cloud persistent stores #7")
-- (NSURL*)cloudStoreURL {
-    return nil;
-}
-
-- (NSURL*)cloudDataURL {
-    return nil;
-}
-
-- (NSURL*)fallbackStoreURL {
-    NSURL *storesDirectoryURL = [self storesDirectoryURL];
-    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreFallbackFilename];
-
-    return storeURL;
-}
-
-- (void)asyncLoadPersistentStores {
++ (id)standardLocalDataStore {
+    KFDataStore *dataStore = [[KFDataStore alloc] init];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @synchronized(self) {
-            NSError *error;
+            NSURL *storesDirectoryURL = [self storesDirectoryURL];
+            NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
 
-            BOOL hasLocalStorage = [self hasLocalConfig];
-            if (hasLocalStorage) {
-                if ([self loadLocalPersistentStore:&error] == NO) {
-                    NSLog(@"KFData: Failed to load local persistent store: %@", error);
-                }
-            }
-
-            BOOL hasCloudStorage = [self hasCloudConfig];
-            if (hasCloudStorage) {
-                if ([self isCloudAvailible]) {
-                    if ([self loadCloudPersistentStore:&error] == NO) {
-                        NSLog(@"KFData: Failed to load cloud persistent store: %@", error);
-                    }
-                } else {
-                    if ([self loadFallbackPersistentStore:&error] == NO) {
-                        NSLog(@"KFData: Failed to load fallback persistent store: %@", error);
-                    }
-                }
-            }
-
-            if (hasLocalStorage == NO && hasCloudStorage == NO) {
-                NSLog(@"KFData: No local or cloud configs");
-            }
+            [dataStore addLocalStore:nil URL:storeURL];
         }
     });
+
+    return dataStore;
 }
 
-- (void)unloadCloudPersistentStores {
++ (id)standardMemoryDataStore {
+    KFDataStore *dataStore = [[KFDataStore alloc] init];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @synchronized(self) {
+            [dataStore addMemoryStore:nil];
+        }
+    });
+
+    return dataStore;
+}
+
+#pragma mark -
+
+- (id)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel {
+    if (self = [super init]) {
+        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
+    }
+
+    return self;
+}
+
+- (id)init {
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+
+    if (self = [self initWithManagedObjectModel:managedObjectModel]) {
+    }
+
+    return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Stores
+
+- (NSPersistentStore*)addMemoryStore:(NSString*)configuration {
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
     NSError *error;
 
-    if ([self fallbackPersistentStore]) {
-        if ([persistentStoreCoordinator removePersistentStore:[self fallbackPersistentStore]
-                                                        error:&error]) {
-            [self setFallbackPersistentStore:nil];
-        } else {
-            NSLog(@"KFData: Failed to remove fallback store: %@", error);
-        }
+    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType
+                                                                        configuration:configuration
+                                                                                  URL:nil
+                                                                              options:nil
+                                                                                error:&error];
+    if (store == nil) {
+        NSLog(@"KFData: Unable to add memory store: %@", error);
     }
 
-    if ([self cloudPersistentStore]) {
-        if ([persistentStoreCoordinator removePersistentStore:[self cloudPersistentStore]
-                                                        error:&error]) {
-            [self setCloudPersistentStore:nil];
-        } else {
-            NSLog(@"KFData: Failed to remove iCloud store: %@", error);
-        }
-    }
+    return store;
 }
 
-- (BOOL)loadLocalPersistentStore:(NSError *__autoreleasing *)error {
-    BOOL success = NO;
+- (NSPersistentStore*)addLocalStore:(NSString*)configuration URL:(NSURL*)storeURL {
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
+    NSError *error;
 
-    if ([self localPersistentStore] == nil) {
-        NSURL *localStoreURL = [self localStoreURL];
+    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                                        configuration:configuration
+                                                                                  URL:storeURL
+                                                                              options:nil
+                                                                                error:&error];
 
-        if (localStoreURL) {
-            NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
-
-            NSPersistentStore *localStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                                     configuration:kKFDataStoreLocalConfig
-                                                                                               URL:localStoreURL
-                                                                                           options:nil
-                                                                                             error:error];
-
-            if (localStore) {
-                [self setLocalPersistentStore:localStore];
-                success = YES;
-            }
-        }
-    } else {
-        success = YES;
+    if (store == nil) {
+        NSLog(@"KFData: Unable to add local store: %@", error);
     }
 
-    return success;
-}
-
-- (BOOL)loadCloudPersistentStore:(NSError *__autoreleasing *)error {
-    BOOL success = NO;
-
-    if ([self cloudPersistentStore] == nil) {
-        NSURL *cloudStoreURL = [self cloudStoreURL];
-        NSURL *cloudDataURL = [self cloudDataURL];
-
-        if (cloudStoreURL && cloudDataURL) {
-            NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
-            NSDictionary *persistentStoreOptions = @{
-                NSPersistentStoreUbiquitousContentNameKey:@"iCloudStore",
-                NSPersistentStoreUbiquitousContentURLKey:cloudDataURL,
-            };
-
-            NSPersistentStore *cloudStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                                     configuration:kKFDataStoreCloudConfig
-                                                                                               URL:cloudStoreURL
-                                                                                           options:persistentStoreOptions
-                                                                                             error:error];
-
-            if (cloudStore) {
-                [self setCloudPersistentStore:cloudStore];
-                success = YES;
-            }
-        }
-    } else {
-        success = YES;
-    }
-
-    return success;
-}
-
-- (BOOL)loadFallbackPersistentStore:(NSError *__autoreleasing *)error {
-    BOOL success = YES;
-
-    if ([self fallbackPersistentStore] == nil) {
-        NSURL *fallbackStoreURL = [self fallbackStoreURL];
-
-        NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
-        NSPersistentStore *fallbackStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                                    configuration:kKFDataStoreCloudConfig
-                                                                                              URL:fallbackStoreURL
-                                                                                          options:nil
-                                                                                            error:error];
-
-        if (fallbackStore) {
-            [self setFallbackPersistentStore:fallbackStore];
-        } else {
-            success = NO;
-        }
-    }
-
-    return success;
+    return store;
 }
 
 #pragma mark -
@@ -335,6 +175,11 @@
             completionHandler();
         }
     }];
+}
+
+- (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
+{
+    [self performWriteBlockOnMainManagedObjectContext:writeBlock completionHandler:nil];
 }
 
 @end

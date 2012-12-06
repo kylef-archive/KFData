@@ -17,7 +17,20 @@
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
+#pragma mark -
 
+/* Creates a standard local data store which persists to the document directory */
++ (id)standardLocalDataStore;
+
+/* Create a local in-memory data store */
++ (id)standardMemoryDataStore;
+
+#pragma mark -
+
+/* After using init, you will need to manually add the persistent stores.
+   Additionally you can use the above `standard` helper methods. The only
+   reasons where you would need to manually init are if you want to support
+   non-standard object models or custom configurations of your model. */
 - (id)init;
 - (id)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel;
 
