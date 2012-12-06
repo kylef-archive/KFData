@@ -152,9 +152,10 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
             if (cell) {
-                [[self delegate] configuredCell:cell
-                               forManagedObject:anObject
-                                    atIndexPath:indexPath];
+                [[self delegate] fetchedResultsTableController:self
+                                                configuredCell:cell
+                                              forManagedObject:anObject
+                                                   atIndexPath:indexPath];
             }
 
             break;
@@ -197,22 +198,25 @@
 
     NSManagedObject *object = [self managedObjectForIndexPath:indexPath];
 
-    NSString *reuseIdentifier = [delegate reuseIdentifierForManagedObject:object
-                                                              atIndexPath:indexPath];
+    NSString *reuseIdentifier = [delegate fetchedResultsTableController:self
+                                        reuseIdentifierForManagedObject:object
+                                                            atIndexPath:indexPath];
 
     UITableViewCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:reuseIdentifier];
 
     if (cell == nil) {
-        if ([delegate respondsToSelector:@selector(cellForReuseIdentifier:)]) {
-            cell = [delegate cellForReuseIdentifier:reuseIdentifier];
+        if ([delegate respondsToSelector:@selector(fetchedResultsTableController:cellForReuseIdentifier:)]) {
+            cell = [delegate fetchedResultsTableController:self
+                                    cellForReuseIdentifier:reuseIdentifier];
         }
     }
 
     NSAssert(cell != nil, @"KFFetchedResultsTableController empty cell");
 
-    [delegate configuredCell:cell
-            forManagedObject:object
-                 atIndexPath:indexPath];
+    [delegate fetchedResultsTableController:self
+                             configuredCell:cell
+                           forManagedObject:object
+                                atIndexPath:indexPath];
 
     return cell;
 }

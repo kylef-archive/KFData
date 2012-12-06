@@ -10,18 +10,22 @@
 #import <CoreData/CoreData.h>
 
 @class KFDataStore;
+@class KFFetchedResultsTableController;
 
 @protocol KFFetchedResultsTableControllerDelegate <NSObject>
 
-- (NSString*)reuseIdentifierForManagedObject:(NSManagedObject*)managedObject
-                                 atIndexPath:(NSIndexPath*)indexPath;
+- (NSString*)fetchedResultsTableController:(KFFetchedResultsTableController*)fetchedResultsTableController
+           reuseIdentifierForManagedObject:(NSManagedObject*)managedObject
+                               atIndexPath:(NSIndexPath*)indexPath;
 
-- (void)configuredCell:(UITableViewCell*)cell
-      forManagedObject:(NSManagedObject*)managedObject
-           atIndexPath:(NSIndexPath*)indexPath;
+- (void)fetchedResultsTableController:(KFFetchedResultsTableController*)fetchedResultsTableController
+                       configuredCell:(UITableViewCell*)cell
+                     forManagedObject:(NSManagedObject*)managedObject
+                          atIndexPath:(NSIndexPath*)indexPath;
 
 @optional
-- (UITableViewCell*)cellForReuseIdentifier:(NSString*)reuseIdentifier;
+- (UITableViewCell*)fetchedResultsTableController:(KFFetchedResultsTableController*)fetchedResultsTableController
+                           cellForReuseIdentifier:(NSString*)reuseIdentifier;
 
 @end
 
