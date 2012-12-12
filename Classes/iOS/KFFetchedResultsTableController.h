@@ -49,5 +49,6 @@
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
-@end
+- (NSManagedObject*)managedObjectForIndexPath:(NSIndexPath*)indexPath;
 
+@end
