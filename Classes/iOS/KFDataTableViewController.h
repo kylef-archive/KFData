@@ -28,7 +28,7 @@
    the main thread */
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath
-        completionBlock:(dispatch_block_t)completionHandler;
+        completionBlock:(void (^)(NSFetchedResultsController *))completionHandler;
 
 @end
 
