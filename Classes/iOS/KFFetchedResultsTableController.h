@@ -49,6 +49,10 @@
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
+- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
+     sectionNameKeyPath:(NSString*)sectionNameKeyPath
+        completionBlock:(dispatch_block_t)completionHandler;
+
 - (NSManagedObject*)managedObjectForIndexPath:(NSIndexPath*)indexPath;
 
 @end

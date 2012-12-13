@@ -64,6 +64,15 @@
                                        sectionNameKeyPath:sectionNameKeyPath];
 }
 
+- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
+     sectionNameKeyPath:(NSString*)sectionNameKeyPath
+        completionBlock:(dispatch_block_t)completionHandler
+{
+    [[self fetchedResultsTableController] setFetchRequest:fetchRequest
+                                       sectionNameKeyPath:sectionNameKeyPath
+                                          completionBlock:completionHandler];
+}
+
 #pragma mark -
 
 - (NSString*)fetchedResultsTableController:(KFFetchedResultsTableController *)fetchedResultsTableController

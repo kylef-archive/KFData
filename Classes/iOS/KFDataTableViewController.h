@@ -23,5 +23,12 @@
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
+
+/* The completion handler will execute when the fetch request is complete on
+   the main thread */
+- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
+     sectionNameKeyPath:(NSString*)sectionNameKeyPath
+        completionBlock:(dispatch_block_t)completionHandler;
+
 @end
 

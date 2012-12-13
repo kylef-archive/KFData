@@ -65,6 +65,13 @@
 - (void)setFetchRequest:(NSFetchRequest *)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath
 {
+    [self setFetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath completionBlock:nil];
+}
+
+- (void)setFetchRequest:(NSFetchRequest *)fetchRequest
+     sectionNameKeyPath:(NSString*)sectionNameKeyPath
+        completionBlock:(dispatch_block_t)completionHandler
+{
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
 
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -75,7 +82,12 @@
     [self setFetchedResultsController:fetchedResultsController];
 }
 
+- (void)setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController {
+    return [self setFetchedResultsController:fetchedResultsController completionBlock:nil];
+}
+
 - (void)setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+                    completionBlock:(dispatch_block_t)completionHandler
 {
     _fetchedResultsController = fetchedResultsController;
 
@@ -91,6 +103,10 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self tableView] reloadData];
+
+            if (completionHandler) {
+                completionHandler();
+            }
         });
     }];
 }
