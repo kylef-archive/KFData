@@ -29,7 +29,7 @@
                          tableView:(UITableView*)tableView
                           delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate
 {
-    if (self = [self init]) {
+    if (self = [super init]) {
         _managedObjectContext = managedObjectContext;
         _tableView = tableView;
         [self setDelegate:delegate];
