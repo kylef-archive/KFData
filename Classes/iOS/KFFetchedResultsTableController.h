@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Availability.h>
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
 @class KFDataStore;
@@ -56,3 +60,5 @@
 - (NSManagedObject*)managedObjectForIndexPath:(NSIndexPath*)indexPath;
 
 @end
+
+#endif

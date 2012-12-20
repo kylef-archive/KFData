@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
+#import <Availability.h>
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <UIKit/UIKit.h>
 #import "KFFetchedResultsTableController.h"
 
@@ -32,3 +35,4 @@
 
 @end
 
+#endif

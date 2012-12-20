@@ -11,10 +11,10 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '5.0'
   s.ios.frameworks = 'CoreData'
-  s.ios.source_files = 'Classes/*.{h,m}', 'Classes/iOS/*.{h,m}'
+  s.ios.source_files = 'Classes/*.{h,m}', 'Classes/iOS/*.{h,m}', 'Categories/*.{h,m}', 'Categories/iOS/*.{h,m}'
 
   s.osx.deployment_target = '10.7'
   s.osx.frameworks = 'CoreData'
-  s.osx.source_files = 'Classes/*.{h,m}'
+  s.osx.source_files = 'Classes/*.{h,m}', 'Categories/*.{h,m}'
 end
 

@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "NSManagedObject+KFData.h"
 #import "NSManagedObjectContext+KFData.h"
+#import "NSManagedObject+KFData.h"
+#import "NSManagedObject+Requests.h"
+#import "NSManagedObject+Finders.h"
+#import "NSManagedObject+Aggregation.h"
 
 @interface KFDataStore : NSObject
 
@@ -46,7 +49,7 @@
 
 // Execute a block and then save and merge the context to the main context
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-       completionHandler:(void(^)(void))completionHandler;
+		completionHandler:(void(^)(void))completionHandler;
 
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 

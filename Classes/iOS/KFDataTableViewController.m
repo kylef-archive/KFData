@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
+#import "KFDataTableViewController.h"
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFDataStore.h"
 #import "KFFetchedResultsTableController.h"
-#import "KFDataTableViewController.h"
 
 @implementation KFDataTableViewController
 
@@ -95,3 +97,4 @@
 
 @end
 
+#endif
