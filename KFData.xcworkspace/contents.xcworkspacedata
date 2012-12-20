@@ -27,6 +27,21 @@
       location = "container:"
       name = "KFData iOS">
       <FileRef
+         location = "group:Classes/iOS/KFDataViewControllerProtocol.h">
+      </FileRef>
+      <FileRef
+         location = "group:Classes/iOS/KFDataViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:Classes/iOS/KFDataViewController.m">
+      </FileRef>
+      <FileRef
+         location = "group:Classes/iOS/KFDataTableViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:Classes/iOS/KFDataTableViewController.m">
+      </FileRef>
+      <FileRef
          location = "group:Classes/iOS/KFFetchedResultsTableController.h">
       </FileRef>
       <FileRef
