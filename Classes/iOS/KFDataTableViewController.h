@@ -7,18 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KFFetchedResultsTableController.h"
+#import "KFDataViewControllerProtocol.h"
 
-@class NSManagedObjectContext;
-@class KFDataStore;
+/*
+  KFDataTableViewController is a generic controller base that manages a table
+  view from an NSFetchRequest.
 
-@interface KFDataTableViewController : UITableViewController <KFFetchedResultsTableControllerDelegate>
+  It implements the following:
+ 
+    - If changes happen on the parent NSManagedObjectContext, they will be
+      merged into the context for this view controller.
+    - The table view is automatically updated to insert changes when changes
+      have been made to the NSFetchRequest.
+*/
 
-@property (nonatomic, strong) KFFetchedResultsTableController *fetchedResultsTableController;
+@interface KFDataTableViewController : UITableViewController <KFDataViewControllerProtocol, NSFetchedResultsControllerDelegate>
+
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-
-- (id)initWithDataStore:(KFDataStore*)dataStore;
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
