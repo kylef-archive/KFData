@@ -158,17 +158,6 @@
     [[self tableView] endUpdates];
 }
 
-- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
-     sectionNameKeyPath:(NSString*)sectionNameKeyPath
-        completionBlock:(void (^)(NSFetchedResultsController*))completionHandler
-{
-    [[self fetchedResultsTableController] setFetchRequest:fetchRequest
-                                       sectionNameKeyPath:sectionNameKeyPath
-                                          completionBlock:^{
-                                              completionHandler([[self fetchedResultsTableController] fetchedResultsController]);
-                                          }];
-}
-
 #pragma mark -
 
 - (NSString*)tableView:(UITableView*)tableView
