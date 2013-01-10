@@ -10,6 +10,12 @@
 #import "KFFetchedResultsTableController.h"
 #import "KFDataTableViewController.h"
 
+@interface KFDataTableViewController ()
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@end
+
 @implementation KFDataTableViewController
 
 #pragma mark -
