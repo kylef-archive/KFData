@@ -16,16 +16,6 @@
 
 @implementation KFDataViewController
 
-- (id)initWithDataStore:(KFDataStore*)dataStore {
-    NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWithConcurrencyType:NSMainQueueConcurrencyType];
-
-    if (self = [self initWithManagedObjectContext:managedObjectContext]) {
-
-    }
-
-    return self;
-}
-
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
     if (self = [self init]) {

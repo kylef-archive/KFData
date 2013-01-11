@@ -28,7 +28,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
 
-    UIViewController *listViewController = [[TDListViewController alloc] initWithDataStore:dataStore];
+    NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWithConcurrencyType:NSMainQueueConcurrencyType];
+    UIViewController *listViewController = [[TDListViewController alloc] initWithManagedObjectContext:managedObjectContext];
     listViewController = [[UINavigationController alloc] initWithRootViewController:listViewController];
     [[self window] setRootViewController:listViewController];
 

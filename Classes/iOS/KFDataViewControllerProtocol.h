@@ -13,7 +13,6 @@
 
 @protocol KFDataViewControllerProtocol <NSObject>
 
-- (id)initWithDataStore:(KFDataStore*)dataStore;
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 - (NSManagedObjectContext *)managedObjectContext;
