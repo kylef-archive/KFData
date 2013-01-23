@@ -11,44 +11,18 @@
 @interface NSManagedObject (Finders)
 
 + (NSArray*)findAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (NSArray*)findAllSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (NSArray*)findAllSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (NSArray*)findAllWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (NSArray*)findAllSortedBy:(NSString*)sortTerm
-                  ascending:(BOOL)ascending
-     inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findSingleWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (NSArray*)findAllSortedBy:(NSString*)sortTerm
-                  ascending:(BOOL)ascending
-              withPredicate:(NSPredicate*)searchFilter
-     inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findFirstWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (NSArray*)findAllWithPredicate:(NSPredicate*)searchFilter
-          inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findSingleWithPredicate:(NSPredicate*)searchFilter
-						   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findFirstSortedBy:(NSString*)sortTerm
-							ascending:(BOOL)ascending
-			   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findFirstWithPredicate:(NSPredicate*)searchFilter
-					inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findFirstSortedBy:(NSString*)sortTerm
-							ascending:(BOOL)ascending
-						withPredicate:(NSPredicate*)searchFilter
-			   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findLastSortedBy:(NSString*)sortTerm
-							ascending:(BOOL)ascending
-			   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findLastWithPredicate:(NSPredicate*)searchFilter
-				   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSManagedObject*)findLastSortedBy:(NSString*)sortTerm
-							ascending:(BOOL)ascending
-						withPredicate:(NSPredicate*)searchFilter
-			   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findLastWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (id)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 @end

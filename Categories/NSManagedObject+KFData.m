@@ -24,7 +24,7 @@
     return results;
 }
 
-+ (NSManagedObject*)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
++ (id)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
 									  inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSArray* results = [self executeFetchRequest:fetchRequest inManagedObjectContext:managedObjectContext];
@@ -37,7 +37,7 @@
 	return [results objectAtIndex:0];
 }
 
-+ (NSManagedObject*)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
++ (id)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
 									 inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	[fetchRequest setFetchLimit:1];
@@ -45,7 +45,7 @@
 	return [self executeFetchRequestAndEnsureSingleObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (NSManagedObject*)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
++ (id)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
 									inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSArray* results = [self executeFetchRequest:fetchRequest inManagedObjectContext:managedObjectContext];
@@ -70,7 +70,7 @@
 
 #pragma mark -
 
-+ (NSManagedObject*)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
++ (id)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
 
     NSManagedObject *newObject = [[self alloc] initWithEntity:entityDescription
