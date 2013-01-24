@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
-#import "KFFetchedResultsTableController.h"
-
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
+#import "KFFetchedResultsTableController.h"
 #import "KFDataStore.h"
 
 @implementation KFFetchedResultsTableController

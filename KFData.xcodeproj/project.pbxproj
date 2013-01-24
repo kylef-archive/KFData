@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7798F48B166F6CA0004CD57D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7798F48A166F6CA0004CD57D /* SenTestingKit.framework */; };
+		7798F48D166F6CA0004CD57D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7798F48C166F6CA0004CD57D /* UIKit.framework */; };
+		7798F48E166F6CA0004CD57D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7798F47B166F6CA0004CD57D /* Foundation.framework */; };
+		7798F497166F6CA0004CD57D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7798F495166F6CA0004CD57D /* InfoPlist.strings */; };
+		7798F49A166F6CA0004CD57D /* KFDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798F499166F6CA0004CD57D /* KFDataTests.m */; };
+		7798F4AF166F6CD9004CD57D /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798F4A7166F6CD9004CD57D /* KFDataStore.m */; };
+		7798F4B3166F6CD9004CD57D /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798F4AB166F6CD9004CD57D /* NSManagedObject+KFData.m */; };
+		7798F4B5166F6CD9004CD57D /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798F4AD166F6CD9004CD57D /* NSManagedObjectContext+KFData.m */; };
+		7798F4B8166F6D10004CD57D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7798F4B7166F6D10004CD57D /* CoreData.framework */; };
+		7798F4BB166F7177004CD57D /* KFDataStoreConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7798F4BA166F7177004CD57D /* KFDataStoreConfiguration.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7798F47B166F6CA0004CD57D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7798F489166F6CA0004CD57D /* KFDataTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KFDataTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7798F48A166F6CA0004CD57D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		7798F48C166F6CA0004CD57D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		7798F494166F6CA0004CD57D /* KFDataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KFDataTests-Info.plist"; sourceTree = "<group>"; };
+		7798F496166F6CA0004CD57D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7798F498166F6CA0004CD57D /* KFDataTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFDataTests.h; sourceTree = "<group>"; };
+		7798F499166F6CA0004CD57D /* KFDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFDataTests.m; sourceTree = "<group>"; };
+		7798F4A6166F6CD9004CD57D /* KFDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataStore.h; path = Classes/KFDataStore.h; sourceTree = SOURCE_ROOT; };
+		7798F4A7166F6CD9004CD57D /* KFDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataStore.m; path = Classes/KFDataStore.m; sourceTree = SOURCE_ROOT; };
+		7798F4AA166F6CD9004CD57D /* NSManagedObject+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+KFData.h"; path = "Classes/NSManagedObject+KFData.h"; sourceTree = SOURCE_ROOT; };
+		7798F4AB166F6CD9004CD57D /* NSManagedObject+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+KFData.m"; path = "Classes/NSManagedObject+KFData.m"; sourceTree = SOURCE_ROOT; };
+		7798F4AC166F6CD9004CD57D /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+KFData.h"; path = "Classes/NSManagedObjectContext+KFData.h"; sourceTree = SOURCE_ROOT; };
+		7798F4AD166F6CD9004CD57D /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+KFData.m"; path = "Classes/NSManagedObjectContext+KFData.m"; sourceTree = SOURCE_ROOT; };
+		7798F4B7166F6D10004CD57D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7798F4B9166F7177004CD57D /* KFDataStoreConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataStoreConfiguration.h; path = Classes/KFDataStoreConfiguration.h; sourceTree = SOURCE_ROOT; };
+		7798F4BA166F7177004CD57D /* KFDataStoreConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataStoreConfiguration.m; path = Classes/KFDataStoreConfiguration.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7798F485166F6CA0004CD57D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7798F4B8166F6D10004CD57D /* CoreData.framework in Frameworks */,
+				7798F48B166F6CA0004CD57D /* SenTestingKit.framework in Frameworks */,
+				7798F48D166F6CA0004CD57D /* UIKit.framework in Frameworks */,
+				7798F48E166F6CA0004CD57D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7798F46D166F6CA0004CD57D = {
+			isa = PBXGroup;
+			children = (
+				7798F47D166F6CA0004CD57D /* KFData */,
+				7798F492166F6CA0004CD57D /* KFDataTests */,
+				7798F47A166F6CA0004CD57D /* Frameworks */,
+				7798F479166F6CA0004CD57D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7798F479166F6CA0004CD57D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7798F489166F6CA0004CD57D /* KFDataTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7798F47A166F6CA0004CD57D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7798F47B166F6CA0004CD57D /* Foundation.framework */,
+				7798F48A166F6CA0004CD57D /* SenTestingKit.framework */,
+				7798F48C166F6CA0004CD57D /* UIKit.framework */,
+				7798F4B7166F6D10004CD57D /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7798F47D166F6CA0004CD57D /* KFData */ = {
+			isa = PBXGroup;
+			children = (
+				7798F4A6166F6CD9004CD57D /* KFDataStore.h */,
+				7798F4A7166F6CD9004CD57D /* KFDataStore.m */,
+				7798F4B9166F7177004CD57D /* KFDataStoreConfiguration.h */,
+				7798F4BA166F7177004CD57D /* KFDataStoreConfiguration.m */,
+				7798F4AA166F6CD9004CD57D /* NSManagedObject+KFData.h */,
+				7798F4AB166F6CD9004CD57D /* NSManagedObject+KFData.m */,
+				7798F4AC166F6CD9004CD57D /* NSManagedObjectContext+KFData.h */,
+				7798F4AD166F6CD9004CD57D /* NSManagedObjectContext+KFData.m */,
+			);
+			path = KFData;
+			sourceTree = "<group>";
+		};
+		7798F492166F6CA0004CD57D /* KFDataTests */ = {
+			isa = PBXGroup;
+			children = (
+				7798F498166F6CA0004CD57D /* KFDataTests.h */,
+				7798F499166F6CA0004CD57D /* KFDataTests.m */,
+				7798F493166F6CA0004CD57D /* Supporting Files */,
+			);
+			path = KFDataTests;
+			sourceTree = "<group>";
+		};
+		7798F493166F6CA0004CD57D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7798F494166F6CA0004CD57D /* KFDataTests-Info.plist */,
+				7798F495166F6CA0004CD57D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7798F488166F6CA0004CD57D /* KFDataTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7798F4A0166F6CA0004CD57D /* Build configuration list for PBXNativeTarget "KFDataTests" */;
+			buildPhases = (
+				7798F484166F6CA0004CD57D /* Sources */,
+				7798F485166F6CA0004CD57D /* Frameworks */,
+				7798F486166F6CA0004CD57D /* Resources */,
+				7798F487166F6CA0004CD57D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KFDataTests;
+			productName = KFDataTests;
+			productReference = 7798F489166F6CA0004CD57D /* KFDataTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7798F46F166F6CA0004CD57D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Kyle Fuller";
+			};
+			buildConfigurationList = 7798F472166F6CA0004CD57D /* Build configuration list for PBXProject "KFData" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7798F46D166F6CA0004CD57D;
+			productRefGroup = 7798F479166F6CA0004CD57D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7798F488166F6CA0004CD57D /* KFDataTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7798F486166F6CA0004CD57D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7798F497166F6CA0004CD57D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7798F487166F6CA0004CD57D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7798F484166F6CA0004CD57D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7798F49A166F6CA0004CD57D /* KFDataTests.m in Sources */,
+				7798F4AF166F6CD9004CD57D /* KFDataStore.m in Sources */,
+				7798F4B3166F6CD9004CD57D /* NSManagedObject+KFData.m in Sources */,
+				7798F4B5166F6CD9004CD57D /* NSManagedObjectContext+KFData.m in Sources */,
+				7798F4BB166F7177004CD57D /* KFDataStoreConfiguration.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7798F495166F6CA0004CD57D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7798F496166F6CA0004CD57D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7798F49B166F6CA0004CD57D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7798F49C166F6CA0004CD57D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7798F4A1166F6CA0004CD57D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "KFDataTests/KFDataTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7798F4A2166F6CA0004CD57D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "KFDataTests/KFDataTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7798F472166F6CA0004CD57D /* Build configuration list for PBXProject "KFData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7798F49B166F6CA0004CD57D /* Debug */,
+				7798F49C166F6CA0004CD57D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7798F4A0166F6CA0004CD57D /* Build configuration list for PBXNativeTarget "KFDataTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7798F4A1166F6CA0004CD57D /* Debug */,
+				7798F4A2166F6CA0004CD57D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7798F46F166F6CA0004CD57D /* Project object */;
+}

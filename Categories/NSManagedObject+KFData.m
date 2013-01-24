@@ -81,12 +81,12 @@
 
 #pragma mark -
 
-+ (NSUInteger)deleteAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
-    return [self deleteAllInManagedObjectContext:managedObjectContext withPredicate:nil];
+    return [self removeAllInManagedObjectContext:managedObjectContext withPredicate:nil];
 }
 
-+ (NSUInteger)deleteAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                                 withPredicate:(NSPredicate*)predicate
 {
     NSFetchRequest *fetchRequest = [self requestAllInManagedObjectContext:managedObjectContext];

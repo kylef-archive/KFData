@@ -37,7 +37,7 @@
         NSManagedObjectContext *parentContext = [self parentContext];
 
         [parentContext performBlockAndWait:^{
-            saved = [parentContext save];
+            saved = [parentContext nestedSave];
         }];
     }
 

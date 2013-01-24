@@ -23,8 +23,8 @@
 
 + (id)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (NSUInteger)deleteAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (NSUInteger)deleteAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                                 withPredicate:(NSPredicate*)predicate;
 
 @end
