@@ -10,6 +10,12 @@
 
 @implementation NSManagedObjectContext (KFData)
 
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark -
+
 - (BOOL)save {
     BOOL saved = NO;
 
@@ -93,6 +99,22 @@
             completionHandler();
         }
     }];
+}
+
+#pragma mark - 
+
+- (void)obtainPermanentIDsBeforeSaving {
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextWillSave:) name:NSManagedObjectContextWillSaveNotification object:self];
+}
+
+- (void)contextWillSave:(NSNotification*)notification {
+	NSManagedObjectContext* context = (NSManagedObjectContext*)[notification object];
+    if ([[context insertedObjects] count] > 0) {
+        NSArray* insertedObjects = [[context insertedObjects] allObjects];
+        NSError* error = nil;
+        [context obtainPermanentIDsForObjects:insertedObjects error:&error];
+#pragma message("should we handle errors here?")
+    }
 }
 
 @end

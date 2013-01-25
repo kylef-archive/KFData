@@ -27,5 +27,9 @@
 - (void)performWriteBlock:(void(^)(void))writeBlock
         completionHandler:(void(^)(void))completionHandler;
 
+- (void)obtainPermanentIDsBeforeSaving;
+
+- (void)contextWillSave:(NSNotification*)notification;
+
 @end
 

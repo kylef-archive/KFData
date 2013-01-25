@@ -74,6 +74,9 @@
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
         _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
+		[_managedObjectContext obtainPermanentIDsBeforeSaving];
+		[_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+		
     }
 
     return self;
@@ -133,6 +136,7 @@
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:concurrencyType];
     [context setParentContext:[self managedObjectContext]];
+	[context obtainPermanentIDsBeforeSaving];
     return context;
 }
 
