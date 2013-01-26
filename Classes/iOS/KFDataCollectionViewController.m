@@ -7,7 +7,6 @@
 //
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-#import "KFDataStore.h"
 
 #ifdef KFDataPSTCollectionViewController
 #import "PSTCollectionView.h"
