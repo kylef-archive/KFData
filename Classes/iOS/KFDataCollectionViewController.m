@@ -8,26 +8,23 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFDataStore.h"
+
+#ifdef KFDataPSTCollectionViewController
+#import "PSTCollectionView.h"
+#endif
+
 #import "KFDataCollectionViewController.h"
 
 @implementation KFDataCollectionViewController
 
 #pragma mark -
 
-- (id)initWithDataStore:(KFDataStore*)dataStore
-   collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout
-{
-    NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWithConcurrencyType:NSMainQueueConcurrencyType];
-    
-    if (self = [self initWithManagedObjectContext:managedObjectContext collectionViewLayout:collectionViewLayout]) {
-        
-    }
-    
-    return self;
-}
-
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+#ifdef KFDataPSTCollectionViewController
+              collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout
+#else
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout
+#endif
 {
     if (self = [super initWithCollectionViewLayout:collectionViewLayout]) {
         _managedObjectContext = managedObjectContext;
@@ -102,14 +99,14 @@
 #pragma mark -
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [[[self fetchedResultsController] sections] count];
+    return (NSInteger)[[[self fetchedResultsController] sections] count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section
 {
     NSArray *sections = [[self fetchedResultsController] sections];
-    id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:(NSUInteger)section];
     
 	NSUInteger count = [sectionInfo numberOfObjects];
 	return (NSInteger)count;
@@ -118,3 +115,4 @@
 @end
 
 #endif
+
