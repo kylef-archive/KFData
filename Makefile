@@ -1,4 +1,4 @@
-VERSION = $(shell git describe --tags)
+VERSION := $(shell git describe --tags | tr "-" " " | awk '{print $$1}')
 APPLEDOC ?= appledoc
 APPLEDOC_OPTS = --output docs \
 				--project-company "Kyle Fuller" \
