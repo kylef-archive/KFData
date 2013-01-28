@@ -15,43 +15,84 @@
 #import "NSManagedObject+Finders.h"
 #import "NSManagedObject+Aggregation.h"
 
+
+/**
+ KFDataStore is a wrapper around an NSPersistentStoreCoordinator. You would
+ normally create a single instance of KFDataStore to use across the whole
+ of your application. Then you would run
+ managedObjectContextWithConcurrencyType: to get hold of a managed object
+ context. Alternatively you can use performWriteBlock: and performReadBlock:
+ to run a block.
+*/
+
 @interface KFDataStore : NSObject
 
 @property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
-#pragma mark -
+/** Creates a standard data store which persists to the document directory.
 
-/* Creates a standard local data store which persists to the document directory */
+ This data store will be stored in the applications sandbox at `/Documents/DataStores/localStore.sqlite`
+*/
+
 + (id)standardLocalDataStore;
 
-/* Create a local in-memory data store */
+/** Create a local in-memory data store */
+
 + (id)standardMemoryDataStore;
 
-#pragma mark -
+#pragma mark - Initialization
+/** @name Initialization */
 
-/* After using init, you will need to manually add the persistent stores.
-   Additionally you can use the above `standard` helper methods. The only
-   reasons where you would need to manually init are if you want to support
-   non-standard object models or custom configurations of your model. */
+/**
+ After using init, you will need to manually add the persistent stores.
+ Additionally you can use the `standardLocalDataStore` helper method. The only
+ reasons where you would need to manually init are if you want to support
+ non-standard object models or custom configurations of your model.
+
+ @see standardLocalDataStore
+*/
 - (id)init;
 - (id)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel;
 
 #pragma mark -
 
-// Create a sub-context with concurrency type
+/** Create a sub-context with concurrency type.
+ @param concurrencyType The concurrency pattern with which context will be used.
+ @return A context initialized to use the given concurrency type.
+ */
 - (NSManagedObjectContext*)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType;
 
-#pragma mark -
+#pragma mark - Performing Block Operations
+/** @name Performing Block Operations */
 
-// Execute a read-only block on a new private context
+/** Asyncronously execute a read-only block on a new private context
+ @param readBlock The block to perform
+ @see performWriteBlock:
+*/
 - (void)performReadBlock:(void(^)(NSManagedObjectContext* managedObjectContext))readBlock;
 
-// Execute a block and then save and merge the context to the main context
+/**
+ Asyncronously execute a block and then save the changes into the main
+ context (and persistent store).
+
+ @param writeBlock The block to perform
+ @see performWriteBlock:completionHandler:
+*/
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
+
+/**
+ Asyncronously execute a block and then save the changes into the main
+ context and persistent store. But execute a completion block when
+ this has been saved.
+
+ @param writeBlock The block to perform
+ @param completionHandler Completion block, which is executed after changed from the write block have been saved.
+
+ @see performWriteBlock:
+*/
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
 		completionHandler:(void(^)(void))completionHandler;
-
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
 // Execute a block on the main (root) context and save
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
