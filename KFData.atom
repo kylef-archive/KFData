@@ -1,18 +1,18 @@
 <?xml version="1.0" standalone="no"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:docset="http://developer.apple.com/rss/docset_extensions" xml:lang="en">
-    <id>http://kylef.github.com/KFData/KFData.atom/20130128175451</id>
+    <id>http://kylef.github.com/KFData/KFData.atom/20130128181240</id>
     <title type="text">KFData Documentation</title>
     <rights>Copyright © 2013 Kyle Fuller. All rights reserved.</rights>
     <link rel="self" href="http://kylef.github.com/KFData/KFData.atom"></link>
     <docset:publisherName>Kyle Fuller</docset:publisherName>
     <docset:publisherID>com.kylefuller.documentation</docset:publisherID>
-    <updated>2013-01-28T17:54:51+00:00</updated>
+    <updated>2013-01-28T18:12:40+00:00</updated>
     <entry>
         <id>tag:kylef.github.com,2013-01-28:com.kylefuller.KFData/0.2.0</id>
         <title type="text">KFData Documentation</title>
-        <updated>2013-01-28T17:54:51+00:00</updated>
+        <updated>2013-01-28T18:12:40+00:00</updated>
         <content type="text">KFData Documentation (v0.2.0)</content>
-        <link rel="enclosure" type="application/octet-stream" href="http://kylef.github.com/KFData/KFData.atom" length="32372"></link>
+        <link rel="enclosure" type="application/octet-stream" href="http://kylef.github.com/KFData/KFData.atom" length="32330"></link>
         <docset:identifier>com.kylefuller.KFData</docset:identifier>
         <docset:version>0.2.0</docset:version>
         <docset:minimumXcodeVersion>3.0.0</docset:minimumXcodeVersion>
