@@ -11,7 +11,7 @@ APPLEDOC_OPTS = --output docs \
 				--docset-platform-family iphoneos \
 				--docset-atom-filename "KFData.atom" \
 				--docset-feed-url "http://kylef.github.com/KFData/%DOCSETATOMFILENAME" \
-				--docset-package-url "http://kylef.github.com/KFData/%DOCSETATOMFILENAME" \
+				--docset-package-url "http://kylef.github.com/KFData/%DOCSETPACKAGEFILENAME" \
 				--docset-fallback-url "http://kylef.github.com/KFData/" \
 				--publish-docset \
 				--verbose 2
