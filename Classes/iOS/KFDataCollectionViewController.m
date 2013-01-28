@@ -27,31 +27,17 @@
 {
     if (self = [super initWithCollectionViewLayout:collectionViewLayout]) {
         _managedObjectContext = managedObjectContext;
-        
-        NSManagedObjectContext *parentContext = [managedObjectContext parentContext];
-        if (parentContext) {
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(mergeChanges:)
-                                                         name:NSManagedObjectContextDidSaveNotification
-                                                       object:parentContext];
-        }
     }
     
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+#pragma mark - View
 
-#pragma mark - Notifications
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 
-- (void)mergeChanges:(NSNotification*)notification {
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    
-    [managedObjectContext performBlock:^{
-        [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-    }];
+    [self performFetch];
 }
 
 #pragma mark -
@@ -75,18 +61,18 @@
     
     [fetchedResultsController setDelegate:self];
     
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    
-    [managedObjectContext performBlock:^{
-        NSError *fetchError;
-        if ([fetchedResultsController performFetch:&fetchError] == NO) {
-            NSLog(@"KFData: Fetch request error: %@", fetchError);
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[self collectionView] reloadData];
-        });
-    }];
+    if ([self isViewLoaded]) {
+        [self performFetch];
+    }
+}
+
+- (void)performFetch {
+    NSError *fetchError;
+    if ([[self fetchedResultsController] performFetch:&fetchError] == NO) {
+        NSLog(@"KFData: Fetch request error: %@", fetchError);
+    }
+
+    [[self collectionView] reloadData];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

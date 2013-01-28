@@ -41,6 +41,8 @@
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
+- (void)performFetch;
+
 @end
 
 #endif
