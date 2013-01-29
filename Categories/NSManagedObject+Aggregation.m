@@ -12,6 +12,8 @@
 @implementation NSManagedObject (Aggregation)
 
 + (NSUInteger)executeCountForFetchRequest:(NSFetchRequest*)fetchRequest inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+	[fetchRequest setResultType:NSCountResultType];
+
 	NSError* error = nil;
 	NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
     if (error) {
