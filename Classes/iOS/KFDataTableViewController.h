@@ -19,8 +19,6 @@
 
   It implements the following:
  
-    - If changes happen on the parent NSManagedObjectContext, they will be
-      merged into the context for this view controller.
     - The table view is automatically updated to insert changes when changes
       have been made to the NSFetchRequest.
 */
@@ -32,6 +30,8 @@
 
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
+
+- (void)performFetch;
 
 @end
 
