@@ -9,12 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "NSManagedObjectContext+KFData.h"
-#import "NSManagedObject+KFData.h"
-#import "NSManagedObject+Requests.h"
-#import "NSManagedObject+Finders.h"
-#import "NSManagedObject+Aggregation.h"
-
+#import "KFDataStoreCategories.h"
 
 /**
  KFDataStore is a wrapper around an NSPersistentStoreCoordinator. You would
