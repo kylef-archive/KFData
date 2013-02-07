@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77447E5516C3ACB100877D1C /* NSManagedObject+Aggregation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */; };
+		77447E5616C3ACB100877D1C /* NSManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E4E16C3ACB100877D1C /* NSManagedObject+Finders.m */; };
+		77447E5716C3ACB100877D1C /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */; };
+		77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */; };
+		77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */; };
 		779A785216837FF60049B316 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785116837FF60049B316 /* UIKit.framework */; };
 		779A785416837FF60049B316 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785316837FF60049B316 /* Foundation.framework */; };
 		779A785616837FF60049B316 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785516837FF60049B316 /* CoreGraphics.framework */; };
@@ -23,8 +28,6 @@
 		779A787D16837FF60049B316 /* TodoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A787C16837FF60049B316 /* TodoTests.m */; };
 		779A7887168380080049B316 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A7886168380080049B316 /* CoreData.framework */; };
 		779A788E168380260049B316 /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A7889168380260049B316 /* KFDataStore.m */; };
-		779A788F168380260049B316 /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A788B168380260049B316 /* NSManagedObject+KFData.m */; };
-		779A7890168380260049B316 /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A788D168380260049B316 /* NSManagedObjectContext+KFData.m */; };
 		779A7897168380360049B316 /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A7893168380360049B316 /* KFDataTableViewController.m */; };
 		779A7898168380360049B316 /* KFDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A7895168380360049B316 /* KFDataViewController.m */; };
 		779A789C168380730049B316 /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A789B168380730049B316 /* TDListViewController.m */; };
@@ -45,6 +48,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77447E4A16C3ACB100877D1C /* KFDataStoreCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataStoreCategories.h; sourceTree = "<group>"; };
+		77447E4B16C3ACB100877D1C /* NSManagedObject+Aggregation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Aggregation.h"; sourceTree = "<group>"; };
+		77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Aggregation.m"; sourceTree = "<group>"; };
+		77447E4D16C3ACB100877D1C /* NSManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Finders.h"; sourceTree = "<group>"; };
+		77447E4E16C3ACB100877D1C /* NSManagedObject+Finders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Finders.m"; sourceTree = "<group>"; };
+		77447E4F16C3ACB100877D1C /* NSManagedObject+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+KFData.h"; sourceTree = "<group>"; };
+		77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+KFData.m"; sourceTree = "<group>"; };
+		77447E5116C3ACB100877D1C /* NSManagedObject+Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Requests.h"; sourceTree = "<group>"; };
+		77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Requests.m"; sourceTree = "<group>"; };
+		77447E5316C3ACB100877D1C /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+KFData.h"; sourceTree = "<group>"; };
+		77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+KFData.m"; sourceTree = "<group>"; };
 		779A784D16837FF60049B316 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		779A785116837FF60049B316 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		779A785316837FF60049B316 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,10 +81,6 @@
 		779A7886168380080049B316 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		779A7888168380260049B316 /* KFDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataStore.h; path = ../../Classes/KFDataStore.h; sourceTree = "<group>"; };
 		779A7889168380260049B316 /* KFDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataStore.m; path = ../../Classes/KFDataStore.m; sourceTree = "<group>"; };
-		779A788A168380260049B316 /* NSManagedObject+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+KFData.h"; path = "../../Classes/NSManagedObject+KFData.h"; sourceTree = "<group>"; };
-		779A788B168380260049B316 /* NSManagedObject+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+KFData.m"; path = "../../Classes/NSManagedObject+KFData.m"; sourceTree = "<group>"; };
-		779A788C168380260049B316 /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+KFData.h"; path = "../../Classes/NSManagedObjectContext+KFData.h"; sourceTree = "<group>"; };
-		779A788D168380260049B316 /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+KFData.m"; path = "../../Classes/NSManagedObjectContext+KFData.m"; sourceTree = "<group>"; };
 		779A7892168380360049B316 /* KFDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataTableViewController.h; path = ../../Classes/iOS/KFDataTableViewController.h; sourceTree = "<group>"; };
 		779A7893168380360049B316 /* KFDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataTableViewController.m; path = ../../Classes/iOS/KFDataTableViewController.m; sourceTree = "<group>"; };
 		779A7894168380360049B316 /* KFDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataViewController.h; path = ../../Classes/iOS/KFDataViewController.h; sourceTree = "<group>"; };
@@ -111,6 +121,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77447E4916C3ACB100877D1C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				77447E4A16C3ACB100877D1C /* KFDataStoreCategories.h */,
+				77447E4B16C3ACB100877D1C /* NSManagedObject+Aggregation.h */,
+				77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */,
+				77447E4D16C3ACB100877D1C /* NSManagedObject+Finders.h */,
+				77447E4E16C3ACB100877D1C /* NSManagedObject+Finders.m */,
+				77447E4F16C3ACB100877D1C /* NSManagedObject+KFData.h */,
+				77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */,
+				77447E5116C3ACB100877D1C /* NSManagedObject+Requests.h */,
+				77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */,
+				77447E5316C3ACB100877D1C /* NSManagedObjectContext+KFData.h */,
+				77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */,
+			);
+			name = Categories;
+			path = ../../Categories;
+			sourceTree = "<group>";
+		};
 		779A784216837FF60049B316 = {
 			isa = PBXGroup;
 			children = (
@@ -197,13 +226,10 @@
 		779A7891168380290049B316 /* KFData */ = {
 			isa = PBXGroup;
 			children = (
+				77447E4916C3ACB100877D1C /* Categories */,
 				779A78991683803B0049B316 /* iOS */,
 				779A7888168380260049B316 /* KFDataStore.h */,
 				779A7889168380260049B316 /* KFDataStore.m */,
-				779A788A168380260049B316 /* NSManagedObject+KFData.h */,
-				779A788B168380260049B316 /* NSManagedObject+KFData.m */,
-				779A788C168380260049B316 /* NSManagedObjectContext+KFData.h */,
-				779A788D168380260049B316 /* NSManagedObjectContext+KFData.m */,
 			);
 			name = KFData;
 			sourceTree = "<group>";
@@ -334,14 +360,17 @@
 				779A785E16837FF60049B316 /* main.m in Sources */,
 				779A786216837FF60049B316 /* TDAppDelegate.m in Sources */,
 				779A788E168380260049B316 /* KFDataStore.m in Sources */,
-				779A788F168380260049B316 /* NSManagedObject+KFData.m in Sources */,
-				779A7890168380260049B316 /* NSManagedObjectContext+KFData.m in Sources */,
 				779A7897168380360049B316 /* KFDataTableViewController.m in Sources */,
 				779A7898168380360049B316 /* KFDataViewController.m in Sources */,
 				779A789C168380730049B316 /* TDListViewController.m in Sources */,
 				779A789F168381790049B316 /* TodoModel.xcdatamodeld in Sources */,
 				779A78A2168381BE0049B316 /* Todo.m in Sources */,
 				779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */,
+				77447E5516C3ACB100877D1C /* NSManagedObject+Aggregation.m in Sources */,
+				77447E5616C3ACB100877D1C /* NSManagedObject+Finders.m in Sources */,
+				77447E5716C3ACB100877D1C /* NSManagedObject+KFData.m in Sources */,
+				77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */,
+				77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +537,7 @@
 				779A788216837FF60049B316 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		779A788316837FF60049B316 /* Build configuration list for PBXNativeTarget "TodoTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +546,7 @@
 				779A788516837FF60049B316 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
