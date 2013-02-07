@@ -23,7 +23,8 @@
       have been made to the NSFetchRequest.
 */
 
-@interface KFDataTableViewController : UITableViewController <KFDataViewControllerProtocol, NSFetchedResultsControllerDelegate>
+@interface KFDataTableViewController : UITableViewController <KFDataListViewControllerProtocol,
+                                                              NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;

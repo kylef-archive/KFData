@@ -11,6 +11,7 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "KFDataViewControllerProtocol.h"
 
 /* Add #define KFDataPSTCollectionViewController to your pch file if you want
    to use this on iOS5 along with PSTCollectionView */
@@ -23,9 +24,11 @@
 #import "KFDataViewControllerProtocol.h"
 
 #ifdef KFDataPSTCollectionViewController
-@interface KFDataCollectionViewController : PSTCollectionViewController <NSFetchedResultsControllerDelegate>
+@interface KFDataCollectionViewController : PSTCollectionViewController <KFDataListViewControllerProtocol,
+                                                                         NSFetchedResultsControllerDelegate>
 #else
-@interface KFDataCollectionViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
+@interface KFDataCollectionViewController : UICollectionViewController <KFDataListViewControllerProtocol
+                                                                        NSFetchedResultsControllerDelegate>
 #endif
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
