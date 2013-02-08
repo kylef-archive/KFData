@@ -12,16 +12,16 @@
 
 + (NSArray*)executeFetchRequest:(NSFetchRequest*)fetchRequest
          inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
++ (instancetype)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
 									  inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
++ (instancetype)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
 									 inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
++ (instancetype)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
 									inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 + (NSEntityDescription*)entityDescriptionInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (id)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext

@@ -15,14 +15,14 @@
 + (NSArray*)findAllSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (NSArray*)findAllWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (id)findSingleWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findSingleWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (id)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)findFirstWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findFirstWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
-+ (id)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)findLastWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (id)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findLastWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 @end

@@ -38,43 +38,43 @@
 
 #pragma mark -
 
-+ (id)findSingleWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findSingleWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest *fetchRequest = [self requestAllWithPredicate:searchFilter inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndEnsureSingleObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest* fetchRequest = [self requestAllSortedBy:sortTerm ascending:ascending inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndReturnFirstObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)findFirstWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findFirstWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest* fetchRequest = [self requestAllWithPredicate:searchFilter inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndReturnFirstObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest* fetchRequest = [self requestAllSortedBy:sortTerm ascending:ascending withPredicate:searchFilter inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndReturnFirstObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest* fetchRequest = [self requestAllSortedBy:sortTerm ascending:ascending inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndReturnLastObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)findLastWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findLastWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest* fetchRequest = [self requestAllWithPredicate:searchFilter inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndReturnLastObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
++ (instancetype)findLastSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSFetchRequest* fetchRequest = [self requestAllSortedBy:sortTerm ascending:ascending withPredicate:searchFilter inManagedObjectContext:managedObjectContext];
 	return [self executeFetchRequestAndReturnLastObject:fetchRequest inManagedObjectContext:managedObjectContext];
