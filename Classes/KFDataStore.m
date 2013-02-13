@@ -44,25 +44,21 @@
 
 + (id)standardLocalDataStore {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @synchronized(self) {
-            NSURL *storesDirectoryURL = [self storesDirectoryURL];
-            NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
+    [[dataStore managedObjectContext] performBlock:^{
+        NSURL *storesDirectoryURL = [self storesDirectoryURL];
+        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
 
-            [dataStore addLocalStore:nil URL:storeURL];
-        }
-    });
+        [dataStore addLocalStore:nil URL:storeURL];
+    }];
 
     return dataStore;
 }
 
 + (id)standardMemoryDataStore {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @synchronized(self) {
-            [dataStore addMemoryStore:nil];
-        }
-    });
+    [[dataStore managedObjectContext] performBlock:^{
+        [dataStore addMemoryStore:nil];
+    }];
 
     return dataStore;
 }
