@@ -22,6 +22,9 @@ docs: clean
 clean:
 	rm -fr docs
 
+test:
+	xcodebuild -workspace KFData.xcworkspace -scheme KFData test
+
 gh-pages: docs
 	cp -r docs/publish/ docs/html
 	ghp-import docs/html
