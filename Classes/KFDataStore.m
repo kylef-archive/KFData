@@ -11,11 +11,7 @@
 #define kKFDataStoreLocalFilename @"localStore.sqlite"
 
 @interface KFDataStore ()
-@property (nonatomic) id currentUbiquityIdentityToken;
 
-@property (nonatomic) NSPersistentStore *localPersistentStore;
-@property (nonatomic) NSPersistentStore *cloudPersistentStore;
-@property (nonatomic) NSPersistentStore *fallbackPersistentStore;
 @end
 
 @implementation KFDataStore

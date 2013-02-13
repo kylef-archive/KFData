@@ -17,7 +17,7 @@
 	NSError* error = nil;
 	NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"executeCountForFetchRequest: failed with %d; %@", [error code], [error description]);
+        NSLog(@"executeCountForFetchRequest: failed with %lu %@", [error code], [error description]);
     }
     
     return count;
