@@ -24,6 +24,7 @@ clean:
 
 test:
 	xcodebuild -workspace KFData.xcworkspace -scheme KFData test
+	pod spec lint KFData.podspec
 
 gh-pages: docs
 	cp -r docs/publish/ docs/html
