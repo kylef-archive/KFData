@@ -30,8 +30,11 @@ NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWi
 }];
 ```
 
+## Contributing
+
+Please see our [contributing](CONTRIBUTING.md) guide for details.
+
 ## License
 
-KFData is released under the BSD license. See
-[LICENSE](https://github.com/kylef/KFData/blob/master/LICENSE).
+KFData is released under the BSD license. See [LICENSE](LICENSE).
 
