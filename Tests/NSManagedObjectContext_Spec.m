@@ -22,7 +22,7 @@ describe(@"NSManagedObjectContext KFData extensions", ^{
         it(@"should run block", ^{
             __block BOOL isWriteBlockExecuted = NO;
 
-            [[[managedObjectContext should] receive] nestedSave];
+            [[[managedObjectContext should] receive] nestedSave:nil];
 
             [managedObjectContext performWriteBlock:^{
                 isWriteBlockExecuted = YES;
@@ -42,10 +42,10 @@ describe(@"NSManagedObjectContext KFData extensions", ^{
             });
 
             it(@"should save up to parent", ^{
-                [[[managedObjectContext should] receive] nestedSave];
-                [[[childContext should] receiveAndReturn:theValue(YES)] save];
+                [[[managedObjectContext should] receive] nestedSave:nil];
+                [[[childContext should] receiveAndReturn:theValue(YES)] hasChanges];
 
-                [childContext nestedSave];
+                [childContext nestedSave:nil];
             });
         });
     });

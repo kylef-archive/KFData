@@ -30,14 +30,16 @@
     return saved;
 }
 
-- (BOOL)nestedSave {
-    __block BOOL saved = [self save];
+- (BOOL)nestedSave:(NSError **)error {
+    BOOL hasChanges = [self hasChanges];
 
-    if (saved) {
+    __block BOOL saved = [self save:error];
+
+    if (saved && hasChanges) {
         NSManagedObjectContext *parentContext = [self parentContext];
 
         [parentContext performBlockAndWait:^{
-            saved = [parentContext nestedSave];
+            saved = [parentContext nestedSave:error];
         }];
     }
 
@@ -77,20 +79,26 @@
 - (void)performWriteBlock:(void(^)(void))writeBlock {
     [self performBlock:^{
         writeBlock();
-        [self nestedSave];
+        [self nestedSave:nil];
     }];
 }
 
 - (void)performWriteBlock:(void(^)(void))writeBlock
-        completionHandler:(void(^)(void))completionHandler
+                  success:(void(^)(void))success
+                  failure:(void(^)(NSError *error))failure
 {
     [self performBlock:^{
         writeBlock();
 
-        [self nestedSave];
+        NSError *error;
+        BOOL isSuccessful = [self nestedSave:&error];
 
-        if (completionHandler) {
-            completionHandler();
+        if (isSuccessful) {
+            if (success) {
+                success();
+            }
+        } else if (failure) {
+            failure(error);
         }
     }];
 }

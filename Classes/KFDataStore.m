@@ -137,22 +137,18 @@
 }
 
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-       completionHandler:(void(^)(void))completionHandler {
+                  success:(void(^)(void))success
+                  failure:(void(^)(NSError *error))failure
+{
     NSManagedObjectContext *managedObjectContext = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 
-    [managedObjectContext performBlock:^{
+    [managedObjectContext performWriteBlock:^{
         writeBlock(managedObjectContext);
-
-        [managedObjectContext nestedSave];
-
-        if (completionHandler) {
-            completionHandler();
-        }
-    }];
+    } success:success failure:failure];
 }
 
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock {
-    [self performWriteBlock:writeBlock completionHandler:nil];
+    [self performWriteBlock:writeBlock success:nil failure:nil];
 }
 
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
