@@ -13,14 +13,12 @@
 #import <CoreData/CoreData.h>
 #import "KFDataViewControllerProtocol.h"
 
-/*
-  KFDataTableViewController is a generic controller base that manages a table
-  view from an NSFetchRequest.
+/**
+ KFDataTableViewController is a generic controller base that manages a table
+ view from an NSFetchRequest.
 
-  It implements the following:
- 
-    - The table view is automatically updated to insert changes when changes
-      have been made to the NSFetchRequest.
+ It will automatically insert or update cells when changes have been made to
+ the NSFetchRequest.
 */
 
 @interface KFDataTableViewController : UITableViewController <KFDataListViewControllerProtocol,
@@ -32,7 +30,43 @@
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
+/** Execute the fetch request */
 - (void)performFetch;
+
+/** @name Subclass override */
+
+/** This method will return the reuse identifier to use for a type of cell.
+ @param tableView A table-view object requesting the cell.
+ @param managedObject The managed object for the cell.
+ @param indexPath Index of the cell
+ @return Reuse identifier for the cell
+ */
+- (NSString*)tableView:(UITableView*)tableView
+reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
+           atIndexPath:(NSIndexPath *)indexPath;
+
+/** The following method is called to update a cell when a managed object has been updated.
+ Implement this method to configure the cell for the managed object.
+
+ @param tableView A table-view object requesting the cell.
+ @param cell The cell registered for the reuse identifier, or returned by tableView:cellForReuseIdentifier:
+ @param managedObject The managed object for the cell.
+ @param indexPath Index path
+ */
+- (void)tableView:(UITableView*)tableView
+   configuredCell:(UITableViewCell *)cell
+ forManagedObject:(NSManagedObject *)managedObject
+      atIndexPath:(NSIndexPath *)indexPath;
+
+/** Create a UITableViewCell for the reuseIdentifier.
+ @param tableView A table-view object requesting the cell.
+ @param reuseIdentifier The reuse identifier we are requesting a cell for
+ @note This method will be called to grab a cell for the identifier,
+  alternatively you can register a nib or class with the table
+  view `registerNib:forReuseIdentifier:`.
+ */
+- (UITableViewCell*)tableView:(UITableView *)tableView
+       cellForReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end
 
