@@ -18,7 +18,7 @@
 	NSArray* results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	
 	if (error) {
-		NSLog(@"executeFetchRequest failed with %d %@", [error code], [error description]);
+		NSLog(@"executeFetchRequest failed with %ld %@", (long)[error code], [error description]);
 	}
     
     return results;
