@@ -27,7 +27,7 @@
 @interface KFDataCollectionViewController : PSTCollectionViewController <KFDataListViewControllerProtocol,
                                                                          NSFetchedResultsControllerDelegate>
 #else
-@interface KFDataCollectionViewController : UICollectionViewController <KFDataListViewControllerProtocol
+@interface KFDataCollectionViewController : UICollectionViewController <KFDataListViewControllerProtocol,
                                                                         NSFetchedResultsControllerDelegate>
 #endif
 
