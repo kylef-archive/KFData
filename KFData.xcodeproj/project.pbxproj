@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7749599A16CE3BDB003E205A /* NSManagedObjectContext_Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */; };
 		77ADAEBD16CBF79F00A2F38D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77ADAEBC16CBF79F00A2F38D /* SenTestingKit.framework */; };
 		77ADAEBF16CBF79F00A2F38D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77ADAEBE16CBF79F00A2F38D /* Cocoa.framework */; };
 		77ADAED416CBF91500A2F38D /* KFDataStore_Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADAED316CBF91500A2F38D /* KFDataStore_Spec.m */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		308049E1D01E4BD69E3AB8F0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSManagedObjectContext_Spec.m; path = Tests/NSManagedObjectContext_Spec.m; sourceTree = SOURCE_ROOT; };
 		77ADAEB916CBF79F00A2F38D /* KFData.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KFData.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77ADAEBC16CBF79F00A2F38D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		77ADAEBE16CBF79F00A2F38D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -118,6 +120,7 @@
 				77ADAED616CBFA6A00A2F38D /* Classes */,
 				77ADAEE816CBFAA900A2F38D /* Categories */,
 				77ADAED316CBF91500A2F38D /* KFDataStore_Spec.m */,
+				7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */,
 				77ADAEC516CBF79F00A2F38D /* Supporting Files */,
 			);
 			path = KFData;
@@ -279,6 +282,7 @@
 				77ADAEF616CBFAA900A2F38D /* NSManagedObject+KFData.m in Sources */,
 				77ADAEF716CBFAA900A2F38D /* NSManagedObject+Requests.m in Sources */,
 				77ADAEF816CBFAA900A2F38D /* NSManagedObjectContext+KFData.m in Sources */,
+				7749599A16CE3BDB003E205A /* NSManagedObjectContext_Spec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
