@@ -27,6 +27,9 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+                                       style:(UITableViewStyle)style;
+
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
