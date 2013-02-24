@@ -12,6 +12,7 @@
 		77447E5716C3ACB100877D1C /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */; };
 		77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */; };
 		77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */; };
+		777554CB16DA82B200A5ACF9 /* KFDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777554CA16DA82B200A5ACF9 /* KFDataCollectionViewController.m */; };
 		779A785216837FF60049B316 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785116837FF60049B316 /* UIKit.framework */; };
 		779A785416837FF60049B316 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785316837FF60049B316 /* Foundation.framework */; };
 		779A785616837FF60049B316 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785516837FF60049B316 /* CoreGraphics.framework */; };
@@ -59,6 +60,8 @@
 		77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Requests.m"; sourceTree = "<group>"; };
 		77447E5316C3ACB100877D1C /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+KFData.h"; sourceTree = "<group>"; };
 		77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+KFData.m"; sourceTree = "<group>"; };
+		777554C916DA82B200A5ACF9 /* KFDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataCollectionViewController.h; path = ../../Classes/iOS/KFDataCollectionViewController.h; sourceTree = "<group>"; };
+		777554CA16DA82B200A5ACF9 /* KFDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataCollectionViewController.m; path = ../../Classes/iOS/KFDataCollectionViewController.m; sourceTree = "<group>"; };
 		779A784D16837FF60049B316 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		779A785116837FF60049B316 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		779A785316837FF60049B316 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -237,6 +240,8 @@
 		779A78991683803B0049B316 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				777554C916DA82B200A5ACF9 /* KFDataCollectionViewController.h */,
+				777554CA16DA82B200A5ACF9 /* KFDataCollectionViewController.m */,
 				779A7892168380360049B316 /* KFDataTableViewController.h */,
 				779A7893168380360049B316 /* KFDataTableViewController.m */,
 				779A7894168380360049B316 /* KFDataViewController.h */,
@@ -371,6 +376,7 @@
 				77447E5716C3ACB100877D1C /* NSManagedObject+KFData.m in Sources */,
 				77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */,
 				77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */,
+				777554CB16DA82B200A5ACF9 /* KFDataCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
