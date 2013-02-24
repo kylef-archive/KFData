@@ -138,7 +138,19 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
             if (cell) {
-                [self tableView:tableView configuredCell:cell forManagedObject:anObject atIndexPath:indexPath];
+                NSString *newReuseIdentifier = [self tableView:tableView
+                               reuseIdentifierForManagedObject:anObject
+                                                   atIndexPath:indexPath];
+
+                if ([[cell reuseIdentifier] isEqualToString:newReuseIdentifier]) {
+                    [self tableView:tableView
+                     configuredCell:cell
+                   forManagedObject:anObject
+                        atIndexPath:indexPath];
+                } else {
+                    [tableView reloadRowsAtIndexPaths:@[indexPath]
+                                     withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
             }
 
             break;
