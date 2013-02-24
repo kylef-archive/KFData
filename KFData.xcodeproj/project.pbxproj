@@ -24,9 +24,27 @@
 		BF00C2B262A940CE9701EC7D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9776A1351F9F45A9A99EE8D4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		777554C416DA813A00A5ACF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 777554BF16DA813A00A5ACF9 /* Todo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 779A784D16837FF60049B316;
+			remoteInfo = Todo;
+		};
+		777554C616DA813A00A5ACF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 777554BF16DA813A00A5ACF9 /* Todo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 779A786E16837FF60049B316;
+			remoteInfo = TodoTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		308049E1D01E4BD69E3AB8F0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSManagedObjectContext_Spec.m; path = Tests/NSManagedObjectContext_Spec.m; sourceTree = SOURCE_ROOT; };
+		777554BF16DA813A00A5ACF9 /* Todo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Todo.xcodeproj; path = Example/Todo/Todo.xcodeproj; sourceTree = "<group>"; };
 		77ADAEB916CBF79F00A2F38D /* KFData.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KFData.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77ADAEBC16CBF79F00A2F38D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		77ADAEBE16CBF79F00A2F38D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -75,9 +93,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		777554C016DA813A00A5ACF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				777554C516DA813A00A5ACF9 /* Todo.app */,
+				777554C716DA813A00A5ACF9 /* TodoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		777554C816DA815500A5ACF9 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				777554BF16DA813A00A5ACF9 /* Todo.xcodeproj */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
 		77ADAEAD16CBF76F00A2F38D = {
 			isa = PBXGroup;
 			children = (
+				777554C816DA815500A5ACF9 /* Examples */,
 				77ADAEC416CBF79F00A2F38D /* KFData */,
 				77ADAEBB16CBF79F00A2F38D /* Frameworks */,
 				77ADAEBA16CBF79F00A2F38D /* Products */,
@@ -219,12 +255,35 @@
 			mainGroup = 77ADAEAD16CBF76F00A2F38D;
 			productRefGroup = 77ADAEBA16CBF79F00A2F38D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 777554C016DA813A00A5ACF9 /* Products */;
+					ProjectRef = 777554BF16DA813A00A5ACF9 /* Todo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				77ADAEB816CBF79F00A2F38D /* KFData */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		777554C516DA813A00A5ACF9 /* Todo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Todo.app;
+			remoteRef = 777554C416DA813A00A5ACF9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		777554C716DA813A00A5ACF9 /* TodoTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TodoTests.octest;
+			remoteRef = 777554C616DA813A00A5ACF9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		77ADAEB616CBF79F00A2F38D /* Resources */ = {
