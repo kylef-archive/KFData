@@ -40,6 +40,26 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+         managedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSParameterAssert(managedObjectContext);
+
+    if (self = [super initWithCoder:coder]) {
+        _managedObjectContext = managedObjectContext;
+    }
+
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [self initWithCoder:coder managedObjectContext:nil]) {
+        // You should probablly overide this and call the managedObjectContext method.
+    }
+
+    return self;
+}
+
 - (instancetype)init {
     if (self = [self initWithManagedObjectContext:nil style:UITableViewStylePlain]) {
     }

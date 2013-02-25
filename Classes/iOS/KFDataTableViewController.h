@@ -30,6 +30,9 @@
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                                        style:(UITableViewStyle)style;
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+         managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 

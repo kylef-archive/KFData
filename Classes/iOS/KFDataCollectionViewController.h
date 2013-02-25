@@ -41,6 +41,9 @@
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;
 #endif
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+         managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;
 
