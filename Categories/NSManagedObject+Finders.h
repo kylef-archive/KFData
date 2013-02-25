@@ -15,6 +15,7 @@
 + (NSArray*)findAllSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (NSArray*)findAllWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
++ (instancetype)findSingleInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (instancetype)findSingleWithPredicate:(NSPredicate*)searchFilter inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 + (instancetype)findFirstSortedBy:(NSString*)sortTerm ascending:(BOOL)ascending inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
