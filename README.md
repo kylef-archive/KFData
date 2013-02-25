@@ -30,8 +30,31 @@ NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWi
 }];
 ```
 
+## Installation
+
+[CocoaPods](http://cocoapods.org) is the recommended way to add
+KFData to your project.
+
+Here's an example podfile that installs KFData.
+
+### Podfile
+
+```ruby
+platform :ios, '5.0'
+
+pod 'KFData'
+```
+
+Note the specification of iOS 5.0 as the platform; leaving out the 5.0 will
+cause CocoaPods to fail with the following message:
+
+> [!] KFData is not compatible with iOS 4.3.
+
+## Contributing
+
+Please see our [contributing](CONTRIBUTING.md) guide for details.
+
 ## License
 
-KFData is released under the BSD license. See
-[LICENSE](https://github.com/kylef/KFData/blob/master/LICENSE).
+KFData is released under the BSD license. See [LICENSE](LICENSE).
 

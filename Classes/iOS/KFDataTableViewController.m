@@ -14,18 +14,54 @@
 
 @interface KFDataTableViewController ()
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
 @end
 
 @implementation KFDataTableViewController
 
 #pragma mark -
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+                                       style:(UITableViewStyle)style
 {
-    if (self = [super init]) {
+    NSParameterAssert(managedObjectContext);
+
+    if (self = [super initWithStyle:style]) {
         _managedObjectContext = managedObjectContext;
+    }
+
+    return self;
+}
+
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    if (self = [self initWithManagedObjectContext:managedObjectContext style:UITableViewStylePlain]) {
+    }
+
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+         managedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSParameterAssert(managedObjectContext);
+
+    if (self = [super initWithCoder:coder]) {
+        _managedObjectContext = managedObjectContext;
+    }
+
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [self initWithCoder:coder managedObjectContext:nil]) {
+        // You should probablly overide this and call the managedObjectContext method.
+    }
+
+    return self;
+}
+
+- (instancetype)init {
+    if (self = [self initWithManagedObjectContext:nil style:UITableViewStylePlain]) {
     }
 
     return self;
@@ -122,7 +158,19 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
             if (cell) {
-                [self tableView:tableView configuredCell:cell forManagedObject:anObject atIndexPath:indexPath];
+                NSString *newReuseIdentifier = [self tableView:tableView
+                               reuseIdentifierForManagedObject:anObject
+                                                   atIndexPath:indexPath];
+
+                if ([[cell reuseIdentifier] isEqualToString:newReuseIdentifier]) {
+                    [self tableView:tableView
+                     configuredCell:cell
+                   forManagedObject:anObject
+                        atIndexPath:indexPath];
+                } else {
+                    [tableView reloadRowsAtIndexPaths:@[indexPath]
+                                     withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
             }
 
             break;
@@ -195,7 +243,7 @@
         cell = [self tableView:tableView cellForReuseIdentifier:reuseIdentifier];
     }
 
-    NSAssert(cell != nil, @"KFDataTableViewController nil cell");
+    NSParameterAssert(cell);
 
     [self tableView:tableView configuredCell:cell forManagedObject:managedObject atIndexPath:indexPath];
 

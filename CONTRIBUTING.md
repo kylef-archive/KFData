@@ -1,3 +1,14 @@
+# Contributing
+
+1. Fork the repo
+2. Create a branch, we will not merge from master.
+3. Create a test case for your change. If you are adding functionality or
+   fixing a bug, we need tests.
+4. Make your test pass.
+5. Ensure other tests still pass. We will only merge pull requests with
+   passing tests.
+6. Push your changes to GitHub and submit a pull request.
+
 # Style Guide
 
 This document gives coding conventions for Objective-C code. It is very similar

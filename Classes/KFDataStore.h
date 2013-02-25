@@ -22,8 +22,8 @@
 
 @interface KFDataStore : NSObject
 
-@property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 /** Creates a standard data store which persists to the document directory.
 
@@ -72,7 +72,7 @@
  context (and persistent store).
 
  @param writeBlock The block to perform
- @see performWriteBlock:completionHandler:
+ @see performWriteBlock:success:failure:
 */
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
@@ -81,13 +81,14 @@
  context and persistent store. But execute a completion block when
  this has been saved.
 
- @param writeBlock The block to perform
- @param completionHandler Completion block, which is executed after changed from the write block have been saved.
-
+ @param writeBlock The block to run on the managed object context.
+ @param success A block to run when the write block has been executed, and the managed object context has saved up to it's parent.
+ @param failure A block to run when there was a failure to save in the current block, or it's parents.
  @see performWriteBlock:
 */
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-		completionHandler:(void(^)(void))completionHandler;
+                  success:(void(^)(void))success
+                  failure:(void(^)(NSError *error))failure;
 
 // Execute a block on the main (root) context and save
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock

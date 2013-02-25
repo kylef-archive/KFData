@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
-#import "NSManagedObject+KFData.h"
-#import "NSManagedObjectContext+KFData.h"
+#import "KFDataStore.h"
 #import "TDListViewController.h"
 #import "TDTodoViewController.h"
 #import "Todo.h"
@@ -28,7 +27,7 @@
                                                                                action:@selector(addTodo)];
     [[self navigationItem] setRightBarButtonItem:addButton];
 
-    NSFetchRequest *fetchRequest = [Todo fetchRequestInManagedObjectContext:[self managedObjectContext]];
+    NSFetchRequest *fetchRequest = [Todo requestAllInManagedObjectContext:[self managedObjectContext]];
     [fetchRequest setSortDescriptors:@[
         [NSSortDescriptor sortDescriptorWithKey:@"created" ascending:YES],
     ]];

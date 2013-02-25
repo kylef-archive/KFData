@@ -18,3 +18,24 @@
 - (NSManagedObjectContext *)managedObjectContext;
 
 @end
+
+@protocol KFDataDetailViewControllerProtocol <NSObject>
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
+- (NSManagedObjectContext *)managedObjectContext;
+
+@end
+
+@protocol KFDataListViewControllerProtocol <NSObject>
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
+- (NSManagedObjectContext *)managedObjectContext;
+
+- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
+     sectionNameKeyPath:(NSString*)sectionNameKeyPath;
+
+- (void)performFetch;
+
+@end

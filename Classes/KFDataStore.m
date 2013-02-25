@@ -11,11 +11,7 @@
 #define kKFDataStoreLocalFilename @"localStore.sqlite"
 
 @interface KFDataStore ()
-@property (nonatomic) id currentUbiquityIdentityToken;
 
-@property (nonatomic) NSPersistentStore *localPersistentStore;
-@property (nonatomic) NSPersistentStore *cloudPersistentStore;
-@property (nonatomic) NSPersistentStore *fallbackPersistentStore;
 @end
 
 @implementation KFDataStore
@@ -44,25 +40,21 @@
 
 + (id)standardLocalDataStore {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @synchronized(self) {
-            NSURL *storesDirectoryURL = [self storesDirectoryURL];
-            NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
+    [[dataStore managedObjectContext] performBlock:^{
+        NSURL *storesDirectoryURL = [self storesDirectoryURL];
+        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
 
-            [dataStore addLocalStore:nil URL:storeURL];
-        }
-    });
+        [dataStore addLocalStore:nil URL:storeURL];
+    }];
 
     return dataStore;
 }
 
 + (id)standardMemoryDataStore {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        @synchronized(self) {
-            [dataStore addMemoryStore:nil];
-        }
-    });
+    [[dataStore managedObjectContext] performBlock:^{
+        [dataStore addMemoryStore:nil];
+    }];
 
     return dataStore;
 }
@@ -149,22 +141,18 @@
 }
 
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-       completionHandler:(void(^)(void))completionHandler {
+                  success:(void(^)(void))success
+                  failure:(void(^)(NSError *error))failure
+{
     NSManagedObjectContext *managedObjectContext = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 
-    [managedObjectContext performBlock:^{
+    [managedObjectContext performWriteBlock:^{
         writeBlock(managedObjectContext);
-
-        [managedObjectContext nestedSave];
-
-        if (completionHandler) {
-            completionHandler();
-        }
-    }];
+    } success:success failure:failure];
 }
 
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock {
-    [self performWriteBlock:writeBlock completionHandler:nil];
+    [self performWriteBlock:writeBlock success:nil failure:nil];
 }
 
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock

@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
-#import "NSManagedObjectContext+KFData.h"
-#import "NSManagedObject+KFData.h"
+#import "KFDataStore.h"
 #import "TDTodoViewController.h"
 #import "Todo.h"
 
@@ -43,7 +42,7 @@
     NSString *name = [[self textField] text];
 
     [[self managedObjectContext] performWriteBlock:^{
-        Todo *todo = (Todo*)[Todo createInContext:[self managedObjectContext]];
+        Todo *todo = [Todo createInManagedObjectContext:[self managedObjectContext]];
         [todo setName:name];
         [todo setCreated:[NSDate date]];
     }];

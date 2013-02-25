@@ -18,13 +18,13 @@
 	NSArray* results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	
 	if (error) {
-		NSLog(@"executeFetchRequest failed with %d; %@", [error code], [error description]);
+		NSLog(@"executeFetchRequest failed with %ld %@", (long)[error code], [error description]);
 	}
     
     return results;
 }
 
-+ (id)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
++ (instancetype)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
 									  inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSArray* results = [self executeFetchRequest:fetchRequest inManagedObjectContext:managedObjectContext];
@@ -37,7 +37,7 @@
 	return [results objectAtIndex:0];
 }
 
-+ (id)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
++ (instancetype)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
 									 inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	[fetchRequest setFetchLimit:1];
@@ -45,7 +45,7 @@
 	return [self executeFetchRequestAndEnsureSingleObject:fetchRequest inManagedObjectContext:managedObjectContext];
 }
 
-+ (id)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
++ (instancetype)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
 									inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
 	NSArray* results = [self executeFetchRequest:fetchRequest inManagedObjectContext:managedObjectContext];
