@@ -79,7 +79,15 @@
 - (void)performWriteBlock:(void(^)(void))writeBlock {
     [self performBlock:^{
         writeBlock();
-        [self nestedSave:nil];
+
+        NSError *error;
+        [self nestedSave:&error];
+
+        if (error) {
+            @throw [NSException exceptionWithName:@"KFData performWriteBlock error"
+                                           reason:[error localizedDescription]
+                                         userInfo:@{@"error":error}];
+        }
     }];
 }
 
