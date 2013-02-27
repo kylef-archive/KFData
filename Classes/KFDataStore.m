@@ -133,7 +133,9 @@
                                                                                 error:&error];
 
     if (store == nil) {
-        NSLog(@"KFData: Unable to add local store: %@", error);
+        @throw [NSException exceptionWithName:@"KFData: Unable to load data store"
+                                       reason:[error localizedDescription]
+                                     userInfo:@{@"error":error}];
     }
 
     return store;
