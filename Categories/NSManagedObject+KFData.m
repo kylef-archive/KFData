@@ -11,6 +11,23 @@
 
 @implementation NSManagedObject (KFData)
 
+#pragma mark - Entity
+
++ (NSString*)entityName {
+    NSString *entityName = [[self class] description];
+    return entityName;
+}
+
++ (NSEntityDescription*)entityDescriptionInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+    NSString *entityName = [self entityName];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName
+                                                         inManagedObjectContext:managedObjectContext];
+
+    return entityDescription;
+}
+
+#pragma mark - Fetch request
+
 + (NSArray*)executeFetchRequest:(NSFetchRequest*)fetchRequest
          inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
@@ -53,22 +70,7 @@
 	return [results lastObject];
 }
 
-#pragma mark - 
-
-+ (NSString*)entityName {
-    NSString *entityName = [[self class] description];
-    return entityName;
-}
-
-+ (NSEntityDescription*)entityDescriptionInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
-    NSString *entityName = [self entityName];
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName
-                                                         inManagedObjectContext:managedObjectContext];
-
-    return entityDescription;
-}
-
-#pragma mark -
+#pragma mark - Creation
 
 + (id)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
@@ -79,7 +81,7 @@
     return newObject;
 }
 
-#pragma mark -
+#pragma mark - Removal
 
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 {
