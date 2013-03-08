@@ -27,6 +27,10 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil
+           managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                                        style:(UITableViewStyle)style;
 
