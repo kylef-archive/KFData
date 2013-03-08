@@ -73,16 +73,6 @@
     return self;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil
-                         bundle:(NSBundle *)nibBundleOrNil
-{
-    if (self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil managedObjectContext:nil]) {
-        // You should probablly overide this and call the managedObjectContext method.
-    }
-
-    return self;
-}
-
 - (instancetype)init {
     if (self = [self initWithManagedObjectContext:nil style:UITableViewStylePlain]) {
         // You should probablly overide this and call the managedObjectContext method.
