@@ -112,4 +112,27 @@
     return removedCount;
 }
 
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+                             excludingObjects:(NSSet*)excludedObjects
+{
+    NSFetchRequest *fetchRequest = [self requestAllInManagedObjectContext:managedObjectContext];
+
+    NSError *error = nil;
+    NSArray *objects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    NSUInteger removedCount = 0;
+
+    if (error == nil) {
+        for (NSManagedObject *managedObject in objects) {
+            if ([excludedObjects containsObject:managedObject] == NO) {
+                [managedObjectContext deleteObject:managedObject];
+                removedCount++;
+            }
+        }
+    }
+
+    return removedCount;
+}
+
+
 @end
