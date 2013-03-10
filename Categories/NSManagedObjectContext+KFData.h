@@ -31,6 +31,7 @@
 /** Asyncronous perform a block then perform a nested save
  @param writeBlock The block to run on the managed object context.
  @see performWriteBlock:success:failure:
+ @note This will raise an exception if the save fails.
  */
 - (void)performWriteBlock:(void(^)(void))writeBlock;
 

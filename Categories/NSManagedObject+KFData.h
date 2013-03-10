@@ -42,5 +42,7 @@
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                                 withPredicate:(NSPredicate*)predicate;
++ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+                             excludingObjects:(NSSet*)excludedObjects;
 
 @end

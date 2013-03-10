@@ -39,14 +39,34 @@
 }
 
 + (id)standardLocalDataStore {
+    return [self standardLocalDataStoreForce:NO];
+}
+
++ (id)standardLocalDataStoreForce:(BOOL)forced {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
+
     [[dataStore managedObjectContext] performBlock:^{
         NSURL *storesDirectoryURL = [self storesDirectoryURL];
         NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
 
-        [dataStore addLocalStore:nil URL:storeURL];
-    }];
+        @try {
+            [dataStore addLocalStore:nil URL:storeURL];
+        } @catch (NSException *exception) {
+            NSLog(@"%@", [exception name]);
 
+            if (forced && [[NSFileManager defaultManager] isDeletableFileAtPath:[storeURL path]]) {
+                NSError *error;
+
+                if ([[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
+                    NSLog(@"KFData: Forced local data store");
+                    [dataStore addLocalStore:nil URL:storeURL];
+                } else {
+                    NSLog(@"KFData: Failed to force remove store: %@", error);
+                }
+            }
+        }
+    }];
+    
     return dataStore;
 }
 
@@ -116,7 +136,9 @@
                                                                                 error:&error];
 
     if (store == nil) {
-        NSLog(@"KFData: Unable to add local store: %@", error);
+        @throw [NSException exceptionWithName:@"KFData: Unable to load data store"
+                                       reason:[error localizedDescription]
+                                     userInfo:@{@"error":error}];
     }
 
     return store;

@@ -22,7 +22,8 @@ describe(@"NSManagedObjectContext KFData extensions", ^{
         it(@"should run block", ^{
             __block BOOL isWriteBlockExecuted = NO;
 
-            [[[managedObjectContext should] receive] nestedSave:nil];
+            SEL nestedSave = sel_registerName("nestedSave:");
+            [[managedObjectContext should] receive:nestedSave];
 
             [managedObjectContext performWriteBlock:^{
                 isWriteBlockExecuted = YES;

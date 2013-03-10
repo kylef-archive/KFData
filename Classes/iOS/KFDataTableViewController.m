@@ -20,6 +20,19 @@
 
 #pragma mark -
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil
+           managedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSParameterAssert(managedObjectContext);
+
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        _managedObjectContext = managedObjectContext;
+    }
+
+    return self;
+}
+
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                                        style:(UITableViewStyle)style
 {
@@ -62,6 +75,7 @@
 
 - (instancetype)init {
     if (self = [self initWithManagedObjectContext:nil style:UITableViewStylePlain]) {
+        // You should probablly overide this and call the managedObjectContext method.
     }
 
     return self;

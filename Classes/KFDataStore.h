@@ -28,9 +28,19 @@
 /** Creates a standard data store which persists to the document directory.
 
  This data store will be stored in the applications sandbox at `/Documents/DataStores/localStore.sqlite`
+ @see standardLocalDataStoreForce:
 */
 
 + (id)standardLocalDataStore;
+
+/** Creates a standard data store which persists to the document directory.
+
+ This data store will be stored in the applications sandbox at `/Documents/DataStores/localStore.sqlite`
+ @param force Force loading the store, if the existing store is incompatible. Remove it.
+ @see standardLocalDataStore
+*/
+
++ (id)standardLocalDataStoreForce:(BOOL)forced;
 
 /** Create a local in-memory data store */
 
