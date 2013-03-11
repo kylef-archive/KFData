@@ -7,6 +7,7 @@
 //
 
 #import "KFDataStore.h"
+#import "KFManagedObjectContext.h"
 
 #define kKFDataStoreLocalFilename @"localStore.sqlite"
 
@@ -143,9 +144,9 @@
 
 #pragma mark -
 
-- (NSManagedObjectContext*)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType
+- (KFManagedObjectContext *)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType
 {
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:concurrencyType];
+    KFManagedObjectContext *context = [[KFManagedObjectContext alloc] initWithConcurrencyType:concurrencyType];
     [context setParentContext:[self managedObjectContext]];
     return context;
 }
