@@ -36,6 +36,7 @@
 		779A78A2168381BE0049B316 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A78A1168381BE0049B316 /* Todo.m */; };
 		779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A78A4168383C10049B316 /* TDTodoViewController.m */; };
 		779A78A7168384180049B316 /* TDTodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779A78A6168384180049B316 /* TDTodoViewController.xib */; };
+		77E684DF16EE050C00D9BBFA /* KFManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		779A78A3168383C10049B316 /* TDTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTodoViewController.h; sourceTree = "<group>"; };
 		779A78A4168383C10049B316 /* TDTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTodoViewController.m; sourceTree = "<group>"; };
 		779A78A6168384180049B316 /* TDTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDTodoViewController.xib; sourceTree = "<group>"; };
+		77E684DC16EE04FB00D9BBFA /* KFManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFManagedObjectContext.h; path = ../../Classes/KFManagedObjectContext.h; sourceTree = "<group>"; };
+		77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFManagedObjectContext.m; path = ../../Classes/KFManagedObjectContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,8 @@
 				779A78991683803B0049B316 /* iOS */,
 				779A7888168380260049B316 /* KFDataStore.h */,
 				779A7889168380260049B316 /* KFDataStore.m */,
+				77E684DC16EE04FB00D9BBFA /* KFManagedObjectContext.h */,
+				77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */,
 			);
 			name = KFData;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */,
 				77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */,
 				777554CB16DA82B200A5ACF9 /* KFDataCollectionViewController.m in Sources */,
+				77E684DF16EE050C00D9BBFA /* KFManagedObjectContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

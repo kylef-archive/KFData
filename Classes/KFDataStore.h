@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "KFDataStoreCategories.h"
+#import "KFManagedObjectContext.h"
 
 /**
  KFDataStore is a wrapper around an NSPersistentStoreCoordinator. You would
@@ -66,7 +67,7 @@
  @param concurrencyType The concurrency pattern with which context will be used.
  @return A context initialized to use the given concurrency type.
  */
-- (NSManagedObjectContext*)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType;
+- (KFManagedObjectContext *)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType;
 
 #pragma mark - Performing Block Operations
 /** @name Performing Block Operations */
