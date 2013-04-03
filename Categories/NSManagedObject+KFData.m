@@ -78,6 +78,12 @@
     NSManagedObject *newObject = [[self alloc] initWithEntity:entityDescription
                                insertIntoManagedObjectContext:managedObjectContext];
 
+    NSError* obtainPermanentIDError;
+    NSArray* insertedObjects = [[managedObjectContext insertedObjects] allObjects];
+    if (NO == [managedObjectContext obtainPermanentIDsForObjects:insertedObjects error:&obtainPermanentIDError]) {
+	    NSAssert(YES, @"obtainPermanentIDs failed with: %@", obtainPermanentIDError);
+    }
+
     return newObject;
 }
 
