@@ -8,7 +8,7 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 
-#ifdef KFDataPSTCollectionViewController
+#ifdef __POD_PSTCollectionView
 #import "PSTCollectionView.h"
 #endif
 
@@ -19,7 +19,7 @@
 #pragma mark -
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-#ifdef KFDataPSTCollectionViewController
+#ifdef __POD_PSTCollectionView
               collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout
 #else
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout

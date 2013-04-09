@@ -13,17 +13,14 @@
 #import <CoreData/CoreData.h>
 #import "KFDataViewControllerProtocol.h"
 
-/* Add #define KFDataPSTCollectionViewController to your pch file if you want
-   to use this on iOS5 along with PSTCollectionView */
-
-#ifdef KFDataPSTCollectionViewController
+#ifdef __POD_PSTCollectionView
 #import "PSTCollectionViewController.h"
 #import "PSTCollectionViewFlowLayout.h"
 #endif
 
 #import "KFDataViewControllerProtocol.h"
 
-#ifdef KFDataPSTCollectionViewController
+#ifdef __POD_PSTCollectionView
 @interface KFDataCollectionViewController : PSTCollectionViewController <KFDataListViewControllerProtocol,
                                                                          NSFetchedResultsControllerDelegate>
 #else
@@ -35,7 +32,7 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-#ifdef KFDataPSTCollectionViewController
+#ifdef __POD_PSTCollectionView
               collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout;
 #else
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;
