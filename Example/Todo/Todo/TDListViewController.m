@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
-#import "KFDataStore.h"
 #import "TDListViewController.h"
 #import "TDTodoViewController.h"
 #import "Todo.h"

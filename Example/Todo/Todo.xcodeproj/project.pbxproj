@@ -50,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		77447E4A16C3ACB100877D1C /* KFDataStoreCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataStoreCategories.h; sourceTree = "<group>"; };
 		77447E4B16C3ACB100877D1C /* NSManagedObject+Aggregation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Aggregation.h"; sourceTree = "<group>"; };
 		77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Aggregation.m"; sourceTree = "<group>"; };
 		77447E4D16C3ACB100877D1C /* NSManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Finders.h"; sourceTree = "<group>"; };
@@ -98,6 +97,7 @@
 		779A78A3168383C10049B316 /* TDTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTodoViewController.h; sourceTree = "<group>"; };
 		779A78A4168383C10049B316 /* TDTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTodoViewController.m; sourceTree = "<group>"; };
 		779A78A6168384180049B316 /* TDTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDTodoViewController.xib; sourceTree = "<group>"; };
+		77E3A4C317149994006323F9 /* KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFData.h; path = ../../Classes/KFData.h; sourceTree = "<group>"; };
 		77E684DC16EE04FB00D9BBFA /* KFManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFManagedObjectContext.h; path = ../../Classes/KFManagedObjectContext.h; sourceTree = "<group>"; };
 		77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFManagedObjectContext.m; path = ../../Classes/KFManagedObjectContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +130,6 @@
 		77447E4916C3ACB100877D1C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				77447E4A16C3ACB100877D1C /* KFDataStoreCategories.h */,
 				77447E4B16C3ACB100877D1C /* NSManagedObject+Aggregation.h */,
 				77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */,
 				77447E4D16C3ACB100877D1C /* NSManagedObject+Finders.h */,
@@ -234,6 +233,7 @@
 			children = (
 				77447E4916C3ACB100877D1C /* Categories */,
 				779A78991683803B0049B316 /* iOS */,
+				77E3A4C317149994006323F9 /* KFData.h */,
 				779A7888168380260049B316 /* KFDataStore.h */,
 				779A7889168380260049B316 /* KFDataStore.m */,
 				77E684DC16EE04FB00D9BBFA /* KFManagedObjectContext.h */,

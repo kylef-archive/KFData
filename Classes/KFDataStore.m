@@ -8,6 +8,7 @@
 
 #import "KFDataStore.h"
 #import "KFManagedObjectContext.h"
+#import "NSManagedObjectContext+KFData.h"
 
 #define kKFDataStoreLocalFilename @"localStore.sqlite"
 
