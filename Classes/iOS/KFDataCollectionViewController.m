@@ -177,6 +177,12 @@
 
     UICollectionView *collectionView = [self collectionView];
 
+    if ([itemUpdates count] > 0 && [sectionUpdates count] == 0) {
+        // http://openradar.appspot.com/12954582
+        [collectionView reloadData];
+        return;
+    }
+
     if ([sectionUpdates count]) {
         [collectionView performBatchUpdates:^{
             for (NSDictionary *userInfo in [self sectionUpdates]) {
