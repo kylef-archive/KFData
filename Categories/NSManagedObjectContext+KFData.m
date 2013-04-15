@@ -52,7 +52,9 @@
     NSError *error;
 
     if ([self hasChanges]) {
-        if ([self save:&error]) {
+        if ([self obtainPermanentIDsForObjects:[[self insertedObjects] allObjects] error:&error] &&
+            [self save:&error])
+        {
             NSManagedObjectContext *parentContext = [self parentContext];
 
             if (parentContext) {
