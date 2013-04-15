@@ -134,5 +134,61 @@
     return removedCount;
 }
 
+#pragma mark - Primary Keys
+
++ (NSPersistentStore *)persistentStoreForEntityInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    NSArray *persistentStores = [[managedObjectContext persistentStoreCoordinator] persistentStores];
+    NSPersistentStore *persistentStore;
+
+    for (NSPersistentStore *store in persistentStores) {
+        if ([store isReadOnly] == NO) {
+            persistentStore = store;
+            break;
+        }
+    }
+
+    return persistentStore;
+}
+
++ (NSManagedObjectID *)objectIDForPrimaryKey:(NSUInteger)primaryKey
+                      inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSManagedObjectID *objectID;
+    NSPersistentStore *persistentStore = [self persistentStoreForEntityInManagedObjectContext:managedObjectContext];
+
+    if (persistentStore) {
+        NSString *objectIDString = [NSString stringWithFormat:@"x-coredata://%@/%@/p%lu", [persistentStore identifier], [self entityName], primaryKey];
+        NSURL *url = [NSURL URLWithString:objectIDString];
+        [[managedObjectContext persistentStoreCoordinator] managedObjectIDForURIRepresentation:url];
+    }
+
+    return objectID;
+}
+
++ (instancetype)objectWithPrimaryKey:(NSUInteger)primaryKey
+              inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSManagedObjectID *objectID = [self objectIDForPrimaryKey:primaryKey inManagedObjectContext:managedObjectContext];
+    NSManagedObject *object;
+
+    if (objectID) {
+        object = [managedObjectContext objectWithID:objectID];
+    }
+
+    return object;
+}
++ (instancetype)existingObjectWithPrimaryKey:(NSUInteger)primaryKey
+                      inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+{
+    NSManagedObjectID *objectID = [self objectIDForPrimaryKey:primaryKey inManagedObjectContext:managedObjectContext];
+    NSManagedObject *object;
+
+    if (objectID) {
+        object = [managedObjectContext existingObjectWithID:objectID error:nil];
+    }
+
+    return object;
+}
+
 
 @end

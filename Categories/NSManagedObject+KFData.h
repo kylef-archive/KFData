@@ -45,4 +45,11 @@
 + (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
                              excludingObjects:(NSSet*)excludedObjects;
 
++ (NSManagedObjectID *)objectIDForPrimaryKey:(NSUInteger)primaryKey
+                      inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)objectWithPrimaryKey:(NSUInteger)primaryKey
+              inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)existingObjectWithPrimaryKey:(NSUInteger)primaryKey
+                      inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+
 @end
