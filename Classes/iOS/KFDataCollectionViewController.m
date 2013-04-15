@@ -14,6 +14,13 @@
 
 #import "KFDataCollectionViewController.h"
 
+@interface KFDataCollectionViewController ()
+
+@property (nonatomic, strong) NSMutableArray *sectionUpdates;
+@property (nonatomic, strong) NSMutableArray *itemUpdates;
+
+@end
+
 @implementation KFDataCollectionViewController
 
 #pragma mark -
@@ -113,8 +120,114 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self setSectionUpdates:[NSMutableArray array]];
+    [self setItemUpdates:[NSMutableArray array]];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+        case NSFetchedResultsChangeDelete: {
+            NSDictionary *userInfo = @{@(type): [NSIndexSet indexSetWithIndex:sectionIndex]};
+            [[self sectionUpdates] addObject:userInfo];
+            break;
+        }
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    NSDictionary *userInfo;
+
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            userInfo = @{@(type): @[newIndexPath]};
+            break;
+
+        case NSFetchedResultsChangeDelete:
+        case NSFetchedResultsChangeUpdate:
+            userInfo = @{@(type): @[indexPath]};
+            break;
+
+        case NSFetchedResultsChangeMove:
+            userInfo = @{@(type): @[indexPath, newIndexPath]};
+            break;
+    }
+
+    if (userInfo) {
+        [[self itemUpdates] addObject:userInfo];
+    }
+}
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [[self collectionView] reloadData];
+    NSArray *sectionUpdates = [self sectionUpdates];
+    NSArray *itemUpdates = [self itemUpdates];
+
+    [self setSectionUpdates:nil];
+    [self setItemUpdates:nil];
+
+    UICollectionView *collectionView = [self collectionView];
+
+    if ([sectionUpdates count]) {
+        [collectionView performBatchUpdates:^{
+            for (NSDictionary *userInfo in [self sectionUpdates]) {
+                [userInfo enumerateKeysAndObjectsUsingBlock:^(id key, NSIndexSet *indexSet, BOOL *stop) {
+                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+
+                    switch (type) {
+                        case NSFetchedResultsChangeInsert:
+                            [collectionView insertSections:indexSet];
+                            break;
+
+                        case NSFetchedResultsChangeDelete: {
+                            [collectionView deleteSections:indexSet];
+                            break;
+                        }
+                    }
+                }];
+            }
+        } completion:nil];
+    }
+
+    if ([itemUpdates count]) {
+        [collectionView performBatchUpdates:^{
+            for (NSDictionary *userInfo in [self itemUpdates]) {
+                [userInfo enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *indexPaths, BOOL *stop) {
+                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+
+                    switch (type) {
+                        case NSFetchedResultsChangeInsert:
+                            [collectionView insertItemsAtIndexPaths:indexPaths];
+                            break;
+
+                        case NSFetchedResultsChangeDelete:
+                            [collectionView deleteItemsAtIndexPaths:indexPaths];
+                            break;
+
+                        case NSFetchedResultsChangeUpdate:
+                            [collectionView reloadItemsAtIndexPaths:indexPaths];
+                            break;
+
+                        case NSFetchedResultsChangeMove: {
+                            NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
+                            NSIndexPath *newIndexPath = [indexPaths objectAtIndex:0];
+                            [collectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+                            break;
+                        }
+                    }
+                }];
+            }
+        } completion:nil];
+    }
 }
 
 #pragma mark -
