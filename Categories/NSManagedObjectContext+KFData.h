@@ -22,11 +22,12 @@
  */
 - (BOOL)nestedSave:(NSError **)error;
 
-// Asyncronously save
-- (void)performSave;
-
-// Asyncronous nested save
-- (void)performNestedSave;
+/** Asyncronously save, and propergate changes up to parent managed object contexts
+ @param success A block to run when save has successfully propergated up all the parent managed object contexts.
+ @param failure A block to run when there was a failure to save in the current, or any parent managed object context.
+ */
+- (void)performNestedSaveSuccess:(void(^)(void))success
+                         failure:(void(^)(NSError *error))failure;
 
 /** Asyncronous perform a block then perform a nested save
  @param writeBlock The block to run on the managed object context.

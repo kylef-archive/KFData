@@ -19,21 +19,6 @@ describe(@"NSManagedObjectContext KFData extensions", ^{
             managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         });
 
-        it(@"should run block", ^{
-            __block BOOL isWriteBlockExecuted = NO;
-
-            SEL nestedSave = sel_registerName("nestedSave:");
-            [[managedObjectContext should] receive:nestedSave];
-
-            [managedObjectContext performWriteBlock:^{
-                isWriteBlockExecuted = YES;
-            }];
-
-            [managedObjectContext performBlockAndWait:^{
-                [[theValue(isWriteBlockExecuted) should] beTrue];
-            }];
-        });
-
         context(@"has a child context", ^{
             __block NSManagedObjectContext *childContext;
 

@@ -46,43 +46,40 @@
     return saved;
 }
 
-- (void)performSave {
+- (void)nestedSaveSuccess:(void(^)(void))success
+                  failure:(void(^)(NSError *error))failure
+{
+    NSError *error;
+
     if ([self hasChanges]) {
-        [self performBlock:^{
-            BOOL saved = NO;
-            NSError *error;
-            
-            @try {
-                saved = [self save:&error];
-            } @catch (NSException *exception) {
-                NSLog(@"KFData - [NSManagedObjectContext save] (%@)", exception);
+        if ([self save:&error]) {
+            NSManagedObjectContext *parentContext = [self parentContext];
+
+            if (parentContext) {
+                [parentContext performNestedSaveSuccess:success failure:failure];
+            } else if (success) {
+                success();
             }
-            
-            if (saved == NO) {
-                NSLog(@"KFData - [NSManagedObjectContext save] (%@)", error);
-            }
-        }];
+        } else if (failure) {
+            failure(error);
+        }
+    } else if (success) {
+        success();
     }
 }
 
-- (void)performNestedSave {
+- (void)performNestedSaveSuccess:(void(^)(void))success
+                         failure:(void(^)(NSError *error))failure
+{
     [self performBlock:^{
-        if ([self save]) {
-            NSManagedObjectContext *parentContext = [self parentContext];
-            [parentContext performNestedSave];
-        }
+        [self nestedSaveSuccess:success failure:failure];
     }];
 }
 
 #pragma mark -
 
 - (void)performWriteBlock:(void(^)(void))writeBlock {
-    [self performBlock:^{
-        writeBlock();
-
-        NSError *error;
-        [self nestedSave:&error];
-
+    [self performWriteBlock:writeBlock success:nil failure:^(NSError *error) {
         if (error) {
             @throw [NSException exceptionWithName:@"KFData performWriteBlock error"
                                            reason:[error localizedDescription]
@@ -97,17 +94,7 @@
 {
     [self performBlock:^{
         writeBlock();
-
-        NSError *error;
-        BOOL isSuccessful = [self nestedSave:&error];
-
-        if (isSuccessful) {
-            if (success) {
-                success();
-            }
-        } else if (failure) {
-            failure(error);
-        }
+        [self nestedSaveSuccess:success failure:failure];
     }];
 }
 
