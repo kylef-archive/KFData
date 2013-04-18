@@ -181,11 +181,13 @@
     UICollectionView *collectionView = [self collectionView];
 #endif
 
+#ifndef __POD_PSTCollectionView
     if ([itemUpdates count] > 0 && [sectionUpdates count] == 0) {
         // http://openradar.appspot.com/12954582
         [collectionView reloadData];
         return;
     }
+#endif
 
     if ([sectionUpdates count]) {
         [collectionView performBatchUpdates:^{
