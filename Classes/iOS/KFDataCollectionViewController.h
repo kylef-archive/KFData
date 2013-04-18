@@ -14,8 +14,10 @@
 #import "KFDataViewControllerProtocol.h"
 
 #ifdef __POD_PSTCollectionView
+
 #import "PSTCollectionViewController.h"
-#import "PSTCollectionViewFlowLayout.h"
+@class PSTCollectionViewFlowLayout;
+
 #endif
 
 #import "KFDataViewControllerProtocol.h"
