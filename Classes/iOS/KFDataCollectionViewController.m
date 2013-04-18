@@ -175,7 +175,11 @@
     [self setSectionUpdates:nil];
     [self setItemUpdates:nil];
 
+#ifdef __POD_PSTCollectionView
+    PSTCollectionView *collectionView = [self collectionView];
+#else
     UICollectionView *collectionView = [self collectionView];
+#endif
 
     if ([itemUpdates count] > 0 && [sectionUpdates count] == 0) {
         // http://openradar.appspot.com/12954582
