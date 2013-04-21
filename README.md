@@ -1,3 +1,9 @@
+# KFData
+
+[![Build Status](https://travis-ci.org/kylef/KFData.png?branch=master)](https://travis-ci.org/kylef/KFData)
+
+Lightweight Core Data wrapper for iOS5+/OS X 10.7+.
+
 ## Overview
 
 Normally you would create a single `KFDataStore` across your whole application,
