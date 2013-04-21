@@ -8,16 +8,10 @@
 
 #import "KFSearchableTableViewController.h"
 
-static CGFloat const kWS_SearchBarWidth = 320.0f;
-static CGFloat const kWS_SearchBarHeight = 44.0f;
-
-typedef NS_ENUM(NSUInteger, ScrollDirection) {
-    ScrollDirectionNone,
-    ScrollDirectionRight,
-    ScrollDirectionLeft,
-    ScrollDirectionUp,
-    ScrollDirectionDown,
-    ScrollDirectionCrazy
+typedef NS_ENUM(NSUInteger, KFScrollDirection) {
+    KFScrollDirectionNone,
+    KFScrollDirectionUp,
+    KFScrollDirectionDown,
 };
 
 @interface KFSearchableTableViewController ()
@@ -27,7 +21,7 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 @property (nonatomic, strong) NSPredicate* originalPredicate;
 
 @property (nonatomic, assign) CGFloat lastContentOffset;
-@property (nonatomic, assign) ScrollDirection scrollDirection;
+@property (nonatomic, assign) KFScrollDirection scrollDirection;
 
 @end
 
@@ -45,14 +39,23 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 	return self;
 }
 
+- (void)loadView {
+    [super loadView];
+
+    if ([self searchBar] == nil) {
+        UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 0, 44.0f)];
+        [self setSearchBar:searchBar];
+    }
+
+	[[self searchBar] setDelegate:self];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[self setSearchBar:[[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kWS_SearchBarWidth, kWS_SearchBarHeight)]];
-	[[self searchBar] setDelegate:self];
-
 	[[self tableView] setTableHeaderView:[self searchBar]];
-	[[self tableView] setContentOffset:CGPointMake(0.0f, kWS_SearchBarHeight) animated:NO];
+    CGRect searchFrame = [[self searchBar] frame];
+	[[self tableView] setContentOffset:CGPointMake(0.0f, searchFrame.size.height) animated:NO];
 }
 
 - (NSPredicate*)predicateForSearchText:(NSString*)searchText {
@@ -72,15 +75,22 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 		[self setFiltering:YES];
 	}
 
-	NSPredicate* searchFilter = nil;
-	if (nil == [self originalPredicate] && [searchText length]) {
-		searchFilter = [self predicateForSearchText:searchText];
-	} else {
-		searchFilter = [searchText length] ? [NSCompoundPredicate andPredicateWithSubpredicates:@[[self originalPredicate], [self predicateForSearchText:searchText]]] : [self originalPredicate];
-	}
-	if (searchFilter) {
-		[[[self fetchedResultsController] fetchRequest] setPredicate:searchFilter];
-	}
+	NSPredicate *predicate;
+
+    if ([searchText length]) {
+        if ([self originalPredicate]) {
+            predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[
+                            [self originalPredicate],
+                            [self predicateForSearchText:searchText],
+                        ]];
+        } else {
+            predicate = [self predicateForSearchText:searchText];
+        }
+    } else {
+        predicate = [self originalPredicate];
+    }
+
+    [[[self fetchedResultsController] fetchRequest] setPredicate:predicate];
 
 	[super performFetch];
 }
@@ -97,7 +107,8 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 		[self setFiltering:NO];
 		[self setOriginalPredicate:nil];
 
-		[[self tableView] setContentOffset:CGPointMake(0.0f, kWS_SearchBarHeight) animated:YES];
+        CGSize searchBarSize = [[self searchBar] frame].size;
+		[[self tableView] setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:YES];
 	}
 }
 
@@ -117,27 +128,51 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
 	if ([self lastContentOffset] > [scrollView contentOffset].y) {
-		[self setScrollDirection:ScrollDirectionUp];
+		[self setScrollDirection:KFScrollDirectionUp];
 	} else if ([self lastContentOffset] < [scrollView contentOffset].y) {
-		[self setScrollDirection:ScrollDirectionDown];
-	}
+		[self setScrollDirection:KFScrollDirectionDown];
+    }
+
 	[self setLastContentOffset:[scrollView contentOffset].y];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView*)scrollView willDecelerate:(BOOL)decelerate {
-	if (ScrollDirectionDown == [self scrollDirection]) {// && NO == decelerate) { // decelerate is always YES in iOS 5.x
-		if ([scrollView contentOffset].y < kWS_SearchBarHeight/5*1) {
-			[[self tableView] setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-		} else if (([scrollView contentOffset].y > kWS_SearchBarHeight/5*1) && ([scrollView contentOffset].y < kWS_SearchBarHeight)) {
-			[[self tableView] setContentOffset:CGPointMake(0.0f, kWS_SearchBarHeight) animated:YES];
-		}
-	}
-	if (ScrollDirectionUp == [self scrollDirection]) {// && NO == decelerate) { // decelerate is always YES in iOS 5.x
-		if ([scrollView contentOffset].y < kWS_SearchBarHeight/5*4) {
-			[[self tableView] setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-		} else if ([scrollView contentOffset].y < kWS_SearchBarHeight) {
-			[[self tableView] setContentOffset:CGPointMake(0.0f, kWS_SearchBarHeight) animated:YES];
-		}
+    if (decelerate == NO) {
+        [self updateOffsetForSearchBarAnimated:YES];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self updateOffsetForSearchBarAnimated:YES];
+}
+
+- (void)updateOffsetForSearchBarAnimated:(BOOL)animated {
+    CGSize searchBarSize = [[self searchBar] frame].size;
+    UITableView *tableView = [self tableView];
+
+    switch ([self scrollDirection]) {
+        case KFScrollDirectionDown: {
+            if ([tableView contentOffset].y < (searchBarSize.height / 5 * 1)) {
+                [tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:animated];
+            } else if (([[self tableView] contentOffset].y > (searchBarSize.height / 5 * 1)) && ([tableView contentOffset].y < searchBarSize.height)) {
+                [tableView setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:animated];
+            }
+
+            break;
+        }
+
+        case KFScrollDirectionUp: {
+            if ([tableView contentOffset].y < (searchBarSize.height / 5 * 4)) {
+                [tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:animated];
+            } else if ([[self tableView] contentOffset].y <  searchBarSize.height) {
+                [tableView setContentOffset:CGPointMake(0.0f,  searchBarSize.height) animated:animated];
+            }
+
+            break;
+        }
+
+        case KFScrollDirectionNone:
+            break;
 	}
 }
 
