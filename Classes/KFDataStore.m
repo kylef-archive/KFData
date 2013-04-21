@@ -176,22 +176,15 @@
 }
 
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-                                  completionHandler:(void(^)(void))completionHandler
+                                  completionHandler:(void (^)(void))completionHandler
 {
-    [[self managedObjectContext] performBlock:^{
+    [[self managedObjectContext] performWriteBlock:^{
         writeBlock([self managedObjectContext]);
-
-        [[self managedObjectContext] save];
-
+    } success:completionHandler failure:^(__unused NSError *error) {
         if (completionHandler) {
             completionHandler();
         }
     }];
-}
-
-- (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-{
-    [self performWriteBlockOnMainManagedObjectContext:writeBlock completionHandler:nil];
 }
 
 @end

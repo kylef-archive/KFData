@@ -102,6 +102,6 @@
 
 // Execute a block on the main (root) context and save
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-                                  completionHandler:(void(^)(void))completionHandler;
+                                  completionHandler:(void(^)(void))completionHandler __deprecated;
 
 @end
