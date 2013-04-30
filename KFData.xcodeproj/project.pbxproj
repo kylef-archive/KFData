@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7749599A16CE3BDB003E205A /* NSManagedObjectContext_Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */; };
+		778BAE1E172FC6550074DC89 /* KFAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 778BAE1D172FC6550074DC89 /* KFAttribute.m */; };
+		778BAE22172FCEBD0074DC89 /* KFAttribute_Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 778BAE21172FCEBD0074DC89 /* KFAttribute_Spec.m */; };
 		77ADAEBD16CBF79F00A2F38D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77ADAEBC16CBF79F00A2F38D /* SenTestingKit.framework */; };
 		77ADAEBF16CBF79F00A2F38D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77ADAEBE16CBF79F00A2F38D /* Cocoa.framework */; };
 		77ADAED416CBF91500A2F38D /* KFDataStore_Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ADAED316CBF91500A2F38D /* KFDataStore_Spec.m */; };
@@ -47,6 +49,9 @@
 		308049E1D01E4BD69E3AB8F0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSManagedObjectContext_Spec.m; path = Tests/NSManagedObjectContext_Spec.m; sourceTree = SOURCE_ROOT; };
 		777554BF16DA813A00A5ACF9 /* Todo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Todo.xcodeproj; path = Example/Todo/Todo.xcodeproj; sourceTree = "<group>"; };
+		778BAE1C172FC6550074DC89 /* KFAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAttribute.h; sourceTree = "<group>"; };
+		778BAE1D172FC6550074DC89 /* KFAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAttribute.m; sourceTree = "<group>"; };
+		778BAE21172FCEBD0074DC89 /* KFAttribute_Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFAttribute_Spec.m; path = Tests/KFAttribute_Spec.m; sourceTree = SOURCE_ROOT; };
 		77ADAEB916CBF79F00A2F38D /* KFData.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KFData.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77ADAEBC16CBF79F00A2F38D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		77ADAEBE16CBF79F00A2F38D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -186,6 +191,8 @@
 				77ADAEE216CBFA6A00A2F38D /* KFDataStore.m */,
 				77E684D616EE035F00D9BBFA /* KFManagedObjectContext.h */,
 				77E684D716EE035F00D9BBFA /* KFManagedObjectContext.m */,
+				778BAE1C172FC6550074DC89 /* KFAttribute.h */,
+				778BAE1D172FC6550074DC89 /* KFAttribute.m */,
 			);
 			path = Classes;
 			sourceTree = SOURCE_ROOT;
@@ -221,6 +228,7 @@
 				77ADAEF116CBFAA900A2F38D /* NSManagedObject+Requests.m */,
 				77ADAEF216CBFAA900A2F38D /* NSManagedObjectContext+KFData.h */,
 				77ADAEF316CBFAA900A2F38D /* NSManagedObjectContext+KFData.m */,
+				778BAE21172FCEBD0074DC89 /* KFAttribute_Spec.m */,
 			);
 			path = Categories;
 			sourceTree = SOURCE_ROOT;
@@ -354,6 +362,8 @@
 				7749599A16CE3BDB003E205A /* NSManagedObjectContext_Spec.m in Sources */,
 				77E684D816EE035F00D9BBFA /* KFManagedObjectContext.m in Sources */,
 				77B1F4EE172421D40005CC2D /* KFSearchableTableViewController.m in Sources */,
+				778BAE1E172FC6550074DC89 /* KFAttribute.m in Sources */,
+				778BAE22172FCEBD0074DC89 /* KFAttribute_Spec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
