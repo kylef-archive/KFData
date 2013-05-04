@@ -29,6 +29,15 @@
     return self;
 }
 
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    NSString *key = [[self key] copyWithZone:zone];
+    return [[self class] attributeWithKey:key];
+}
+
+#pragma mark -
+
 + (instancetype)attributeWithKey:(NSString *)key {
     return [[KFAttribute alloc] initWithKey:key];
 }

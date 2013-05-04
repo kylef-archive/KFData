@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KFAttribute : NSObject <NSSecureCoding>
+@interface KFAttribute : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, strong, readonly) NSString *key;
 

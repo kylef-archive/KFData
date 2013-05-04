@@ -45,6 +45,12 @@ describe(@"KFAttribute", ^{
 
         [(KWEqualMatcher*)[[codedAttribute key] should] equal:@"id"]; 
     });
+
+    it(@"should confirm to NSCopying", ^{
+        KFAttribute *copiedAttribute = [attribute copy];
+
+        [(KWEqualMatcher*)[[copiedAttribute key] should] equal:@"id"]; 
+    });
 });
 
 SPEC_END
