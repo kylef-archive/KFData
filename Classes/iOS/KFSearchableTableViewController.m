@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Calvin Cestari. All rights reserved.
 //
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFSearchableTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, KFScrollDirection) {
@@ -177,3 +178,4 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 }
 
 @end
+#endif

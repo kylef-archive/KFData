@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Calvin Cestari. All rights reserved.
 //
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFDataTableViewController.h"
 
 /**
@@ -31,4 +32,5 @@
 - (NSPredicate*)predicateForSearchText:(NSString*)searchText;
 
 @end
+#endif
 

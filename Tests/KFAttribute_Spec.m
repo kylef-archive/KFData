@@ -3,7 +3,7 @@
 //  KFData
 //
 //  Created by Kyle Fuller on 30/04/2013.
-//  Copyright 2013 __MyCompanyName__. All rights reserved.
+//  Copyright 2013 Kyle Fuller. All rights reserved.
 //
 
 #import "Kiwi.h"
@@ -14,6 +14,10 @@ SPEC_BEGIN(KFAttribute_Spec)
 
 describe(@"KFAttribute", ^{
     KFAttribute *attribute = [KFAttribute attributeWithKey:@"id"];
+
+    it(@"should set key", ^{
+        [(KWEqualMatcher*)[[attribute key] should] equal:@"id"];
+    });
 
     it(@"should create ascending sort descriptors", ^{
         NSSortDescriptor *sortDescriptor = [attribute ascending];

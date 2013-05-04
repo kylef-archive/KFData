@@ -168,6 +168,7 @@
 				77ADAEE816CBFAA900A2F38D /* Categories */,
 				77ADAED316CBF91500A2F38D /* KFDataStore_Spec.m */,
 				7749599916CE3BDA003E205A /* NSManagedObjectContext_Spec.m */,
+				778BAE21172FCEBD0074DC89 /* KFAttribute_Spec.m */,
 				77ADAEC516CBF79F00A2F38D /* Supporting Files */,
 			);
 			path = KFData;
@@ -228,7 +229,6 @@
 				77ADAEF116CBFAA900A2F38D /* NSManagedObject+Requests.m */,
 				77ADAEF216CBFAA900A2F38D /* NSManagedObjectContext+KFData.h */,
 				77ADAEF316CBFAA900A2F38D /* NSManagedObjectContext+KFData.m */,
-				778BAE21172FCEBD0074DC89 /* KFAttribute_Spec.m */,
 			);
 			path = Categories;
 			sourceTree = SOURCE_ROOT;
