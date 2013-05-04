@@ -38,6 +38,13 @@ describe(@"KFAttribute", ^{
         NSPredicate *predicate = [attribute notEqual:@4];
         [(KWEqualMatcher*)[predicate should] equal:[NSPredicate predicateWithFormat:@"id != 4"]];
     });
+
+    it(@"should conform to NSCoding", ^{
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:attribute];
+        KFAttribute *codedAttribute = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+
+        [(KWEqualMatcher*)[[codedAttribute key] should] equal:@"id"]; 
+    });
 });
 
 SPEC_END

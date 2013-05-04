@@ -10,6 +10,25 @@
 
 @implementation KFAttribute
 
+#pragma mark - NSCoding
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:[self key] forKey:@"key"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder {
+    NSString *key = [decoder decodeObjectOfClass:[NSString class] forKey:@"key"];
+
+    if (self = [self initWithKey:key]) {
+    }
+
+    return self;
+}
+
 + (instancetype)attributeWithKey:(NSString *)key {
     return [[KFAttribute alloc] initWithKey:key];
 }
