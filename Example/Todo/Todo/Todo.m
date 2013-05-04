@@ -11,6 +11,10 @@
 
 @implementation Todo
 
++ (KFAttribute *)created {
+    return [KFAttribute attributeWithKey:@"created"];
+}
+
 @dynamic name;
 @dynamic complete;
 @dynamic created;

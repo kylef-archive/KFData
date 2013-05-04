@@ -12,6 +12,8 @@
 
 @interface Todo : NSManagedObject
 
++ (KFAttribute *)created;
+
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSDate * created;

@@ -28,7 +28,7 @@
 
     NSFetchRequest *fetchRequest = [Todo requestAllInManagedObjectContext:[self managedObjectContext]];
     [fetchRequest setSortDescriptors:@[
-        [NSSortDescriptor sortDescriptorWithKey:@"created" ascending:YES],
+        [[Todo created] ascending],
     ]];
     [self setFetchRequest:fetchRequest sectionNameKeyPath:nil];
 }
