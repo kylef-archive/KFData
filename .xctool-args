@@ -1,0 +1,4 @@
+[
+    "-workspace", "KFData.xcworkspace",
+    "-scheme", "KFData"
+]

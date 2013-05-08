@@ -15,6 +15,8 @@ APPLEDOC_OPTS = --output docs \
 				--docset-fallback-url "http://kylef.github.com/KFData/" \
 				--publish-docset \
 				--verbose 2
+XCTOOL := $(shell which xctool)
+
 
 docs: clean
 	$(APPLEDOC) $(APPLEDOC_OPTS) Classes Categories
@@ -23,7 +25,12 @@ clean:
 	rm -fr docs
 
 test:
+ifeq ($(XCTOOL),)
 	xcodebuild -workspace KFData.xcworkspace -scheme KFData test
+else
+	xctool test
+endif
+
 	pod spec lint KFData.podspec
 
 gh-pages: docs
