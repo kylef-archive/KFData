@@ -37,7 +37,7 @@ You should put a blank line between each group of headers.
 Trailing whitespace should never be found in code, this includes any lines
 which only contain whitespace.
 
-Avoid extraneious whitespace in the following situations:
+Avoid extraneous whitespace in the following situations:
 
 * Use a single space around an assignment (or any) operator. Never use multiple
   spaces for alignment.
@@ -50,7 +50,7 @@ Use:
 
    [array count]
 
-Intstead of:
+Instead of:
 
    array.count
 
