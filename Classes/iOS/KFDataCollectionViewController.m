@@ -231,7 +231,7 @@
 
                         case NSFetchedResultsChangeMove: {
                             NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
-                            NSIndexPath *newIndexPath = [indexPaths objectAtIndex:0];
+                            NSIndexPath *newIndexPath = [indexPaths objectAtIndex:1];
                             [collectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
                             break;
                         }
