@@ -182,8 +182,36 @@
 #endif
 
 #ifndef __POD_PSTCollectionView
+    // http://openradar.appspot.com/12954582
+    __block BOOL shouldReload = NO;
+
+    for (NSDictionary *userInfo in sectionUpdates) {
+        [userInfo enumerateKeysAndObjectsUsingBlock:^(id key, NSIndexSet *indexSet, BOOL *stop) {
+            NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+            switch (type) {
+                case NSFetchedResultsChangeInsert:
+                    stop = shouldReload = YES; // reload for every section insert (this covers the case of first item inserts too)
+                    break;
+                case NSFetchedResultsChangeDelete:
+                    if ([[self collectionView] numberOfSections] == 1) {
+                        stop = shouldReload = YES;
+                    } else {
+                        shouldReload = NO;
+                    }
+                    break;
+                case NSFetchedResultsChangeUpdate:
+                case NSFetchedResultsChangeMove:
+                    shouldReload = NO;
+                    break;
+            }
+        }];
+    }
+
     if ([itemUpdates count] > 0 && [sectionUpdates count] == 0) {
-        // http://openradar.appspot.com/12954582
+        shouldReload = YES;
+    }
+
+    if (shouldReload) {
         [collectionView reloadData];
         return;
     }
