@@ -191,7 +191,7 @@
 
     if ([sectionUpdates count]) {
         [collectionView performBatchUpdates:^{
-            for (NSDictionary *userInfo in [self sectionUpdates]) {
+            for (NSDictionary *userInfo in sectionUpdates) {
                 [userInfo enumerateKeysAndObjectsUsingBlock:^(id key, NSIndexSet *indexSet, BOOL *stop) {
                     NSFetchedResultsChangeType type = [key unsignedIntegerValue];
 
@@ -212,7 +212,7 @@
 
     if ([itemUpdates count]) {
         [collectionView performBatchUpdates:^{
-            for (NSDictionary *userInfo in [self itemUpdates]) {
+            for (NSDictionary *userInfo in itemUpdates) {
                 [userInfo enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *indexPaths, BOOL *stop) {
                     NSFetchedResultsChangeType type = [key unsignedIntegerValue];
 
