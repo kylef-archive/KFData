@@ -100,19 +100,17 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar*)searchBar {
-	if ([searchBar isFirstResponder]) {
-		[searchBar resignFirstResponder];
-		[searchBar setShowsCancelButton:NO animated:YES];
-		[searchBar setText:nil];
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar setText:nil];
 
-		[[[self fetchedResultsController] fetchRequest] setPredicate:[self originalPredicate]];
-		[super performFetch];
+    [[[self fetchedResultsController] fetchRequest] setPredicate:[self originalPredicate]];
+    [super performFetch];
 
-		[self setFiltering:NO];
+    [self setFiltering:NO];
 
-        CGSize searchBarSize = [[self searchBar] frame].size;
-		[[self tableView] setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:YES];
-	}
+    CGSize searchBarSize = [[self searchBar] frame].size;
+    [[self tableView] setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar*)searchBar {
