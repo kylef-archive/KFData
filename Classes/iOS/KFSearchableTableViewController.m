@@ -64,6 +64,12 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 	return nil;
 }
 
+- (void)setFetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath {
+    [super setFetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath];
+
+    [self setOriginalPredicate:[[[self fetchedResultsController] fetchRequest] predicate]];
+}
+
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar*)searchBar {
@@ -71,10 +77,7 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 }
 
 - (void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)searchText {
-	if (NO == [self isFiltering]) {
-		[self setOriginalPredicate:[[[self fetchedResultsController] fetchRequest] predicate]];
-		[self setFiltering:YES];
-	}
+    [self setFiltering:YES];
 
 	NSPredicate *predicate;
 
@@ -106,7 +109,6 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 		[super performFetch];
 
 		[self setFiltering:NO];
-		[self setOriginalPredicate:nil];
 
         CGSize searchBarSize = [[self searchBar] frame].size;
 		[[self tableView] setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:YES];
