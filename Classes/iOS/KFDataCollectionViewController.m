@@ -190,11 +190,11 @@
             NSFetchedResultsChangeType type = [key unsignedIntegerValue];
             switch (type) {
                 case NSFetchedResultsChangeInsert:
-                    stop = shouldReload = YES; // reload for every section insert (this covers the case of first item inserts too)
+                    *stop = shouldReload = YES; // reload for every section insert (this covers the case of first item inserts too)
                     break;
                 case NSFetchedResultsChangeDelete:
                     if ([[self collectionView] numberOfSections] == 1) {
-                        stop = shouldReload = YES;
+                        *stop = shouldReload = YES;
                     } else {
                         shouldReload = NO;
                     }
