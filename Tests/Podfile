@@ -1,0 +1,21 @@
+xcodeproj 'KFDataTests'
+workspace '../KFData'
+inhibit_all_warnings!
+
+def import_pods
+    pod 'KFData', :path => '../'
+    pod 'Kiwi'
+end
+
+target :ios do
+    platform :ios, '5.0'
+    link_with 'iOS Tests'
+    import_pods
+end
+
+target :osx do
+    platform :osx, '10.7'
+    link_with 'OS X Tests'
+    import_pods
+end
+

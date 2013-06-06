@@ -38,7 +38,7 @@ describe(@"KFDataStore", ^{
         });
 
         it(@"should have a persistent store coordinator", ^{
-            [[[dataStore persistentStoreCoordinator] should] beNonNil];
+            [[dataStore persistentStoreCoordinator] shouldNotBeNil];
         });
     });
 

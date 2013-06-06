@@ -24,14 +24,16 @@ docs: clean
 clean:
 	rm -fr docs
 
-test:
-ifeq ($(XCTOOL),)
-	xcodebuild -workspace KFData.xcworkspace -scheme KFData test
-else
-	xctool test
-endif
+test-osx:
+	xctool -scheme 'OS X Tests' test -test-sdk macosx -sdk macosx -configuration Release
 
+test-ios:
+	xctool -scheme 'iOS Tests' test -test-sdk iphonesimulator -configuration Release
+
+test-podspec:
 	pod spec lint KFData.podspec
+
+test: test-osx test-ios test-podspec
 
 gh-pages: docs
 	cp -r docs/publish/ docs/html

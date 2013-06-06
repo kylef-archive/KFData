@@ -1,0 +1,17 @@
+PODS:
+  - KFData (0.4)
+  - Kiwi (2.1)
+
+DEPENDENCIES:
+  - KFData (from `../`)
+  - Kiwi
+
+EXTERNAL SOURCES:
+  KFData:
+    :path: ../
+
+SPEC CHECKSUMS:
+  KFData: 4205ef596eef5db34f50a901edf1dffb93af8941
+  Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
+
+COCOAPODS: 0.20.2
