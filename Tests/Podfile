@@ -5,6 +5,7 @@ inhibit_all_warnings!
 def import_pods
     pod 'KFData', :path => '../'
     pod 'Kiwi'
+    pod 'Expecta'
 end
 
 target :ios do

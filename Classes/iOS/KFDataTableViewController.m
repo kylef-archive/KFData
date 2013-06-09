@@ -74,11 +74,8 @@
 }
 
 - (instancetype)init {
-    if (self = [self initWithManagedObjectContext:nil style:UITableViewStylePlain]) {
-        // You should probablly overide this and call the managedObjectContext method.
-    }
-
-    return self;
+    NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Invoke `initWithBaseURL:` instead.",NSStringFromClass([self class])];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 #pragma mark - View

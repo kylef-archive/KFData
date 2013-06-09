@@ -69,10 +69,8 @@
 }
 
 - (instancetype)init {
-    if (self = [self initWithManagedObjectContext:nil collectionViewLayout:nil]) {
-    }
-
-    return self;
+    NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Invoke `initWithBaseURL:` instead.",NSStringFromClass([self class])];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 #pragma mark - View

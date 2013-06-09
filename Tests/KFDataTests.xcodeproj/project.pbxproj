@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		778E2F871764AE51005945BE /* KFDataTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */; };
+		778E2F8A1764B33D005945BE /* KFDataCollectionViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */; };
 		778FBF7A1761077800DE0FFF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF791761077800DE0FFF /* SenTestingKit.framework */; };
 		778FBF7C1761077800DE0FFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF7B1761077800DE0FFF /* UIKit.framework */; };
 		778FBF7E1761077800DE0FFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF7D1761077800DE0FFF /* Foundation.framework */; };
@@ -29,6 +31,9 @@
 /* Begin PBXFileReference section */
 		5D4BF9AD35194D1FA433E5DE /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		648982FFB9444486BC22476A /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = SOURCE_ROOT; };
+		778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewControllerTests.m; sourceTree = "<group>"; };
+		778E2F881764B05B005945BE /* KFDataTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KFDataTests.h; path = "iOS Tests/KFDataTests.h"; sourceTree = "<group>"; };
+		778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataCollectionViewControllerTests.m; sourceTree = "<group>"; };
 		778FBF4D176106F600DE0FFF /* KFAttribute_Spec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFAttribute_Spec.m; sourceTree = "<group>"; };
 		778FBF4E176106F600DE0FFF /* KFDataStore_Spec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFDataStore_Spec.m; sourceTree = "<group>"; };
 		778FBF4F176106F600DE0FFF /* NSManagedObjectContext_Spec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectContext_Spec.m; sourceTree = "<group>"; };
@@ -96,6 +101,7 @@
 		778FBF50176106FA00DE0FFF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				778E2F881764B05B005945BE /* KFDataTests.h */,
 				778FBF4D176106F600DE0FFF /* KFAttribute_Spec.m */,
 				778FBF4E176106F600DE0FFF /* KFDataStore_Spec.m */,
 				778FBF4F176106F600DE0FFF /* NSManagedObjectContext_Spec.m */,
@@ -129,6 +135,8 @@
 		778FBF7F1761077800DE0FFF /* iOS Tests */ = {
 			isa = PBXGroup;
 			children = (
+				778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */,
+				778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */,
 				778FBF851761077800DE0FFF /* iOS_Tests.h */,
 				778FBF861761077800DE0FFF /* iOS_Tests.m */,
 				778FBF801761077800DE0FFF /* Supporting Files */,
@@ -358,6 +366,8 @@
 				778FBF991761079A00DE0FFF /* KFAttribute_Spec.m in Sources */,
 				778FBF9A1761079A00DE0FFF /* KFDataStore_Spec.m in Sources */,
 				778FBF9B1761079A00DE0FFF /* NSManagedObjectContext_Spec.m in Sources */,
+				778E2F871764AE51005945BE /* KFDataTableViewControllerTests.m in Sources */,
+				778E2F8A1764B33D005945BE /* KFDataCollectionViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
