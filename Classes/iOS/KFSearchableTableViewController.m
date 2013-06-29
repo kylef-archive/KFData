@@ -68,6 +68,25 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
     [super setFetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath];
 
     [self setOriginalPredicate:[[[self fetchedResultsController] fetchRequest] predicate]];
+
+- (KFScrollPosition)scrollPosition {
+    CGFloat yOffset = [[self tableView] contentOffset].y;
+    if (0 == yOffset) {
+        return KFScrollPositionSearch;
+    }
+
+    CGFloat searchBarHeight = [[self searchBar] frame].size.height;
+    if (yOffset == searchBarHeight) {
+        return KFScrollPositionTopRow;
+    }
+
+    CGFloat contentHeight = [[self tableView] contentSize].height;
+    CGFloat frameHeight = [[self tableView] frame].size.height;
+    if (frameHeight == (contentHeight - yOffset)) {
+        return KFScrollPositionBottomRow;
+    }
+
+    return KFScrollPositionOther;
 }
 
 #pragma mark - UISearchBarDelegate
