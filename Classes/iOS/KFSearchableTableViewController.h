@@ -26,6 +26,11 @@ typedef NS_ENUM(NSUInteger, KFScrollPosition) {
 @property (nonatomic, strong, readonly) UISearchBar* searchBar;
 @property (nonatomic, assign, readonly, getter=isFiltering) BOOL filtering;
 
+/** This property specifies whether the autohide functionality of the search bar is allowed
+ when there is search text.
+ */
+@property (nonatomic, assign, getter=canAutoHideActiveSearchBar) BOOL autoHideActiveSearchBar;
+
 /** @name Subclass override */
 
 /** This method will return the predicate to be used by the NSFetchedResultsController. It is
