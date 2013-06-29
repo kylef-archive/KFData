@@ -69,6 +69,12 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 
     [self setOriginalPredicate:[[[self fetchedResultsController] fetchRequest] predicate]];
 
+    [[self searchBar] resignFirstResponder];
+    [[self searchBar] setShowsCancelButton:NO animated:YES];
+    [[self searchBar] setText:nil];
+    [self setFiltering:NO];
+}
+
 - (KFScrollPosition)scrollPosition {
     CGFloat yOffset = [[self tableView] contentOffset].y;
     if (0 == yOffset) {
