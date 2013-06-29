@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 }
 
 - (void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)searchText {
-    [self setFiltering:YES];
+    [self setFiltering:[searchText length] ? YES : NO];
 
 	NSPredicate *predicate;
 
