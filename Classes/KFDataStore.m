@@ -47,28 +47,16 @@
 + (id)standardLocalDataStoreForce:(BOOL)forced {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
 
-    [[dataStore managedObjectContext] performBlock:^{
-        NSURL *storesDirectoryURL = [self storesDirectoryURL];
-        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
-
-        @try {
-            [dataStore addLocalStore:nil URL:storeURL];
-        } @catch (NSException *exception) {
-            NSLog(@"%@", [exception name]);
-
-            if (forced && [[NSFileManager defaultManager] isDeletableFileAtPath:[storeURL path]]) {
-                NSError *error;
-
-                if ([[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
-                    NSLog(@"KFData: Forced local data store");
-                    [dataStore addLocalStore:nil URL:storeURL];
-                } else {
-                    NSLog(@"KFData: Failed to force remove store: %@", error);
-                }
-            }
-        }
-    }];
+    [dataStore addLocalStoreForced:forced];
     
+    return dataStore;
+}
+
++ (id)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
+    KFDataStore *dataStore = [[KFDataStore alloc] initWithManagedObjectModel:managedObjectModel];
+
+    [dataStore addLocalStoreForced:NO];
+
     return dataStore;
 }
 
@@ -124,14 +112,38 @@
     return store;
 }
 
-- (NSPersistentStore*)addLocalStore:(NSString*)configuration URL:(NSURL*)storeURL {
+- (void)addLocalStoreForced:(BOOL)forced {
+    [[self managedObjectContext] performBlock:^{
+        NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
+        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
+
+        @try {
+            [self addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil];
+        } @catch (NSException *exception) {
+            NSLog(@"%@", [exception name]);
+
+            if (forced && [[NSFileManager defaultManager] isDeletableFileAtPath:[storeURL path]]) {
+                NSError *error;
+
+                if ([[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error]) {
+                    NSLog(@"KFData: Forced local data store");
+                    [self addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil];
+                } else {
+                    NSLog(@"KFData: Failed to force remove store: %@", error);
+                }
+            }
+        }
+    }];
+}
+
+- (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options {
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
     NSError *error;
 
-    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:storeType
                                                                         configuration:configuration
                                                                                   URL:storeURL
-                                                                              options:nil
+                                                                              options:options
                                                                                 error:&error];
 
     if (store == nil) {
