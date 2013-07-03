@@ -13,7 +13,7 @@
 #import <CoreData/CoreData.h>
 #import "KFDataViewControllerProtocol.h"
 
-#ifdef __POD_PSTCollectionView
+#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
 
 #import "PSTCollectionViewController.h"
 @class PSTCollectionViewFlowLayout;
@@ -22,7 +22,7 @@
 
 #import "KFDataViewControllerProtocol.h"
 
-#ifdef __POD_PSTCollectionView
+#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
 @interface KFDataCollectionViewController : PSTCollectionViewController <KFDataListViewControllerProtocol,
                                                                          NSFetchedResultsControllerDelegate>
 #else
@@ -34,7 +34,7 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-#ifdef __POD_PSTCollectionView
+#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
               collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout;
 #else
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;

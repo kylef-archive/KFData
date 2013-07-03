@@ -8,7 +8,7 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 
-#ifdef __POD_PSTCollectionView
+#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
 #import "PSTCollectionView.h"
 #endif
 
@@ -26,7 +26,7 @@
 #pragma mark -
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-#ifdef __POD_PSTCollectionView
+#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
               collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout
 #else
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout
@@ -173,13 +173,13 @@
     [self setSectionUpdates:nil];
     [self setItemUpdates:nil];
 
-#ifdef __POD_PSTCollectionView
+#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
     PSTCollectionView *collectionView = [self collectionView];
 #else
     UICollectionView *collectionView = [self collectionView];
 #endif
 
-#ifndef __POD_PSTCollectionView
+#ifndef COCOAPODS_POD_AVAILABLE_PSTCollectionView
     // http://openradar.appspot.com/12954582
     __block BOOL shouldReload = NO;
 
