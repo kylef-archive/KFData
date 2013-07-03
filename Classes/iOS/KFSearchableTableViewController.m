@@ -36,6 +36,7 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 	}
 
 	[self setFiltering:NO];
+    [self setAutoHideActiveSearchBar:NO];
 
 	return self;
 }
@@ -68,6 +69,31 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
     [super setFetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath];
 
     [self setOriginalPredicate:[[[self fetchedResultsController] fetchRequest] predicate]];
+
+    [[self searchBar] resignFirstResponder];
+    [[self searchBar] setShowsCancelButton:NO animated:YES];
+    [[self searchBar] setText:nil];
+    [self setFiltering:NO];
+}
+
+- (KFScrollPosition)scrollPosition {
+    CGFloat yOffset = [[self tableView] contentOffset].y;
+    if (0 == yOffset) {
+        return KFScrollPositionSearch;
+    }
+
+    CGFloat searchBarHeight = [[self searchBar] frame].size.height;
+    if (yOffset == searchBarHeight) {
+        return KFScrollPositionTopRow;
+    }
+
+    CGFloat contentHeight = [[self tableView] contentSize].height;
+    CGFloat frameHeight = [[self tableView] frame].size.height;
+    if (frameHeight == (contentHeight - yOffset)) {
+        return KFScrollPositionBottomRow;
+    }
+
+    return KFScrollPositionOther;
 }
 
 #pragma mark - UISearchBarDelegate
@@ -77,7 +103,7 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 }
 
 - (void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)searchText {
-    [self setFiltering:YES];
+    [self setFiltering:[searchText length] ? YES : NO];
 
 	NSPredicate *predicate;
 
@@ -156,7 +182,11 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
             if ([tableView contentOffset].y < (searchBarSize.height / 5 * 1)) {
                 [tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:animated];
             } else if (([[self tableView] contentOffset].y > (searchBarSize.height / 5 * 1)) && ([tableView contentOffset].y < searchBarSize.height)) {
-                [tableView setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:animated];
+                if ([self isFiltering] && NO == [self canAutoHideActiveSearchBar]) {
+                    [tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:animated];
+                } else {
+                    [tableView setContentOffset:CGPointMake(0.0f, searchBarSize.height) animated:animated];
+                }
             }
 
             break;
@@ -166,7 +196,11 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
             if ([tableView contentOffset].y < (searchBarSize.height / 5 * 4)) {
                 [tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:animated];
             } else if ([[self tableView] contentOffset].y <  searchBarSize.height) {
-                [tableView setContentOffset:CGPointMake(0.0f,  searchBarSize.height) animated:animated];
+                if ([self isFiltering] && NO == [self canAutoHideActiveSearchBar]) {
+                    [tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:animated];
+                } else {
+                    [tableView setContentOffset:CGPointMake(0.0f,  searchBarSize.height) animated:animated];
+                }
             }
 
             break;
