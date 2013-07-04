@@ -13,12 +13,25 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.ios.deployment_target = '5.0'
-  s.ios.frameworks = 'CoreData'
-  s.ios.source_files = 'Classes/*.{h,m}', 'Classes/iOS/*.{h,m}', 'Categories/*.{h,m}'
-
   s.osx.deployment_target = '10.7'
-  s.osx.frameworks = 'CoreData'
-  s.osx.source_files = 'Classes/*.{h,m}', 'Categories/*.{h,m}'
+  s.ios.deployment_target = '5.0'
+
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |corespec|
+    corespec.header_dir = 'KFData'
+
+    corespec.ios.frameworks = 'CoreData'
+    corespec.ios.source_files = 'Classes/*.{h,m}', 'Categories/*.{h,m}'
+
+    corespec.osx.frameworks = 'CoreData'
+    corespec.osx.source_files = 'Classes/*.{h,m}', 'Categories/*.{h,m}'
+  end
+
+  s.subspec 'UI' do |uispec|
+    uispec.platform = :ios
+    uispec.ios.frameworks = 'UIKit'
+    uispec.ios.source_files = 'Classes/iOS/*.{h,m}'
+  end
 end
 
