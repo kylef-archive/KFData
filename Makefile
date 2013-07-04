@@ -25,14 +25,14 @@ clean:
 	rm -fr docs
 
 test-osx:
-	xctool -scheme 'OS X Tests' test -test-sdk macosx -sdk macosx -configuration Release build
-	xctool -scheme 'OS X Tests' test -test-sdk macosx -sdk macosx -configuration Release build-tests
-	xctool -scheme 'OS X Tests' test -test-sdk macosx -sdk macosx -configuration Release test
+	xctool -scheme 'OS X Tests' build -sdk macosx -configuration Release
+	xctool -scheme 'OS X Tests' build-tests -sdk macosx -configuration Release
+	xctool -scheme 'OS X Tests' test -test-sdk macosx -sdk macosx -configuration Release
 
 test-ios:
-	xctool -scheme 'iOS Tests' test -test-sdk iphonesimulator -configuration Release build
-	xctool -scheme 'iOS Tests' test -test-sdk iphonesimulator -configuration Release build-tests
-	xctool -scheme 'iOS Tests' test -test-sdk iphonesimulator -configuration Release test
+	xctool -scheme 'iOS Tests' build -sdk iphonesimulator -configuration Release
+	xctool -scheme 'iOS Tests' build-tests -sdk iphonesimulator -configuration Release
+	xctool -scheme 'iOS Tests' test -test-sdk iphonesimulator -sdk iphonesimulator -configuration Release
 
 test-podspec:
 	pod spec lint KFData.podspec
