@@ -16,8 +16,6 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.ios.deployment_target = '5.0'
 
-  s.default_subspec = 'Core'
-
   s.subspec 'Core' do |corespec|
     corespec.header_dir = 'KFData'
 
