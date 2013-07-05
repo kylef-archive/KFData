@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'UI' do |uispec|
+    uispec.dependency 'KFData/Core'
     uispec.platform = :ios
     uispec.ios.frameworks = 'UIKit'
     uispec.ios.source_files = 'Classes/iOS/*.{h,m}'
