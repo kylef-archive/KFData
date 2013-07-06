@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, KFScrollDirection) {
 
 #pragma mark - Instance methods
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	if (!(self = [super initWithManagedObjectContext:managedObjectContext])) {
 		return nil;
 	}

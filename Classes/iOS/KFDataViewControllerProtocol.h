@@ -13,7 +13,7 @@
 
 @protocol KFDataViewControllerProtocol <NSObject>
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 - (NSManagedObjectContext *)managedObjectContext;
 
@@ -21,7 +21,7 @@
 
 @protocol KFDataDetailViewControllerProtocol <NSObject>
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 - (NSManagedObjectContext *)managedObjectContext;
 
@@ -29,7 +29,7 @@
 
 @protocol KFDataListViewControllerProtocol <NSObject>
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 - (NSManagedObjectContext *)managedObjectContext;
 

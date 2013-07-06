@@ -12,9 +12,9 @@
 
 @implementation KFFetchedResultsTableController
 
-- (id)initWithDataStore:(KFDataStore*)dataStore
-              tableView:(UITableView*)tableView
-               delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate
+- (instancetype)initWithDataStore:(KFDataStore*)dataStore
+                        tableView:(UITableView*)tableView
+                         delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate
 {
     NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWithConcurrencyType:NSMainQueueConcurrencyType];
 
@@ -26,9 +26,9 @@
     return self;
 }
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                         tableView:(UITableView*)tableView
-                          delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+                                   tableView:(UITableView*)tableView
+                                    delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate
 {
     if (self = [super init]) {
         _managedObjectContext = managedObjectContext;

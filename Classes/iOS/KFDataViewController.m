@@ -17,8 +17,7 @@
 
 @implementation KFDataViewController
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
     if (self = [self init]) {
         _managedObjectContext = managedObjectContext;
 

@@ -33,11 +33,11 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 #ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-              collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout;
+                        collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout;
 #else
-              collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;
+                        collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;
 #endif
 
 - (instancetype)initWithCoder:(NSCoder *)coder

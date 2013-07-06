@@ -42,13 +42,13 @@
 
 @property (nonatomic, weak) NSObject<KFFetchedResultsTableControllerDelegate> *delegate;
 
-- (id)initWithDataStore:(KFDataStore*)dataStore
-              tableView:(UITableView*)tableView
-               delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate;
+- (instancetype)initWithDataStore:(KFDataStore*)dataStore
+                        tableView:(UITableView*)tableView
+                         delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate;
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                         tableView:(UITableView*)tableView
-                          delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
+                                   tableView:(UITableView*)tableView
+                                    delegate:(NSObject<KFFetchedResultsTableControllerDelegate>*)delegate;
 
 - (void)setFetchRequest:(NSFetchRequest*)fetchRequest
      sectionNameKeyPath:(NSString*)sectionNameKeyPath;

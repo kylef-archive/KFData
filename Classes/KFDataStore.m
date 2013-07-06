@@ -40,11 +40,11 @@
     return storesDirectoryURL;
 }
 
-+ (id)standardLocalDataStore {
++ (instancetype)standardLocalDataStore {
     return [self standardLocalDataStoreForce:NO];
 }
 
-+ (id)standardLocalDataStoreForce:(BOOL)forced {
++ (instancetype)standardLocalDataStoreForce:(BOOL)forced {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
 
     [dataStore addLocalStoreForced:forced];
@@ -52,7 +52,7 @@
     return dataStore;
 }
 
-+ (id)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
++ (instancetype)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
     KFDataStore *dataStore = [[KFDataStore alloc] initWithManagedObjectModel:managedObjectModel];
 
     [dataStore addLocalStoreForced:NO];
@@ -60,7 +60,7 @@
     return dataStore;
 }
 
-+ (id)standardMemoryDataStore {
++ (instancetype)standardMemoryDataStore {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
     [[dataStore managedObjectContext] performBlock:^{
         [dataStore addMemoryStore:nil];
@@ -71,7 +71,7 @@
 
 #pragma mark -
 
-- (id)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel {
+- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel {
     if (self = [super init]) {
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
         _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
@@ -81,7 +81,7 @@
     return self;
 }
 
-- (id)init {
+- (instancetype)init {
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
 
     if (self = [self initWithManagedObjectModel:managedObjectModel]) {

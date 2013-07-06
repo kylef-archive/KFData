@@ -31,7 +31,7 @@
  @see standardLocalDataStoreForce:
 */
 
-+ (id)standardLocalDataStore;
++ (instancetype)standardLocalDataStore;
 
 /** Creates a standard data store which persists to the document directory.
 
@@ -40,15 +40,15 @@
  @see standardLocalDataStore
 */
 
-+ (id)standardLocalDataStoreForce:(BOOL)forced;
++ (instancetype)standardLocalDataStoreForce:(BOOL)forced;
 
 /** Create a local in-memory data store */
 
-+ (id)standardMemoryDataStore;
++ (instancetype)standardMemoryDataStore;
 
 /** Create a local store which persists to the document directory but with custom managed object model */
 
-+ (id)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel;
++ (instancetype)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel;
 
 #pragma mark - Initialization
 /** @name Initialization */
@@ -61,8 +61,8 @@
 
  @see standardLocalDataStore
 */
-- (id)init;
-- (id)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel;
+- (instancetype)init;
+- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel;
 
 #pragma mark -
 

@@ -72,7 +72,7 @@
 
 #pragma mark - Creation
 
-+ (id)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
++ (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
 
     NSManagedObject *newObject = [[self alloc] initWithEntity:entityDescription
