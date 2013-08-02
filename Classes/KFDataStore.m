@@ -164,7 +164,7 @@
     return context;
 }
 
-- (void)performReadBlock:(void(^)(NSManagedObjectContext* managedObjectContext))readBlock {
+- (void)performReadBlock:(void (^) (NSManagedObjectContext* managedObjectContext))readBlock {
     NSManagedObjectContext *managedObjectContext = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 
     [managedObjectContext performBlock:^{
@@ -176,9 +176,9 @@
                   success:(void(^)(void))success
                   failure:(void(^)(NSError *error))failure
 {
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *context = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
 
-    [managedObjectContext performWriteBlock:^{
+    [context performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
         writeBlock(managedObjectContext);
     } success:success failure:failure];
 }
@@ -190,7 +190,7 @@
 - (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
                                   completionHandler:(void (^)(void))completionHandler
 {
-    [[self managedObjectContext] performWriteBlock:^{
+    [[self managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
         writeBlock([self managedObjectContext]);
     } success:completionHandler failure:^(__unused NSError *error) {
         if (completionHandler) {

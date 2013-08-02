@@ -79,7 +79,7 @@
  @param readBlock The block to perform
  @see performWriteBlock:
 */
-- (void)performReadBlock:(void(^)(NSManagedObjectContext* managedObjectContext))readBlock;
+- (void)performReadBlock:(void (^)(NSManagedObjectContext* managedObjectContext))readBlock;
 
 /**
  Asyncronously execute a block and then save the changes into the main
@@ -88,7 +88,7 @@
  @param writeBlock The block to perform
  @see performWriteBlock:success:failure:
 */
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock;
+- (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
 /**
  Asyncronously execute a block and then save the changes into the main

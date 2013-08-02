@@ -80,8 +80,10 @@
 
 #pragma mark -
 
-- (void)performWriteBlock:(void(^)(void))writeBlock {
-    [self performWriteBlock:writeBlock success:nil failure:^(NSError *error) {
+- (void)performWriteBlock:(void (^) (NSManagedObjectContext *managedObjectContext))writeBlock {
+    [self performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
+        writeBlock(managedObjectContext);
+    } success:nil failure:^(NSError *error) {
         if (error) {
             @throw [NSException exceptionWithName:@"KFData performWriteBlock error"
                                            reason:[error localizedDescription]
@@ -90,12 +92,12 @@
     }];
 }
 
-- (void)performWriteBlock:(void(^)(void))writeBlock
+- (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock
                   success:(void(^)(void))success
                   failure:(void(^)(NSError *error))failure
 {
     [self performBlock:^{
-        writeBlock();
+        writeBlock(self);
         [self nestedSaveSuccess:success failure:failure];
     }];
 }

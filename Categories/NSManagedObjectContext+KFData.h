@@ -34,7 +34,7 @@
  @see performWriteBlock:success:failure:
  @note This will raise an exception if the save fails.
  */
-- (void)performWriteBlock:(void(^)(void))writeBlock;
+- (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
 /** Asyncronously perform a block on the managed object context, then run a nested save.
 
@@ -45,7 +45,7 @@
  @param failure A block to run when there was a failure to save in the current block, or it's parents.
  @see performWriteBlock:
  */
-- (void)performWriteBlock:(void(^)(void))writeBlock
+- (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock
                   success:(void(^)(void))success
                   failure:(void(^)(NSError *error))failure;
 
