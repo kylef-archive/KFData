@@ -45,6 +45,11 @@
 
 /** @name Subclass override */
 
+/**
+ The following methods have been depreacted. You can now subclass
+ -tableView:cellForIndexPath: and call -objectAtIndexPath: to get the object.
+ */
+
 /** This method will return the reuse identifier to use for a type of cell.
  @param tableView A table-view object requesting the cell.
  @param managedObject The managed object for the cell.
@@ -53,7 +58,7 @@
  */
 - (NSString*)tableView:(UITableView*)tableView
 reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
-           atIndexPath:(NSIndexPath *)indexPath;
+           atIndexPath:(NSIndexPath *)indexPath __deprecated;
 
 /** The following method is called to update a cell when a managed object has been updated.
  Implement this method to configure the cell for the managed object.
@@ -66,7 +71,7 @@ reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
 - (void)tableView:(UITableView*)tableView
    configuredCell:(UITableViewCell *)cell
  forManagedObject:(NSManagedObject *)managedObject
-      atIndexPath:(NSIndexPath *)indexPath;
+      atIndexPath:(NSIndexPath *)indexPath __deprecated;
 
 /** Create a UITableViewCell for the reuseIdentifier.
  @param tableView A table-view object requesting the cell.
@@ -76,7 +81,7 @@ reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
   view `registerNib:forReuseIdentifier:`.
  */
 - (UITableViewCell*)tableView:(UITableView *)tableView
-       cellForReuseIdentifier:(NSString *)reuseIdentifier;
+       cellForReuseIdentifier:(NSString *)reuseIdentifier __deprecated;
 
 @end
 
