@@ -226,7 +226,7 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *managedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
 
     NSString *reuseIdentifier = [self tableView:tableView reuseIdentifierForManagedObject:managedObject
                                     atIndexPath:indexPath];
@@ -242,6 +242,10 @@
     [self tableView:tableView configuredCell:cell forManagedObject:managedObject atIndexPath:indexPath];
 
     return cell;
+}
+
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    return [[self fetchedResultsController] objectAtIndexPath:indexPath];
 }
 
 @end

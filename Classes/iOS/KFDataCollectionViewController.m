@@ -284,6 +284,10 @@
 	return (NSInteger)count;
 }
 
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    return [[self fetchedResultsController] objectAtIndexPath:indexPath];
+}
+
 @end
 
 #endif

@@ -12,7 +12,6 @@ target :ios do
     platform :ios, '5.0'
     link_with 'iOS Tests'
     import_pods
-    pod 'KFData/UI'
 end
 
 target :osx do

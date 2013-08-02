@@ -2,14 +2,15 @@ PODS:
   - Expecta (0.2.1)
   - KFData (0.4.1):
     - KFData/Core
+    - KFData/UI
   - KFData/Core (0.4.1)
-  - KFData/UI (0.4.1)
+  - KFData/UI (0.4.1):
+    - KFData/Core
   - Kiwi (2.2)
 
 DEPENDENCIES:
   - Expecta
   - KFData (from `../`)
-  - KFData/UI
   - Kiwi
 
 EXTERNAL SOURCES:
@@ -18,7 +19,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
-  KFData: ee19f801b7d2026c0a109878aa9fcde6d1616251
+  KFData: dfbe84db0bfd0236124636942bd7628a455fb100
   Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
 
 COCOAPODS: 0.22.1
