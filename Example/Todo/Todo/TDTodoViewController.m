@@ -41,8 +41,8 @@
 - (void)done {
     NSString *name = [[self textField] text];
 
-    [[self managedObjectContext] performWriteBlock:^{
-        Todo *todo = [Todo createInManagedObjectContext:[self managedObjectContext]];
+    [[self managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
+        Todo *todo = [Todo createInManagedObjectContext:managedObjectContext];
         [todo setName:name];
         [todo setCreated:[NSDate date]];
     }];

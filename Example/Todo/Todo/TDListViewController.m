@@ -78,7 +78,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         Todo *todo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 
         NSManagedObjectContext *managedObjectContext = [todo managedObjectContext];
-        [managedObjectContext performWriteBlock:^{
+        [[todo managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
             [managedObjectContext deleteObject:todo];
         }];
     }
@@ -97,7 +97,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Todo *todo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 
-    [[todo managedObjectContext] performWriteBlock:^{
+    [[todo managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
         BOOL isComplete = [[todo complete] boolValue] == NO;
         [todo setComplete:@(isComplete)];
     }];
