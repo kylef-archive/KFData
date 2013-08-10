@@ -37,10 +37,6 @@
 
 + (instancetype)standardMemoryDataStore;
 
-/** Create a local store which persists to the document directory but with custom managed object model */
-
-+ (instancetype)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel;
-
 #pragma mark - Initialization
 /** @name Initialization */
 

@@ -46,14 +46,6 @@
     return dataStore;
 }
 
-+ (instancetype)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
-    KFDataStore *dataStore = [[KFDataStore alloc] initWithManagedObjectModel:managedObjectModel];
-
-    [dataStore addLocalStore];
-
-    return dataStore;
-}
-
 + (instancetype)standardMemoryDataStore {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
     [[dataStore managedObjectContext] performBlock:^{
