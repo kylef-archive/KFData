@@ -158,16 +158,4 @@
     [self performWriteBlock:writeBlock success:nil failure:nil];
 }
 
-- (void)performWriteBlockOnMainManagedObjectContext:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-                                  completionHandler:(void (^)(void))completionHandler
-{
-    [[self managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
-        writeBlock([self managedObjectContext]);
-    } success:completionHandler failure:^(__unused NSError *error) {
-        if (completionHandler) {
-            completionHandler();
-        }
-    }];
-}
-
 @end
