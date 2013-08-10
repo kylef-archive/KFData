@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "KFManagedObjectContext.h"
+@class KFManagedObjectContext;
 
 /**
  KFDataStore is a wrapper around an NSPersistentStoreCoordinator. You would

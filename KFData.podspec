@@ -20,17 +20,30 @@ Pod::Spec.new do |s|
     corespec.header_dir = 'KFData'
 
     corespec.ios.frameworks = 'CoreData'
-    corespec.ios.source_files = 'Classes/*.{h,m}', 'Categories/*.{h,m}'
+    corespec.ios.source_files = 'KFData/Core/*.{h,m}'
 
     corespec.osx.frameworks = 'CoreData'
-    corespec.osx.source_files = 'Classes/*.{h,m}', 'Categories/*.{h,m}'
+    corespec.osx.source_files = 'KFData/Core/*.{h,m}'
+  end
+
+  s.subspec 'Store' do |storespec|
+    storespec.dependency 'KFData/Core'
+
+    storespec.header_dir = 'KFData/Store'
+
+    storespec.ios.frameworks = 'CoreData'
+    storespec.ios.source_files = 'KFData/Store/*.{h,m}'
+
+    storespec.osx.frameworks = 'CoreData'
+    storespec.osx.source_files = 'KFData/Store/*.{h,m}'
   end
 
   s.subspec 'UI' do |uispec|
     uispec.dependency 'KFData/Core'
+    uispec.header_dir = 'KFData/UI'
     uispec.platform = :ios
     uispec.ios.frameworks = 'UIKit'
-    uispec.ios.source_files = 'Classes/iOS/*.{h,m}'
+    uispec.ios.source_files = 'KFData/UI/*.{h,m}'
   end
 end
 

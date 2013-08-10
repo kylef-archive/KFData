@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77447E5516C3ACB100877D1C /* NSManagedObject+Aggregation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */; };
-		77447E5616C3ACB100877D1C /* NSManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E4E16C3ACB100877D1C /* NSManagedObject+Finders.m */; };
-		77447E5716C3ACB100877D1C /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */; };
-		77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */; };
-		77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */; };
-		7764B5961735838A00A924D3 /* KFAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764B5951735838A00A924D3 /* KFAttribute.m */; };
-		777554CB16DA82B200A5ACF9 /* KFDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777554CA16DA82B200A5ACF9 /* KFDataCollectionViewController.m */; };
+		77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6117B6BE08007B122D /* KFAttribute.m */; };
+		77166A7F17B6BE08007B122D /* KFManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6317B6BE08007B122D /* KFManagedObjectContext.m */; };
+		77166A8017B6BE08007B122D /* NSManagedObject+Aggregation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6517B6BE08007B122D /* NSManagedObject+Aggregation.m */; };
+		77166A8117B6BE08007B122D /* NSManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6717B6BE08007B122D /* NSManagedObject+Finders.m */; };
+		77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */; };
+		77166A8317B6BE08007B122D /* NSManagedObject+Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6B17B6BE08007B122D /* NSManagedObject+Requests.m */; };
+		77166A8417B6BE08007B122D /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6D17B6BE08007B122D /* NSManagedObjectContext+KFData.m */; };
+		77166A8517B6BE08007B122D /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7117B6BE08007B122D /* KFDataStore.m */; };
+		77166A8617B6BE08007B122D /* KFDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */; };
+		77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7617B6BE08007B122D /* KFDataTableViewController.m */; };
+		77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7817B6BE08007B122D /* KFDataViewController.m */; };
+		77166A8917B6BE08007B122D /* KFFetchedResultsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7B17B6BE08007B122D /* KFFetchedResultsTableController.m */; };
+		77166A8A17B6BE08007B122D /* KFSearchableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */; };
 		779A785216837FF60049B316 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785116837FF60049B316 /* UIKit.framework */; };
 		779A785416837FF60049B316 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785316837FF60049B316 /* Foundation.framework */; };
 		779A785616837FF60049B316 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785516837FF60049B316 /* CoreGraphics.framework */; };
@@ -29,16 +35,11 @@
 		779A787A16837FF60049B316 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 779A787816837FF60049B316 /* InfoPlist.strings */; };
 		779A787D16837FF60049B316 /* TodoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A787C16837FF60049B316 /* TodoTests.m */; };
 		779A7887168380080049B316 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A7886168380080049B316 /* CoreData.framework */; };
-		779A788E168380260049B316 /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A7889168380260049B316 /* KFDataStore.m */; };
-		779A7897168380360049B316 /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A7893168380360049B316 /* KFDataTableViewController.m */; };
-		779A7898168380360049B316 /* KFDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A7895168380360049B316 /* KFDataViewController.m */; };
 		779A789C168380730049B316 /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A789B168380730049B316 /* TDListViewController.m */; };
 		779A789F168381790049B316 /* TodoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 779A789D168381790049B316 /* TodoModel.xcdatamodeld */; };
 		779A78A2168381BE0049B316 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A78A1168381BE0049B316 /* Todo.m */; };
 		779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A78A4168383C10049B316 /* TDTodoViewController.m */; };
 		779A78A7168384180049B316 /* TDTodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779A78A6168384180049B316 /* TDTodoViewController.xib */; };
-		77B1F4F4172422080005CC2D /* KFSearchableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1F4F2172421FF0005CC2D /* KFSearchableTableViewController.m */; };
-		77E684DF16EE050C00D9BBFA /* KFManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,20 +53,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		77447E4B16C3ACB100877D1C /* NSManagedObject+Aggregation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Aggregation.h"; sourceTree = "<group>"; };
-		77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Aggregation.m"; sourceTree = "<group>"; };
-		77447E4D16C3ACB100877D1C /* NSManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Finders.h"; sourceTree = "<group>"; };
-		77447E4E16C3ACB100877D1C /* NSManagedObject+Finders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Finders.m"; sourceTree = "<group>"; };
-		77447E4F16C3ACB100877D1C /* NSManagedObject+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+KFData.h"; sourceTree = "<group>"; };
-		77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+KFData.m"; sourceTree = "<group>"; };
-		77447E5116C3ACB100877D1C /* NSManagedObject+Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Requests.h"; sourceTree = "<group>"; };
-		77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Requests.m"; sourceTree = "<group>"; };
-		77447E5316C3ACB100877D1C /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+KFData.h"; sourceTree = "<group>"; };
-		77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+KFData.m"; sourceTree = "<group>"; };
-		7764B5941735838A00A924D3 /* KFAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFAttribute.h; path = ../../Classes/KFAttribute.h; sourceTree = "<group>"; };
-		7764B5951735838A00A924D3 /* KFAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFAttribute.m; path = ../../Classes/KFAttribute.m; sourceTree = "<group>"; };
-		777554C916DA82B200A5ACF9 /* KFDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataCollectionViewController.h; path = ../../Classes/iOS/KFDataCollectionViewController.h; sourceTree = "<group>"; };
-		777554CA16DA82B200A5ACF9 /* KFDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataCollectionViewController.m; path = ../../Classes/iOS/KFDataCollectionViewController.m; sourceTree = "<group>"; };
+		77166A6017B6BE08007B122D /* KFAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAttribute.h; sourceTree = "<group>"; };
+		77166A6117B6BE08007B122D /* KFAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAttribute.m; sourceTree = "<group>"; };
+		77166A6217B6BE08007B122D /* KFManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFManagedObjectContext.h; sourceTree = "<group>"; };
+		77166A6317B6BE08007B122D /* KFManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFManagedObjectContext.m; sourceTree = "<group>"; };
+		77166A6417B6BE08007B122D /* NSManagedObject+Aggregation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Aggregation.h"; sourceTree = "<group>"; };
+		77166A6517B6BE08007B122D /* NSManagedObject+Aggregation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Aggregation.m"; sourceTree = "<group>"; };
+		77166A6617B6BE08007B122D /* NSManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Finders.h"; sourceTree = "<group>"; };
+		77166A6717B6BE08007B122D /* NSManagedObject+Finders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Finders.m"; sourceTree = "<group>"; };
+		77166A6817B6BE08007B122D /* NSManagedObject+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+KFData.h"; sourceTree = "<group>"; };
+		77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+KFData.m"; sourceTree = "<group>"; };
+		77166A6A17B6BE08007B122D /* NSManagedObject+Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Requests.h"; sourceTree = "<group>"; };
+		77166A6B17B6BE08007B122D /* NSManagedObject+Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Requests.m"; sourceTree = "<group>"; };
+		77166A6C17B6BE08007B122D /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+KFData.h"; sourceTree = "<group>"; };
+		77166A6D17B6BE08007B122D /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+KFData.m"; sourceTree = "<group>"; };
+		77166A6E17B6BE08007B122D /* KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFData.h; sourceTree = "<group>"; };
+		77166A7017B6BE08007B122D /* KFDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataStore.h; sourceTree = "<group>"; };
+		77166A7117B6BE08007B122D /* KFDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataStore.m; sourceTree = "<group>"; };
+		77166A7317B6BE08007B122D /* KFDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataCollectionViewController.h; sourceTree = "<group>"; };
+		77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataCollectionViewController.m; sourceTree = "<group>"; };
+		77166A7517B6BE08007B122D /* KFDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataTableViewController.h; sourceTree = "<group>"; };
+		77166A7617B6BE08007B122D /* KFDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewController.m; sourceTree = "<group>"; };
+		77166A7717B6BE08007B122D /* KFDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewController.h; sourceTree = "<group>"; };
+		77166A7817B6BE08007B122D /* KFDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataViewController.m; sourceTree = "<group>"; };
+		77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewControllerProtocol.h; sourceTree = "<group>"; };
+		77166A7A17B6BE08007B122D /* KFFetchedResultsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFFetchedResultsTableController.h; sourceTree = "<group>"; };
+		77166A7B17B6BE08007B122D /* KFFetchedResultsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFFetchedResultsTableController.m; sourceTree = "<group>"; };
+		77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFSearchableTableViewController.h; sourceTree = "<group>"; };
+		77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFSearchableTableViewController.m; sourceTree = "<group>"; };
 		779A784D16837FF60049B316 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		779A785116837FF60049B316 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		779A785316837FF60049B316 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,13 +101,6 @@
 		779A787B16837FF60049B316 /* TodoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoTests.h; sourceTree = "<group>"; };
 		779A787C16837FF60049B316 /* TodoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoTests.m; sourceTree = "<group>"; };
 		779A7886168380080049B316 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		779A7888168380260049B316 /* KFDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataStore.h; path = ../../Classes/KFDataStore.h; sourceTree = "<group>"; };
-		779A7889168380260049B316 /* KFDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataStore.m; path = ../../Classes/KFDataStore.m; sourceTree = "<group>"; };
-		779A7892168380360049B316 /* KFDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataTableViewController.h; path = ../../Classes/iOS/KFDataTableViewController.h; sourceTree = "<group>"; };
-		779A7893168380360049B316 /* KFDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataTableViewController.m; path = ../../Classes/iOS/KFDataTableViewController.m; sourceTree = "<group>"; };
-		779A7894168380360049B316 /* KFDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataViewController.h; path = ../../Classes/iOS/KFDataViewController.h; sourceTree = "<group>"; };
-		779A7895168380360049B316 /* KFDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFDataViewController.m; path = ../../Classes/iOS/KFDataViewController.m; sourceTree = "<group>"; };
-		779A7896168380360049B316 /* KFDataViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFDataViewControllerProtocol.h; path = ../../Classes/iOS/KFDataViewControllerProtocol.h; sourceTree = "<group>"; };
 		779A789A168380730049B316 /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
 		779A789B168380730049B316 /* TDListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListViewController.m; sourceTree = "<group>"; };
 		779A789E168381790049B316 /* TodoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoModel.xcdatamodel; sourceTree = "<group>"; };
@@ -101,11 +109,6 @@
 		779A78A3168383C10049B316 /* TDTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTodoViewController.h; sourceTree = "<group>"; };
 		779A78A4168383C10049B316 /* TDTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTodoViewController.m; sourceTree = "<group>"; };
 		779A78A6168384180049B316 /* TDTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDTodoViewController.xib; sourceTree = "<group>"; };
-		77B1F4F1172421FF0005CC2D /* KFSearchableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFSearchableTableViewController.h; path = ../../Classes/iOS/KFSearchableTableViewController.h; sourceTree = "<group>"; };
-		77B1F4F2172421FF0005CC2D /* KFSearchableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFSearchableTableViewController.m; path = ../../Classes/iOS/KFSearchableTableViewController.m; sourceTree = "<group>"; };
-		77E3A4C317149994006323F9 /* KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFData.h; path = ../../Classes/KFData.h; sourceTree = "<group>"; };
-		77E684DC16EE04FB00D9BBFA /* KFManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFManagedObjectContext.h; path = ../../Classes/KFManagedObjectContext.h; sourceTree = "<group>"; };
-		77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFManagedObjectContext.m; path = ../../Classes/KFManagedObjectContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,28 +136,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		77447E4916C3ACB100877D1C /* Categories */ = {
+		77166A5E17B6BE08007B122D /* KFData */ = {
 			isa = PBXGroup;
 			children = (
-				77447E4B16C3ACB100877D1C /* NSManagedObject+Aggregation.h */,
-				77447E4C16C3ACB100877D1C /* NSManagedObject+Aggregation.m */,
-				77447E4D16C3ACB100877D1C /* NSManagedObject+Finders.h */,
-				77447E4E16C3ACB100877D1C /* NSManagedObject+Finders.m */,
-				77447E4F16C3ACB100877D1C /* NSManagedObject+KFData.h */,
-				77447E5016C3ACB100877D1C /* NSManagedObject+KFData.m */,
-				77447E5116C3ACB100877D1C /* NSManagedObject+Requests.h */,
-				77447E5216C3ACB100877D1C /* NSManagedObject+Requests.m */,
-				77447E5316C3ACB100877D1C /* NSManagedObjectContext+KFData.h */,
-				77447E5416C3ACB100877D1C /* NSManagedObjectContext+KFData.m */,
+				77166A5F17B6BE08007B122D /* Core */,
+				77166A6E17B6BE08007B122D /* KFData.h */,
+				77166A6F17B6BE08007B122D /* Store */,
+				77166A7217B6BE08007B122D /* UI */,
 			);
-			name = Categories;
-			path = ../../Categories;
+			name = KFData;
+			path = ../../KFData;
+			sourceTree = "<group>";
+		};
+		77166A5F17B6BE08007B122D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				77166A6017B6BE08007B122D /* KFAttribute.h */,
+				77166A6117B6BE08007B122D /* KFAttribute.m */,
+				77166A6217B6BE08007B122D /* KFManagedObjectContext.h */,
+				77166A6317B6BE08007B122D /* KFManagedObjectContext.m */,
+				77166A6417B6BE08007B122D /* NSManagedObject+Aggregation.h */,
+				77166A6517B6BE08007B122D /* NSManagedObject+Aggregation.m */,
+				77166A6617B6BE08007B122D /* NSManagedObject+Finders.h */,
+				77166A6717B6BE08007B122D /* NSManagedObject+Finders.m */,
+				77166A6817B6BE08007B122D /* NSManagedObject+KFData.h */,
+				77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */,
+				77166A6A17B6BE08007B122D /* NSManagedObject+Requests.h */,
+				77166A6B17B6BE08007B122D /* NSManagedObject+Requests.m */,
+				77166A6C17B6BE08007B122D /* NSManagedObjectContext+KFData.h */,
+				77166A6D17B6BE08007B122D /* NSManagedObjectContext+KFData.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		77166A6F17B6BE08007B122D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				77166A7017B6BE08007B122D /* KFDataStore.h */,
+				77166A7117B6BE08007B122D /* KFDataStore.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		77166A7217B6BE08007B122D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				77166A7317B6BE08007B122D /* KFDataCollectionViewController.h */,
+				77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */,
+				77166A7517B6BE08007B122D /* KFDataTableViewController.h */,
+				77166A7617B6BE08007B122D /* KFDataTableViewController.m */,
+				77166A7717B6BE08007B122D /* KFDataViewController.h */,
+				77166A7817B6BE08007B122D /* KFDataViewController.m */,
+				77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */,
+				77166A7A17B6BE08007B122D /* KFFetchedResultsTableController.h */,
+				77166A7B17B6BE08007B122D /* KFFetchedResultsTableController.m */,
+				77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */,
+				77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		779A784216837FF60049B316 = {
 			isa = PBXGroup;
 			children = (
-				779A7891168380290049B316 /* KFData */,
+				77166A5E17B6BE08007B122D /* KFData */,
 				779A785716837FF60049B316 /* Todo */,
 				779A787516837FF60049B316 /* TodoTests */,
 				779A785016837FF60049B316 /* Frameworks */,
@@ -232,38 +277,6 @@
 				779A787816837FF60049B316 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		779A7891168380290049B316 /* KFData */ = {
-			isa = PBXGroup;
-			children = (
-				77447E4916C3ACB100877D1C /* Categories */,
-				779A78991683803B0049B316 /* iOS */,
-				77E3A4C317149994006323F9 /* KFData.h */,
-				779A7888168380260049B316 /* KFDataStore.h */,
-				779A7889168380260049B316 /* KFDataStore.m */,
-				77E684DC16EE04FB00D9BBFA /* KFManagedObjectContext.h */,
-				77E684DD16EE04FB00D9BBFA /* KFManagedObjectContext.m */,
-				7764B5941735838A00A924D3 /* KFAttribute.h */,
-				7764B5951735838A00A924D3 /* KFAttribute.m */,
-			);
-			name = KFData;
-			sourceTree = "<group>";
-		};
-		779A78991683803B0049B316 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				777554C916DA82B200A5ACF9 /* KFDataCollectionViewController.h */,
-				777554CA16DA82B200A5ACF9 /* KFDataCollectionViewController.m */,
-				779A7892168380360049B316 /* KFDataTableViewController.h */,
-				779A7893168380360049B316 /* KFDataTableViewController.m */,
-				779A7894168380360049B316 /* KFDataViewController.h */,
-				779A7895168380360049B316 /* KFDataViewController.m */,
-				779A7896168380360049B316 /* KFDataViewControllerProtocol.h */,
-				77B1F4F1172421FF0005CC2D /* KFSearchableTableViewController.h */,
-				77B1F4F2172421FF0005CC2D /* KFSearchableTableViewController.m */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,24 +390,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77166A8017B6BE08007B122D /* NSManagedObject+Aggregation.m in Sources */,
+				77166A8317B6BE08007B122D /* NSManagedObject+Requests.m in Sources */,
 				779A785E16837FF60049B316 /* main.m in Sources */,
+				77166A8617B6BE08007B122D /* KFDataCollectionViewController.m in Sources */,
 				779A786216837FF60049B316 /* TDAppDelegate.m in Sources */,
-				779A788E168380260049B316 /* KFDataStore.m in Sources */,
-				779A7897168380360049B316 /* KFDataTableViewController.m in Sources */,
-				779A7898168380360049B316 /* KFDataViewController.m in Sources */,
 				779A789C168380730049B316 /* TDListViewController.m in Sources */,
+				77166A8917B6BE08007B122D /* KFFetchedResultsTableController.m in Sources */,
 				779A789F168381790049B316 /* TodoModel.xcdatamodeld in Sources */,
+				77166A8517B6BE08007B122D /* KFDataStore.m in Sources */,
+				77166A8A17B6BE08007B122D /* KFSearchableTableViewController.m in Sources */,
+				77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */,
+				77166A8117B6BE08007B122D /* NSManagedObject+Finders.m in Sources */,
 				779A78A2168381BE0049B316 /* Todo.m in Sources */,
+				77166A8417B6BE08007B122D /* NSManagedObjectContext+KFData.m in Sources */,
+				77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */,
+				77166A7F17B6BE08007B122D /* KFManagedObjectContext.m in Sources */,
 				779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */,
-				77447E5516C3ACB100877D1C /* NSManagedObject+Aggregation.m in Sources */,
-				77447E5616C3ACB100877D1C /* NSManagedObject+Finders.m in Sources */,
-				77447E5716C3ACB100877D1C /* NSManagedObject+KFData.m in Sources */,
-				77447E5816C3ACB100877D1C /* NSManagedObject+Requests.m in Sources */,
-				77447E5916C3ACB100877D1C /* NSManagedObjectContext+KFData.m in Sources */,
-				777554CB16DA82B200A5ACF9 /* KFDataCollectionViewController.m in Sources */,
-				77E684DF16EE050C00D9BBFA /* KFManagedObjectContext.m in Sources */,
-				77B1F4F4172422080005CC2D /* KFSearchableTableViewController.m in Sources */,
-				7764B5961735838A00A924D3 /* KFAttribute.m in Sources */,
+				77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */,
+				77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
