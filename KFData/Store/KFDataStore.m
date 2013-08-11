@@ -14,6 +14,9 @@
 
 @interface KFDataStore ()
 
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 @implementation KFDataStore

@@ -22,9 +22,6 @@
 
 @interface KFDataStore : NSObject
 
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-
 /** Creates a standard data store which persists to the document directory.
 
  This data store will be stored in the applications sandbox at `/Documents/DataStores/localStore.sqlite`
