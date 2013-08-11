@@ -10,7 +10,6 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFDataStore.h"
-#import "KFFetchedResultsTableController.h"
 
 @interface KFDataTableViewController ()
 
