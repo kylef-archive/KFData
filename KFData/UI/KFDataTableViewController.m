@@ -27,7 +27,7 @@
     NSParameterAssert(managedObjectContext);
 
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _managedObjectContext = managedObjectContext;
+        [self commonInitWithManagedObjectContext:managedObjectContext];
     }
 
     return self;
@@ -39,7 +39,7 @@
     NSParameterAssert(managedObjectContext);
 
     if (self = [super initWithStyle:style]) {
-        _managedObjectContext = managedObjectContext;
+        [self commonInitWithManagedObjectContext:managedObjectContext];
     }
 
     return self;
@@ -59,7 +59,7 @@
     NSParameterAssert(managedObjectContext);
 
     if (self = [super initWithCoder:coder]) {
-        _managedObjectContext = managedObjectContext;
+        [self commonInitWithManagedObjectContext:managedObjectContext];
     }
 
     return self;
@@ -73,6 +73,34 @@
 - (instancetype)init {
     NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Invoke `initWithManagedObjectContext:` instead.", NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+}
+
+- (void)commonInitWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    NSParameterAssert(managedObjectContext != nil);
+
+    _managedObjectContext = managedObjectContext;
+
+    if ([managedObjectContext persistentStoreCoordinator] != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(X) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:[managedObjectContext persistentStoreCoordinator]];
+    }
+}
+
+- (void)dealloc {
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [_managedObjectContext persistentStoreCoordinator];
+
+    if (persistentStoreCoordinator != nil) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:persistentStoreCoordinator];
+    }
+}
+
+#pragma mark - Notification Handlers
+
+- (void)persistentStoreCoordinatorStoresDidChange:(NSNotification *)notification {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self isViewLoaded]) {
+            [self performFetch];
+        }
+    });
 }
 
 #pragma mark - View

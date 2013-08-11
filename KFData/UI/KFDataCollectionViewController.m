@@ -32,29 +32,23 @@
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout
 #endif
 {
-    NSParameterAssert(managedObjectContext);
-
     if (self = [super initWithCollectionViewLayout:collectionViewLayout]) {
-        _managedObjectContext = managedObjectContext;
+        [self commonInitWithManagedObjectContext:managedObjectContext];
     }
     
     return self;
 }
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     if (self = [self initWithManagedObjectContext:managedObjectContext collectionViewLayout:nil]) {
     }
 
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-         managedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
-    NSParameterAssert(managedObjectContext);
-
+- (instancetype)initWithCoder:(NSCoder *)coder managedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     if (self = [super initWithCoder:coder]) {
-        _managedObjectContext = managedObjectContext;
+        [self commonInitWithManagedObjectContext:managedObjectContext];
     }
 
     return self;
@@ -68,6 +62,34 @@
 - (instancetype)init {
     NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Invoke `initWithManagedObjectContext:` instead.", NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+}
+
+- (void)commonInitWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    NSParameterAssert(managedObjectContext != nil);
+
+    _managedObjectContext = managedObjectContext;
+
+    if ([managedObjectContext persistentStoreCoordinator] != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(X) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:[managedObjectContext persistentStoreCoordinator]];
+    }
+}
+
+- (void)dealloc {
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [_managedObjectContext persistentStoreCoordinator];
+
+    if (persistentStoreCoordinator != nil) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:persistentStoreCoordinator];
+    }
+}
+
+#pragma mark - Notification Handlers
+
+- (void)persistentStoreCoordinatorStoresDidChange:(NSNotification *)notification {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self isViewLoaded]) {
+            [self performFetch];
+        }
+    });
 }
 
 #pragma mark - View

@@ -22,6 +22,18 @@
 
 #import "KFDataViewControllerProtocol.h"
 
+
+/**
+ KFDataCollectionViewController is a generic controller base that manages a
+ collection view from a NSFetchRequest.
+
+ It will automatically insert or update cells when changes have been made to
+ the NSFetchRequest.
+
+ Additionally, it will automatically re-fetch when the persistent store
+ coordinator changes stores.
+ */
+
 #ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
 @interface KFDataCollectionViewController : PSTCollectionViewController <KFDataListViewControllerProtocol,
                                                                          NSFetchedResultsControllerDelegate>

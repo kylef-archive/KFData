@@ -15,10 +15,13 @@
 
 /**
  KFDataTableViewController is a generic controller base that manages a table
- view from an NSFetchRequest.
+ view from a NSFetchRequest.
 
  It will automatically insert or update cells when changes have been made to
  the NSFetchRequest.
+ 
+ Additionally, it will automatically re-fetch when the persistent store
+ coordinator changes stores.
 */
 
 @interface KFDataTableViewController : UITableViewController <KFDataListViewControllerProtocol,
