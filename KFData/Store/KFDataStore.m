@@ -7,7 +7,6 @@
 //
 
 #import "KFDataStoreInternal.h"
-#import "NSManagedObjectContext+KFData.h"
 
 
 static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";

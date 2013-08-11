@@ -12,7 +12,6 @@
 		77166A8117B6BE08007B122D /* NSManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6717B6BE08007B122D /* NSManagedObject+Finders.m */; };
 		77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */; };
 		77166A8317B6BE08007B122D /* NSManagedObject+Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6B17B6BE08007B122D /* NSManagedObject+Requests.m */; };
-		77166A8417B6BE08007B122D /* NSManagedObjectContext+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6D17B6BE08007B122D /* NSManagedObjectContext+KFData.m */; };
 		77166A8517B6BE08007B122D /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7117B6BE08007B122D /* KFDataStore.m */; };
 		77166A8617B6BE08007B122D /* KFDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */; };
 		77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7617B6BE08007B122D /* KFDataTableViewController.m */; };
@@ -63,8 +62,6 @@
 		77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+KFData.m"; sourceTree = "<group>"; };
 		77166A6A17B6BE08007B122D /* NSManagedObject+Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Requests.h"; sourceTree = "<group>"; };
 		77166A6B17B6BE08007B122D /* NSManagedObject+Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Requests.m"; sourceTree = "<group>"; };
-		77166A6C17B6BE08007B122D /* NSManagedObjectContext+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+KFData.h"; sourceTree = "<group>"; };
-		77166A6D17B6BE08007B122D /* NSManagedObjectContext+KFData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+KFData.m"; sourceTree = "<group>"; };
 		77166A6E17B6BE08007B122D /* KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFData.h; sourceTree = "<group>"; };
 		77166A7017B6BE08007B122D /* KFDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataStore.h; sourceTree = "<group>"; };
 		77166A7117B6BE08007B122D /* KFDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataStore.m; sourceTree = "<group>"; };
@@ -160,8 +157,6 @@
 				77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */,
 				77166A6A17B6BE08007B122D /* NSManagedObject+Requests.h */,
 				77166A6B17B6BE08007B122D /* NSManagedObject+Requests.m */,
-				77166A6C17B6BE08007B122D /* NSManagedObjectContext+KFData.h */,
-				77166A6D17B6BE08007B122D /* NSManagedObjectContext+KFData.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -401,7 +396,6 @@
 				77166A8117B6BE08007B122D /* NSManagedObject+Finders.m in Sources */,
 				7734CE8C17B82A5D00896D59 /* KFDataSingleStackStore.m in Sources */,
 				779A78A2168381BE0049B316 /* Todo.m in Sources */,
-				77166A8417B6BE08007B122D /* NSManagedObjectContext+KFData.m in Sources */,
 				77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */,
 				779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */,
 				77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */,

@@ -67,11 +67,14 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Todo *todo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        Todo *todo = (Todo *)[self objectAtIndexPath:indexPath];
+        NSManagedObjectContext *managedObjectContext = [todo managedObjectContext];
 
-        [[todo managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
-            [managedObjectContext deleteObject:todo];
-        }];
+        [managedObjectContext deleteObject:todo];
+        NSError *error;
+        if ([managedObjectContext save:&error] == NO) {
+            NSLog(@"Failed to delete Todo, we might want to tell the user.");
+        }
     }
 }
 
@@ -86,12 +89,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - Selection
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Todo *todo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    Todo *todo = (Todo *)[self objectAtIndexPath:indexPath];
 
-    [[todo managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
-        BOOL isComplete = [[todo complete] boolValue] == NO;
-        [todo setComplete:@(isComplete)];
-    }];
+    BOOL isComplete = [[todo complete] boolValue] == NO;
+    [todo setComplete:@(isComplete)];
+
+    NSError *error;
+    if ([[todo managedObjectContext] save:&error] == NO) {
+        NSLog(@"Failed to update Todo, we might want to tell the user.");
+    }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

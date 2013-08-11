@@ -8,7 +8,6 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFDataStore.h"
-#import "NSManagedObjectContext+KFData.h"
 #import "KFDataViewController.h"
 
 @interface KFDataViewController ()

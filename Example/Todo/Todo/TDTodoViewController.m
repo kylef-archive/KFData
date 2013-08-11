@@ -41,11 +41,15 @@
 - (void)done {
     NSString *name = [[self textField] text];
 
-    [[self managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
-        Todo *todo = [Todo createInManagedObjectContext:managedObjectContext];
-        [todo setName:name];
-        [todo setCreated:[NSDate date]];
-    }];
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    Todo *todo = [Todo createInManagedObjectContext:managedObjectContext];
+    [todo setName:name];
+    [todo setCreated:[NSDate date]];
+
+    NSError *error;
+    if ([managedObjectContext save:&error] == NO) {
+        NSLog(@"Failed to update Todo, we might want to tell the user.");
+    }
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }
