@@ -6,20 +6,42 @@
 //  Copyright (c) 2012 Kyle Fuller. All rights reserved.
 //
 
-#import "KFDataStore.h"
-#import "KFManagedObjectContext.h"
+#import "KFDataStoreInternal.h"
 #import "NSManagedObjectContext+KFData.h"
 
-#define kKFDataStoreLocalFilename @"localStore.sqlite"
 
-@interface KFDataStore ()
-
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-
-@end
+static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
 
 @implementation KFDataStore
+
++ (instancetype)storeWithConfigurationType:(KFDataStoreConfigurationType)configurationType {
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    return [KFDataStore storeWithConfigurationType:configurationType managedObjectModel:managedObjectModel];
+}
+
++ (instancetype)storeWithConfigurationType:(KFDataStoreConfigurationType)configurationType managedObjectModel:(NSManagedObjectModel*)managedObjectModel {
+    KFDataStore *store;
+
+    switch (configurationType) {
+        case KFDataStoreConfigurationTypeSingleStack:
+            store = [[KFDataSingleStackStore alloc] initWithManagedObjectModel:managedObjectModel];
+            break;
+
+        case KFDataStoreConfigurationTypeDualStack:
+            store = [[KFDataDualStackStore alloc] initWithManagedObjectModel:managedObjectModel];
+            break;
+
+        case KFDataStoreConfigurationTypeSingleResetStack:
+            store = [[KFDataSingleResetStackStore alloc] initWithManagedObjectModel:managedObjectModel];
+            break;
+
+        case KFDataStoreConfigurationTypeDualResetStack:
+            store = [[KFDataDualResetStackStore alloc] initWithManagedObjectModel:managedObjectModel];
+            break;
+    }
+
+    return store;
+}
 
 + (NSURL*)storesDirectoryURL {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -44,120 +66,60 @@
 }
 
 + (instancetype)standardLocalDataStore {
-    KFDataStore *dataStore = [[KFDataStore alloc] init];
-    [dataStore addLocalStore];
+    KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
+    [dataStore addLocalStore:nil];
     return dataStore;
 }
 
 + (instancetype)standardMemoryDataStore {
-    KFDataStore *dataStore = [[KFDataStore alloc] init];
-    [[dataStore managedObjectContext] performBlock:^{
-        [dataStore addMemoryStore:nil];
-    }];
-
+    KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
+    [dataStore addMemoryStore:nil];
     return dataStore;
 }
 
 #pragma mark -
 
 - (instancetype)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel {
-    if (self = [super init]) {
-        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
-        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
-    }
-
-    return self;
-}
-
-- (instancetype)init {
-    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-
-    if (self = [self initWithManagedObjectModel:managedObjectModel]) {
-    }
-
-    return self;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    return [super init];
 }
 
 #pragma mark - Stores
 
-- (NSPersistentStore*)addMemoryStore:(NSString*)configuration {
-    NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
-    NSError *error;
-
-    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType
-                                                                        configuration:configuration
-                                                                                  URL:nil
-                                                                              options:nil
-                                                                                error:&error];
-    if (store == nil) {
-        NSLog(@"KFData: Unable to add memory store: %@", error);
-    }
-
-    return store;
+- (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError **)error {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"addPersistentStoreWithType:configuration:URL:options:error: must be overidden." userInfo:nil];
 }
 
-- (void)addLocalStore {
-    [[self managedObjectContext] performBlock:^{
-        NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
-        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
-
-        [self addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil];
-    }];
+- (NSPersistentStore *)addMemoryStore:(NSString*)configuration {
+    return [self addPersistentStoreWithType:NSInMemoryStoreType configuration:configuration URL:nil options:nil error:nil];
 }
 
-- (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options {
-    NSPersistentStoreCoordinator *persistentStoreCoordinator = [self persistentStoreCoordinator];
-    NSError *error;
-
-    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:storeType
-                                                                        configuration:configuration
-                                                                                  URL:storeURL
-                                                                              options:options
-                                                                                error:&error];
-
-    if (store == nil) {
-        @throw [NSException exceptionWithName:@"KFData: Unable to load data store"
-                                       reason:[error localizedDescription]
-                                     userInfo:@{@"error":error}];
-    }
-
-    return store;
+- (NSPersistentStore *)addLocalStore:(NSString *)configuration {
+    NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
+    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
+    return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:nil error:nil];
 }
 
 #pragma mark -
 
-- (KFManagedObjectContext *)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType
-{
-    KFManagedObjectContext *context = [[KFManagedObjectContext alloc] initWithConcurrencyType:concurrencyType];
-    [context setParentContext:[self managedObjectContext]];
-    return context;
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"persistentStoreCoordinator must be overidden." userInfo:nil];
 }
 
-- (void)performReadBlock:(void (^) (NSManagedObjectContext* managedObjectContext))readBlock {
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
-
-    [managedObjectContext performBlock:^{
-        readBlock(managedObjectContext);
-    }];
+- (NSManagedObjectContext *)managedObjectContext {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"managedObjectContext must be overidden." userInfo:nil];
 }
 
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-                  success:(void(^)(void))success
-                  failure:(void(^)(NSError *error))failure
-{
-    NSManagedObjectContext *context = [self managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
+#pragma mark -
 
-    [context performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
-        writeBlock(managedObjectContext);
-    } success:success failure:failure];
+- (void)performReadBlock:(void (^) (NSManagedObjectContext *managedObjectContext))readBlock {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"performReadBlock: must be overidden." userInfo:nil];
 }
 
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock {
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"performWriteBlock:success:failure: must be overidden." userInfo:nil];
+}
+
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock {
     [self performWriteBlock:writeBlock success:nil failure:nil];
 }
 

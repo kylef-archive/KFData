@@ -33,9 +33,13 @@ Pod::Spec.new do |s|
 
     storespec.ios.frameworks = 'CoreData'
     storespec.ios.source_files = 'KFData/Store/*.{h,m}'
+    storespec.ios.public_header_files = 'KFData/Store/KFDataStore.h'
+    storespec.ios.public_header_files = 'KFData/Store/KFDataStoreInternal.h'
 
     storespec.osx.frameworks = 'CoreData'
     storespec.osx.source_files = 'KFData/Store/*.{h,m}'
+    storespec.osx.public_header_files = 'KFData/Store/KFDataStore.h'
+    storespec.osx.public_header_files = 'KFData/Store/KFDataStoreInternal.h'
   end
 
   s.subspec 'UI' do |uispec|

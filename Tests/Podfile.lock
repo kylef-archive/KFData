@@ -1,5 +1,5 @@
 PODS:
-  - Expecta (0.2.1)
+  - Expecta (0.2.2)
   - KFData (0.4.1):
     - KFData/Core
     - KFData/Store
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
-  KFData: 3b9a43cf741ded9bdc913366c6b6fdc47bb91268
+  Expecta: 99adbb2e366a02796477523bfd426143350d9caf
+  KFData: 62105cde9555cc908019bc74e3c4eb78a11bdb5c
 
 COCOAPODS: 0.23.0

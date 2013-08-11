@@ -9,65 +9,139 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class KFManagedObjectContext;
+
+NSString * const KFDataStoreManagedObjectContextWasReset;
+
+typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
+    /***
+     This is the simplest, we have a single persistent store coordinator with
+     two managed object context's, one for the UI and one for any asyncronous
+     or background tasks.
+     */
+    KFDataStoreConfigurationTypeSingleStack,
+
+    /***
+     This is similar to the single stack configuration, although instead of
+     merging changes from the import managed object context. It will instead
+     call save on the main and then reset:. It is important that you listen
+     for the KFDataStoreManagedObjectContextWasReset notification and reload
+     your userinterface when this happens.
+
+     It is useful to do when your background context is used for importing a
+     large amount of data and you do not wish to trigger multiple changes with
+     a fetched results controller. Instead you can perform a refetch on the
+     notification.
+     */
+    KFDataStoreConfigurationTypeSingleResetStack,
+
+    /***
+     This will create a dual persistent coordinator stack. To make use of write
+     ahead lock (WAL). We can write into one stack and read from the other
+     without blocking.
+     
+     It is important that you do not share managed object ID's between
+     asyncronous blocks and UI blocks. Instead you should use -URIRepresentation.
+     
+     You should not keep object's alive outside of the asyncronous blocks. They
+     will become invalid after the block is executed.
+     */
+    KFDataStoreConfigurationTypeDualStack,
+
+    /***
+     This is similar to the dual stack configuration, although instead of
+     merging changes from the import managed object context. It will instead
+     call save on the main and then reset:. It is important that you listen
+     for the KFDataStoreManagedObjectContextWasReset notification and reload
+     your userinterface when this happens.
+     
+     It is useful to do when your background context is used for importing a
+     large amount of data and you do not wish to trigger multiple changes with
+     a fetched results controller. Instead you can perform a refetch on the
+     notification.
+     */
+    KFDataStoreConfigurationTypeDualResetStack,
+};
 
 /**
- KFDataStore is a wrapper around an NSPersistentStoreCoordinator. You would
- normally create a single instance of KFDataStore to use across the whole
- of your application. Then you would run
- managedObjectContextWithConcurrencyType: to get hold of a managed object
- context. Alternatively you can use performWriteBlock: and performReadBlock:
- to run a block.
+ KFDataStore is a wrapper around a Core Data stack. You would normally create a
+ single instance of KFDataStore to use with a single managed object model.
+ 
+ This class is a class cluster and the internal implementation can differ
+depending on which KFDataStoreConfigurationType you have chosen.
 */
 
 @interface KFDataStore : NSObject
 
-/** Creates a standard data store which persists to the document directory.
++ (instancetype)storeWithConfigurationType:(KFDataStoreConfigurationType)configurationType;
 
- This data store will be stored in the applications sandbox at `/Documents/DataStores/localStore.sqlite`
- @see standardLocalDataStoreForce:
++ (instancetype)storeWithConfigurationType:(KFDataStoreConfigurationType)configurationType managedObjectModel:(NSManagedObjectModel*)managedObjectModel;
+
+#pragma mark -
+
+/**
+ After creating a store, you will need to manually add the persistent stores.
+ Additionally you can use the following helper methods. The only
+ reasons where you would need to manually create a store is if you want to
+ choose your own configuration type, or you want to use a different managed
+ object model other than the default.
+ */
+
+/** Creates a standard data store which persists to the document directory.
+ This uses the dual stack configuration mode, and it will store data in the
+ applications sandbox at `/Documents/DataStores/localStore.sqlite`
 */
 
 + (instancetype)standardLocalDataStore;
 
-/** Create a local in-memory data store */
+/** Create a in-memory data store, it will use the single stack configuration mode */
 
 + (instancetype)standardMemoryDataStore;
 
-#pragma mark - Initialization
-/** @name Initialization */
+#pragma mark -
 
-/**
- After using init, you will need to manually add the persistent stores.
- Additionally you can use the `standardLocalDataStore` helper method. The only
- reasons where you would need to manually init are if you want to support
- non-standard object models or custom configurations of your model.
+/** Although the following methods return a persistent store, it should be
+ important to note that this will only be the persistent store associated
+ with the main managed object context. In the case of a dual stack, there
+ will actually be two persistent stores.
+ */
 
- @see standardLocalDataStore
-*/
-- (instancetype)init;
-- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel;
+- (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError *__autoreleasing *)error;
+
+- (NSPersistentStore *)addMemoryStore:(NSString *)configuration;
+
+- (NSPersistentStore *)addLocalStore:(NSString *)configuration;
 
 #pragma mark -
 
-/** Create a sub-context with concurrency type.
- @param concurrencyType The concurrency pattern with which context will be used.
- @return A context initialized to use the given concurrency type.
+/** Although the persistent store coordinator is exposed. It should be noted
+ that their may be multiple persistent stores depending on the configuration.
+
+ This will return the persistent store coordinator which is used by the main
+ thread managed object context.
  */
-- (KFManagedObjectContext *)managedObjectContextWithConcurrencyType:(NSManagedObjectContextConcurrencyType)concurrencyType;
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+
+/** This method will always return a managed object context on the main thread.
+ This is meant for using with the UI such as with a fetched results controller.
+
+ It will always merge data from any asyncronous write blocks, but in the case of
+ the special "reset" configuration type. You will need to refetch and reload
+ any data. Existing managed object's will be invalid.
+ */
+- (NSManagedObjectContext *)managedObjectContext;
 
 #pragma mark - Performing Block Operations
 /** @name Performing Block Operations */
 
-/** Asyncronously execute a read-only block on a new private context
+/** Asyncronously execute a read-only block.
  @param readBlock The block to perform
  @see performWriteBlock:
 */
 - (void)performReadBlock:(void (^)(NSManagedObjectContext* managedObjectContext))readBlock;
 
 /**
- Asyncronously execute a block and then save the changes into the main
- context (and persistent store).
+ Asyncronously execute a block and then save the changes to the persistent store.
 
  @param writeBlock The block to perform
  @see performWriteBlock:success:failure:
@@ -75,9 +149,8 @@
 - (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock;
 
 /**
- Asyncronously execute a block and then save the changes into the main
- context and persistent store. But execute a completion block when
- this has been saved.
+ Asyncronously execute a block and then save changes to the persistent store.
+ Executing a success or failure block after the save.
 
  @param writeBlock The block to run on the managed object context.
  @param success A block to run when the write block has been executed, and the managed object context has saved up to it's parent.

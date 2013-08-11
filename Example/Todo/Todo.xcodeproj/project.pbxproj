@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6117B6BE08007B122D /* KFAttribute.m */; };
-		77166A7F17B6BE08007B122D /* KFManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6317B6BE08007B122D /* KFManagedObjectContext.m */; };
 		77166A8017B6BE08007B122D /* NSManagedObject+Aggregation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6517B6BE08007B122D /* NSManagedObject+Aggregation.m */; };
 		77166A8117B6BE08007B122D /* NSManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6717B6BE08007B122D /* NSManagedObject+Finders.m */; };
 		77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */; };
@@ -19,6 +18,8 @@
 		77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7617B6BE08007B122D /* KFDataTableViewController.m */; };
 		77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7817B6BE08007B122D /* KFDataViewController.m */; };
 		77166A8A17B6BE08007B122D /* KFSearchableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */; };
+		7734CE8B17B82A5D00896D59 /* KFDataDualStackStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */; };
+		7734CE8C17B82A5D00896D59 /* KFDataSingleStackStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734CE8917B82A5D00896D59 /* KFDataSingleStackStore.m */; };
 		779A785216837FF60049B316 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785116837FF60049B316 /* UIKit.framework */; };
 		779A785416837FF60049B316 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785316837FF60049B316 /* Foundation.framework */; };
 		779A785616837FF60049B316 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779A785516837FF60049B316 /* CoreGraphics.framework */; };
@@ -54,8 +55,6 @@
 /* Begin PBXFileReference section */
 		77166A6017B6BE08007B122D /* KFAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAttribute.h; sourceTree = "<group>"; };
 		77166A6117B6BE08007B122D /* KFAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAttribute.m; sourceTree = "<group>"; };
-		77166A6217B6BE08007B122D /* KFManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFManagedObjectContext.h; sourceTree = "<group>"; };
-		77166A6317B6BE08007B122D /* KFManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFManagedObjectContext.m; sourceTree = "<group>"; };
 		77166A6417B6BE08007B122D /* NSManagedObject+Aggregation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Aggregation.h"; sourceTree = "<group>"; };
 		77166A6517B6BE08007B122D /* NSManagedObject+Aggregation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Aggregation.m"; sourceTree = "<group>"; };
 		77166A6617B6BE08007B122D /* NSManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Finders.h"; sourceTree = "<group>"; };
@@ -78,6 +77,9 @@
 		77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewControllerProtocol.h; sourceTree = "<group>"; };
 		77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFSearchableTableViewController.h; sourceTree = "<group>"; };
 		77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFSearchableTableViewController.m; sourceTree = "<group>"; };
+		7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataDualStackStore.m; sourceTree = "<group>"; };
+		7734CE8917B82A5D00896D59 /* KFDataSingleStackStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataSingleStackStore.m; sourceTree = "<group>"; };
+		7734CE8A17B82A5D00896D59 /* KFDataStoreInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataStoreInternal.h; sourceTree = "<group>"; };
 		779A784D16837FF60049B316 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		779A785116837FF60049B316 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		779A785316837FF60049B316 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,8 +152,6 @@
 			children = (
 				77166A6017B6BE08007B122D /* KFAttribute.h */,
 				77166A6117B6BE08007B122D /* KFAttribute.m */,
-				77166A6217B6BE08007B122D /* KFManagedObjectContext.h */,
-				77166A6317B6BE08007B122D /* KFManagedObjectContext.m */,
 				77166A6417B6BE08007B122D /* NSManagedObject+Aggregation.h */,
 				77166A6517B6BE08007B122D /* NSManagedObject+Aggregation.m */,
 				77166A6617B6BE08007B122D /* NSManagedObject+Finders.h */,
@@ -171,6 +171,9 @@
 			children = (
 				77166A7017B6BE08007B122D /* KFDataStore.h */,
 				77166A7117B6BE08007B122D /* KFDataStore.m */,
+				7734CE8A17B82A5D00896D59 /* KFDataStoreInternal.h */,
+				7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */,
+				7734CE8917B82A5D00896D59 /* KFDataSingleStackStore.m */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -396,13 +399,14 @@
 				77166A8A17B6BE08007B122D /* KFSearchableTableViewController.m in Sources */,
 				77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */,
 				77166A8117B6BE08007B122D /* NSManagedObject+Finders.m in Sources */,
+				7734CE8C17B82A5D00896D59 /* KFDataSingleStackStore.m in Sources */,
 				779A78A2168381BE0049B316 /* Todo.m in Sources */,
 				77166A8417B6BE08007B122D /* NSManagedObjectContext+KFData.m in Sources */,
 				77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */,
-				77166A7F17B6BE08007B122D /* KFManagedObjectContext.m in Sources */,
 				779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */,
 				77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */,
 				77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */,
+				7734CE8B17B82A5D00896D59 /* KFDataDualStackStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
