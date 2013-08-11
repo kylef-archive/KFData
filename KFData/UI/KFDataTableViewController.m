@@ -66,15 +66,12 @@
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
-    if (self = [self initWithCoder:coder managedObjectContext:nil]) {
-        // You should probablly overide this and call the managedObjectContext method.
-    }
-
-    return self;
+    NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Overide `initWithCoder:` and call `initWithCoder:managedObjectContext:` instead.", NSStringFromClass([self class])];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 - (instancetype)init {
-    NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Invoke `initWithBaseURL:` instead.",NSStringFromClass([self class])];
+    NSString *reason = [NSString stringWithFormat:@"%@ Failed to call designated initializer. Invoke `initWithManagedObjectContext:` instead.", NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
