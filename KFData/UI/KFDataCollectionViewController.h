@@ -60,6 +60,8 @@
 
 - (void)performFetch;
 
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #endif

@@ -46,6 +46,8 @@
 /** Execute the fetch request */
 - (void)performFetch;
 
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
+
 /** @name Subclass override */
 
 /**
