@@ -21,6 +21,8 @@
 
     [self setTitle:@"Todo"];
 
+    [[self tableView] registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addTodo)];
@@ -43,18 +45,10 @@
 
 #pragma mark -
 
-- (NSString*)tableView:(UITableView*)tableView
-reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
-           atIndexPath:(NSIndexPath *)indexPath
-{
-    return @"Cell";
-}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Todo *todo = (Todo *)[self objectAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-- (void)tableView:(UITableView*)tableView
-   configuredCell:(UITableViewCell *)cell
- forManagedObject:(Todo *)todo
-      atIndexPath:(NSIndexPath *)indexPath
-{
     [[cell textLabel] setText:[todo name]];
 
     if ([[todo complete] boolValue]) {
@@ -62,10 +56,8 @@ reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
-}
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForReuseIdentifier:(NSString *)reuseIdentifier {
-    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    return cell;
 }
 
 #pragma mark - Delete
@@ -77,7 +69,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Todo *todo = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 
-        NSManagedObjectContext *managedObjectContext = [todo managedObjectContext];
         [[todo managedObjectContext] performWriteBlock:^(NSManagedObjectContext *managedObjectContext) {
             [managedObjectContext deleteObject:todo];
         }];
