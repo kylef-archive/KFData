@@ -20,6 +20,8 @@
 		778FBFAE176107B600DE0FFF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 778FBFAC176107B600DE0FFF /* InfoPlist.strings */; };
 		778FBFB1176107B600DE0FFF /* OS_X_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBFB0176107B600DE0FFF /* OS_X_Tests.m */; };
 		778FBFB6176107BA00DE0FFF /* KFAttributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBF4D176106F600DE0FFF /* KFAttributeTests.m */; };
+		77D7B5C617B95A7A005B759C /* KFDataStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */; };
+		77D7B5C717B95A7A005B759C /* KFDataStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */; };
 		AA6AB28264FA4B35A63C832C /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4BF9AD35194D1FA433E5DE /* libPods-ios.a */; };
 		E0D4699C151B41B896C7277D /* libPods-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A15ED1E5CB9641229478211D /* libPods-osx.a */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,7 @@
 		778FBFAF176107B600DE0FFF /* OS_X_Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OS_X_Tests.h; sourceTree = "<group>"; };
 		778FBFB0176107B600DE0FFF /* OS_X_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OS_X_Tests.m; sourceTree = "<group>"; };
 		778FBFB2176107B600DE0FFF /* OS X Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OS X Tests-Prefix.pch"; sourceTree = "<group>"; };
+		77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataStoreTests.m; sourceTree = "<group>"; };
 		882BBF03A2AE4DB991E9FFE3 /* Pods-osx.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osx.xcconfig"; path = "Pods/Pods-osx.xcconfig"; sourceTree = SOURCE_ROOT; };
 		A15ED1E5CB9641229478211D /* libPods-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -97,6 +100,7 @@
 			children = (
 				778E2F881764B05B005945BE /* KFDataTests.h */,
 				778FBF4D176106F600DE0FFF /* KFAttributeTests.m */,
+				77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -355,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				778FBF871761077800DE0FFF /* iOS_Tests.m in Sources */,
+				77D7B5C617B95A7A005B759C /* KFDataStoreTests.m in Sources */,
 				778FBF991761079A00DE0FFF /* KFAttributeTests.m in Sources */,
 				778E2F871764AE51005945BE /* KFDataTableViewControllerTests.m in Sources */,
 				778E2F8A1764B33D005945BE /* KFDataCollectionViewControllerTests.m in Sources */,
@@ -367,6 +372,7 @@
 			files = (
 				778FBFB1176107B600DE0FFF /* OS_X_Tests.m in Sources */,
 				778FBFB6176107BA00DE0FFF /* KFAttributeTests.m in Sources */,
+				77D7B5C717B95A7A005B759C /* KFDataStoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
