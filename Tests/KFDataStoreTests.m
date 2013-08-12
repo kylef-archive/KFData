@@ -48,34 +48,34 @@
 
 - (void)testSingleStackStoreCreation {
     KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
-    expect([store className]).to.equal(@"KFDataSingleStackStore");
+    expect(NSStringFromClass([store class])).to.equal(@"KFDataSingleStackStore");
 }
 
 - (void)testSingleResetStackStoreCreation {
     KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleResetStack];
-    expect([store className]).to.equal(@"KFDataSingleResetStackStore");
+    expect(NSStringFromClass([store class])).to.equal(@"KFDataSingleResetStackStore");
 }
 
 - (void)testDualStackStoreCreation {
     KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
-    expect([store className]).to.equal(@"KFDataDualStackStore");
+    expect(NSStringFromClass([store class])).to.equal(@"KFDataDualStackStore");
 }
 
 - (void)testDualResetStackStoreCreation {
     KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualResetStack];
-    expect([store className]).to.equal(@"KFDataDualResetStackStore");
+    expect(NSStringFromClass([store class])).to.equal(@"KFDataDualResetStackStore");
 }
 
 #pragma mark - Test common helpers
 
 - (void)testStandardLocalDataStoreShouldBeDualStack {
     KFDataStore *store = [KFDataStore standardLocalDataStore];
-    expect([store className]).to.equal(@"KFDataDualStackStore");
+    expect(NSStringFromClass([store class])).to.equal(@"KFDataDualStackStore");
 }
 
 - (void)testStandardLocalDataStoreShouldBeSingleStack {
     KFDataStore *store = [KFDataStore standardMemoryDataStore];
-    expect([store className]).to.equal(@"KFDataSingleStackStore");
+    expect(NSStringFromClass([store class])).to.equal(@"KFDataSingleStackStore");
 }
 
 #pragma mark -
