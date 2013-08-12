@@ -41,6 +41,15 @@
 - (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError **)error {
     NSParameterAssert(storeType != nil);
 
+    if ((storeType == NSInMemoryStoreType) || (storeType == NSBinaryStoreType)) {
+        if (error != nil) {
+            NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [NSString stringWithFormat:@"KFDataStore: Dual stack configuration doesn't support the %@ store type.", storeType] };
+            *error = [NSError errorWithDomain:@"uk.co.kylefuller.KFData.KFDataStore" code:0 userInfo:userInfo];
+        }
+
+        return nil;
+    }
+
     NSPersistentStore *persistentStore;
     NSPersistentStore *backgroundPersistentStore = [_backgroundPersistentStoreCoordinator addPersistentStoreWithType:storeType configuration:configuration URL:storeURL options:options error:error];
 

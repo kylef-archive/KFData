@@ -88,4 +88,18 @@
     expect([[persistentStoreCoordinator persistentStores] containsObject:persistentStore]).to.beTruthy();
 }
 
+#pragma mark - Dual stack store only supports SQLite
+
+- (void)testDualStackStoreCannotAddMemoryPersistentStore {
+    KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
+    NSPersistentStore *persistentStore = [store addMemoryStore:nil];
+    expect(persistentStore).to.beNil();
+}
+
+- (void)testDualStackStoreCannotAddBinaryPersistentStore {
+    KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
+    NSPersistentStore *persistentStore = [store addPersistentStoreWithType:NSBinaryStoreType configuration:nil URL:nil options:nil error:nil];
+    expect(persistentStore).to.beNil();
+}
+
 @end

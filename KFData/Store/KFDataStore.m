@@ -78,7 +78,7 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
 
 #pragma mark -
 
-- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel*)managedObjectModel {
+- (instancetype)initWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
     return [super init];
 }
 
@@ -88,7 +88,7 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"addPersistentStoreWithType:configuration:URL:options:error: must be overidden." userInfo:nil];
 }
 
-- (NSPersistentStore *)addMemoryStore:(NSString*)configuration {
+- (NSPersistentStore *)addMemoryStore:(NSString *)configuration {
     return [self addPersistentStoreWithType:NSInMemoryStoreType configuration:configuration URL:nil options:nil error:nil];
 }
 
