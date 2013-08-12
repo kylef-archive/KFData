@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     corespec.header_dir = 'KFData'
 
     corespec.ios.frameworks = 'CoreData'
-    corespec.ios.source_files = 'KFData/Core/*.{h,m}'
+    corespec.ios.source_files = 'KFData/KFData.h', 'KFData/Core/*.{h,m}'
 
     corespec.osx.frameworks = 'CoreData'
     corespec.osx.source_files = 'KFData/Core/*.{h,m}'
