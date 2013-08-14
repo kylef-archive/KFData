@@ -70,7 +70,7 @@
     _managedObjectContext = managedObjectContext;
 
     if ([managedObjectContext persistentStoreCoordinator] != nil) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(X) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:[managedObjectContext persistentStoreCoordinator]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(persistentStoreCoordinatorStoresDidChange:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:[managedObjectContext persistentStoreCoordinator]];
     }
 }
 
