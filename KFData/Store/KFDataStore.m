@@ -66,7 +66,7 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
 
 + (instancetype)standardLocalDataStore {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
-    [dataStore addLocalStore:nil];
+    [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:nil];
     return dataStore;
 }
 
@@ -92,10 +92,10 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
     return [self addPersistentStoreWithType:NSInMemoryStoreType configuration:configuration URL:nil options:nil error:nil];
 }
 
-- (NSPersistentStore *)addLocalStore:(NSString *)configuration {
+- (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options {
     NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
-    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
-    return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:nil error:nil];
+    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
+    return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:nil];
 }
 
 #pragma mark -

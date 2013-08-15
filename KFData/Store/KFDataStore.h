@@ -109,7 +109,7 @@ depending on which KFDataStoreConfigurationType you have chosen.
 
 - (NSPersistentStore *)addMemoryStore:(NSString *)configuration;
 
-- (NSPersistentStore *)addLocalStore:(NSString *)configuration;
+- (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options;
 
 #pragma mark -
 
