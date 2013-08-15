@@ -66,7 +66,10 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
 
 + (instancetype)standardLocalDataStore {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
-    [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:nil];
+
+    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES };
+    [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options];
+
     return dataStore;
 }
 
