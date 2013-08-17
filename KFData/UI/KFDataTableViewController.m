@@ -136,6 +136,10 @@
     [[self tableView] reloadData];
 }
 
+- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    return [[self fetchedResultsController] objectAtIndexPath:indexPath];
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -199,29 +203,6 @@
     [[self tableView] endUpdates];
 }
 
-#pragma mark -
-
-- (NSString*)tableView:(UITableView*)tableView
-    reuseIdentifierForManagedObject:(NSManagedObject *)managedObject
-           atIndexPath:(NSIndexPath *)indexPath
-{
-    NSAssert(NO, @"Subclasses need to overwrite this method");
-    return nil;
-}
-
-- (void)tableView:(UITableView*)tableView
-   configuredCell:(UITableViewCell *)cell
- forManagedObject:(NSManagedObject *)managedObject
-      atIndexPath:(NSIndexPath *)indexPath
-{
-    NSAssert(NO, @"Subclasses need to overwrite this method");
-}
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForReuseIdentifier:(NSString *)reuseIdentifier {
-    NSAssert(NO, @"Subclasses need to overwrite this method");
-    return nil;
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -239,29 +220,8 @@
 	return (NSInteger)count;
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
-
-    NSString *reuseIdentifier = [self tableView:tableView reuseIdentifierForManagedObject:managedObject
-                                    atIndexPath:indexPath];
-
-    UITableViewCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:reuseIdentifier];
-
-    if (cell == nil) {
-        cell = [self tableView:tableView cellForReuseIdentifier:reuseIdentifier];
-    }
-
-    NSParameterAssert(cell);
-
-    [self tableView:tableView configuredCell:cell forManagedObject:managedObject atIndexPath:indexPath];
-
-    return cell;
-}
-
-- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    return [[self fetchedResultsController] objectAtIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"tableView:cellForRowAtIndexPath: must be overidden." userInfo:nil];
 }
 
 @end
