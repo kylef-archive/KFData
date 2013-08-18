@@ -10,7 +10,15 @@
 #import <CoreData/CoreData.h>
 
 
-NSString * const KFDataStoreManagedObjectContextWasReset;
+/**
+ When using a main managed object context from a KFDataStore, it is important that you listen for this notification.
+ When this notification is fired, you should discard any managed object's you received previous because the managed object context was reset.
+ 
+ This notification will be fired on the main thread.
+ */
+NSString * const KFDataManagedObjectContextWillReset;
+NSString * const KFDataManagedObjectContextDidReset;
+
 
 typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
     /***

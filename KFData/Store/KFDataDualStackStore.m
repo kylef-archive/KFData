@@ -133,10 +133,11 @@
         NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
 
         [mainManagedObjectContext performBlock:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextWillReset object:mainManagedObjectContext userInfo:[notification userInfo]];
             NSError *error;
             [mainManagedObjectContext save:&error];
             [mainManagedObjectContext reset];
-            [[NSNotificationCenter defaultCenter] postNotificationName:KFDataStoreManagedObjectContextWasReset object:mainManagedObjectContext userInfo:[notification userInfo]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextDidReset object:mainManagedObjectContext userInfo:[notification userInfo]];
         }];
     } else if ([managedObjectContext isEqual:mainManagedObjectContext]) {
         [backgroundManagedObjectContext performBlock:^{

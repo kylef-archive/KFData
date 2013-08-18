@@ -9,6 +9,9 @@
 #import "KFDataStoreInternal.h"
 
 
+NSString * const KFDataManagedObjectContextWillReset = @"KFDataManagedObjectContextWillReset";
+NSString * const KFDataManagedObjectContextDidReset = @"KFDataManagedObjectContextDidReset";
+
 static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
 
 @implementation KFDataStore
