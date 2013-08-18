@@ -105,6 +105,10 @@ depending on which KFDataStoreConfigurationType you have chosen.
 
 + (instancetype)standardMemoryDataStore;
 
+/** Create a iCloud data store, it will use the single stack configuration mode */
+
++ (instancetype)standardCloudDataStore;
+
 #pragma mark -
 
 /** Although the following methods return a persistent store, it should be

@@ -13,6 +13,7 @@ NSString * const KFDataManagedObjectContextWillReset = @"KFDataManagedObjectCont
 NSString * const KFDataManagedObjectContextDidReset = @"KFDataManagedObjectContextDidReset";
 
 static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
+static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
 
 @implementation KFDataStore
 
@@ -82,6 +83,12 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
     return dataStore;
 }
 
++ (instancetype)standardCloudDataStore {
+    KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
+    [dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore"];
+    return dataStore;
+}
+
 #pragma mark -
 
 - (instancetype)initWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
@@ -102,6 +109,23 @@ static NSString * const kKFDataStoreLocalFilename = @"localStore.sqlite";
     NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
     NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
     return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:nil];
+}
+
+- (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey {
+    NSParameterAssert(filename != nil);
+    NSParameterAssert(contentNameKey != nil);
+
+    NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
+    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
+
+    NSDictionary *options = @{
+        NSPersistentStoreUbiquitousContentNameKey: contentNameKey,
+    };
+
+    NSError *error;
+    NSPersistentStore *persistentStore = [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:&error];
+
+    return persistentStore;
 }
 
 #pragma mark -
