@@ -79,27 +79,19 @@
 
     _managedObjectContext = managedObjectContext;
 
-    if ([managedObjectContext persistentStoreCoordinator] != nil) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(persistentStoreCoordinatorStoresDidChange:) name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:[managedObjectContext persistentStoreCoordinator]];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidReset:) name:KFDataManagedObjectContextDidReset object:managedObjectContext];
 }
 
 - (void)dealloc {
-    NSPersistentStoreCoordinator *persistentStoreCoordinator = [_managedObjectContext persistentStoreCoordinator];
-
-    if (persistentStoreCoordinator != nil) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSPersistentStoreCoordinatorStoresDidChangeNotification object:persistentStoreCoordinator];
-    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KFDataManagedObjectContextDidReset object:_managedObjectContext];
 }
 
 #pragma mark - Notification Handlers
 
-- (void)persistentStoreCoordinatorStoresDidChange:(NSNotification *)notification {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self isViewLoaded]) {
-            [self performFetch];
-        }
-    });
+- (void)managedObjectContextDidReset:(NSNotification *)notification {
+    if ([self isViewLoaded]) {
+        [self performFetch];
+    }
 }
 
 #pragma mark - View
