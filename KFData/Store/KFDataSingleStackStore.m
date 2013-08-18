@@ -23,6 +23,7 @@
         _backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [_backgroundManagedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(persistentStoreCoordinatorDidImportChanges:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_persistentStoreCoordinator];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:_managedObjectContext];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:_backgroundManagedObjectContext];
     }
@@ -31,10 +32,12 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_persistentStoreCoordinator];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_managedObjectContext];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_backgroundManagedObjectContext];
 }
 
+- (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification { }
 - (void)managedObjectContextDidSave:(NSNotification *)notification { }
 
 - (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError **)error {
@@ -78,6 +81,21 @@
 
 @implementation KFDataSingleStackStore
 
+- (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification {
+    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
+    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+
+    [mainManagedObjectContext performBlock:^{
+        [mainManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+    }];
+
+    [backgroundManagedObjectContext performBlock:^{
+        NSError *error;
+        [backgroundManagedObjectContext save:&error];
+        [backgroundManagedObjectContext reset];
+    }];
+}
+
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
 
@@ -100,6 +118,25 @@
 @end
 
 @implementation KFDataSingleResetStackStore
+
+- (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification {
+    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
+    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+
+    [mainManagedObjectContext performBlock:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextWillReset object:mainManagedObjectContext userInfo:[notification userInfo]];
+        NSError *error;
+        [mainManagedObjectContext save:&error];
+        [mainManagedObjectContext reset];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextDidReset object:mainManagedObjectContext userInfo:[notification userInfo]];
+    }];
+
+    [backgroundManagedObjectContext performBlock:^{
+        NSError *error;
+        [backgroundManagedObjectContext save:&error];
+        [backgroundManagedObjectContext reset];
+    }];
+}
 
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];

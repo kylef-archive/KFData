@@ -24,6 +24,8 @@
         _backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [_backgroundManagedObjectContext setPersistentStoreCoordinator:_backgroundPersistentStoreCoordinator];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(persistentStoreCoordinatorDidImportChanges:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_persistentStoreCoordinator];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(persistentStoreCoordinatorDidImportChanges:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_backgroundPersistentStoreCoordinator];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:_managedObjectContext];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:_backgroundManagedObjectContext];
     }
@@ -32,10 +34,13 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_persistentStoreCoordinator];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_backgroundPersistentStoreCoordinator];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_managedObjectContext];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_backgroundManagedObjectContext];
 }
 
+- (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification { }
 - (void)managedObjectContextDidSave:(NSNotification *)notification { }
 
 - (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError **)error {
@@ -100,6 +105,29 @@
 
 @implementation KFDataDualStackStore
 
+- (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification {
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [notification object];
+
+    NSPersistentStoreCoordinator *mainPersistentStoreCoordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *backgroundPersistentStoreCoordinator = [self backgroundPersistentStoreCoordinator];
+
+    if ([persistentStoreCoordinator isEqual:mainPersistentStoreCoordinator]) {
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+
+        [managedObjectContext performBlock:^{
+            [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+        }];
+    } else if ([persistentStoreCoordinator isEqual:backgroundPersistentStoreCoordinator]) {
+        NSManagedObjectContext *managedObjectContext = [self backgroundManagedObjectContext];
+
+        [managedObjectContext performBlock:^{
+            NSError *error;
+            [managedObjectContext save:&error];
+            [managedObjectContext reset];
+        }];
+    }
+}
+
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
 
@@ -122,6 +150,34 @@
 @end
 
 @implementation KFDataDualResetStackStore
+
+- (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification {
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [notification object];
+
+    NSPersistentStoreCoordinator *mainPersistentStoreCoordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *backgroundPersistentStoreCoordinator = [self backgroundPersistentStoreCoordinator];
+
+    if ([persistentStoreCoordinator isEqual:mainPersistentStoreCoordinator]) {
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+
+        [managedObjectContext performBlock:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextWillReset object:managedObjectContext userInfo:[notification userInfo]];
+            NSError *error;
+            [managedObjectContext save:&error];
+            [managedObjectContext reset];
+            [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextDidReset object:managedObjectContext userInfo:[notification userInfo]];
+
+        }];
+    } else if ([persistentStoreCoordinator isEqual:backgroundPersistentStoreCoordinator]) {
+        NSManagedObjectContext *managedObjectContext = [self backgroundManagedObjectContext];
+
+        [managedObjectContext performBlock:^{
+            NSError *error;
+            [managedObjectContext save:&error];
+            [managedObjectContext reset];
+        }];
+    }
+}
 
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
