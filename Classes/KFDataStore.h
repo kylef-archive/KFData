@@ -31,7 +31,7 @@
  @see standardLocalDataStoreForce:
 */
 
-+ (instancetype)standardLocalDataStore;
++ (instancetype)standardLocalDataStoreWithOptions:(NSDictionary *)options;
 
 /** Creates a standard data store which persists to the document directory.
 
@@ -40,7 +40,7 @@
  @see standardLocalDataStore
 */
 
-+ (instancetype)standardLocalDataStoreForce:(BOOL)forced;
++ (instancetype)standardLocalDataStoreForce:(BOOL)forced options:(NSDictionary *)options;
 
 /** Create a local in-memory data store */
 

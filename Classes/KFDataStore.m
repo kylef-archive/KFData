@@ -40,14 +40,14 @@
     return storesDirectoryURL;
 }
 
-+ (instancetype)standardLocalDataStore {
-    return [self standardLocalDataStoreForce:NO];
++ (instancetype)standardLocalDataStoreWithOptions:(NSDictionary *)options {
+    return [self standardLocalDataStoreForce:NO options:options];
 }
 
-+ (instancetype)standardLocalDataStoreForce:(BOOL)forced {
++ (instancetype)standardLocalDataStoreForce:(BOOL)forced options:(NSDictionary *)options {
     KFDataStore *dataStore = [[KFDataStore alloc] init];
 
-    [dataStore addLocalStoreForced:forced];
+    [dataStore addLocalStoreForced:forced options:options];
     
     return dataStore;
 }
@@ -55,7 +55,7 @@
 + (instancetype)localDataStoreWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel {
     KFDataStore *dataStore = [[KFDataStore alloc] initWithManagedObjectModel:managedObjectModel];
 
-    [dataStore addLocalStoreForced:NO];
+    [dataStore addLocalStoreForced:NO options:nil];
 
     return dataStore;
 }
@@ -112,13 +112,13 @@
     return store;
 }
 
-- (void)addLocalStoreForced:(BOOL)forced {
+- (void)addLocalStoreForced:(BOOL)forced options:(NSDictionary *)options {
     [[self managedObjectContext] performBlock:^{
         NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
         NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:kKFDataStoreLocalFilename];
 
         @try {
-            [self addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil];
+            [self addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options];
         } @catch (NSException *exception) {
             NSLog(@"%@", [exception name]);
 
