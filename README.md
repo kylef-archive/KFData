@@ -22,17 +22,14 @@ KFDataStore *dataStore = [[KFDataStore alloc] init];
 ```
 
 ``` objective-c
-// Get a NSManagedObjectContext for the data store
-NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContextWithConcurrencyType:NSPrivateQueueConcurrencyType];
+// Get a managed object context for the UI
+NSManagedObjectContext *managedObjectContext = [dataStore managedObjectContext];
 
-// This will return a child managed object context for our main managed
-// object context.
-
-// Perform some changes then save up to the main managed object context
+// Perform some changes then save
 [managedObjectContext performBlock:^{
     Person *kylef = [Person createInManagedObjectContext:managedObjectContext];
     [kylef setName:@"Kyle Fuller"];
-    [managedObjectContext nestedSave];
+    [managedObjectContext save:nil];
 }];
 ```
 
