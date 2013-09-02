@@ -97,6 +97,9 @@ depending on which KFDataStoreConfigurationType you have chosen.
 /** Creates a standard data store which persists to the document directory.
  This uses the dual stack configuration mode, and it will store data in the
  applications sandbox at `/Documents/DataStores/localStore.sqlite`
+ 
+ It will use automatically migrate persistent stores and infer the mapping
+ model while doing so.
 */
 
 + (instancetype)standardLocalDataStore;

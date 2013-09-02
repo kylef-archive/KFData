@@ -71,8 +71,11 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
 + (instancetype)standardLocalDataStore {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
 
-    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES };
-    [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options];
+    NSDictionary *options = @{
+        NSMigratePersistentStoresAutomaticallyOption: @YES,
+        NSInferMappingModelAutomaticallyOption: @YES,
+    };
+
     [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options error:nil];
 
     return dataStore;
