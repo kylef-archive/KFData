@@ -83,7 +83,7 @@
 - (void)testSingleStackStoreAddsPersistentStore {
     KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [store persistentStoreCoordinator];
-    NSPersistentStore *persistentStore = [store addMemoryStore:nil];
+    NSPersistentStore *persistentStore = [store addMemoryStore:nil error:nil];
 
     expect([[persistentStoreCoordinator persistentStores] containsObject:persistentStore]).to.beTruthy();
 }
@@ -92,7 +92,7 @@
 
 - (void)testDualStackStoreCannotAddMemoryPersistentStore {
     KFDataStore *store = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
-    NSPersistentStore *persistentStore = [store addMemoryStore:nil];
+    NSPersistentStore *persistentStore = [store addMemoryStore:nil error:nil];
     expect(persistentStore).to.beNil();
 }
 
