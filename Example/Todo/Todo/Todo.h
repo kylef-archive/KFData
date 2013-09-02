@@ -12,10 +12,17 @@
 
 @interface Todo : NSManagedObject
 
+/** Returns a managed for only completed tasks */
++ (KFObjectManager *)completedManagerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
++ (KFAttribute *)name;
++ (KFAttribute *)complete;
 + (KFAttribute *)created;
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * complete;
 @property (nonatomic, retain) NSDate * created;
+
+- (BOOL)isComplete;
 
 @end

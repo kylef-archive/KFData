@@ -28,10 +28,7 @@
                                                                                action:@selector(addTodo)];
     [[self navigationItem] setRightBarButtonItem:addButton];
 
-    NSFetchRequest *fetchRequest = [Todo requestAllInManagedObjectContext:[self managedObjectContext]];
-    [fetchRequest setSortDescriptors:@[
-        [[Todo created] ascending],
-    ]];
+    NSFetchRequest *fetchRequest = [[Todo managerInManagedObjectContext:[self managedObjectContext]] fetchRequest];
     [self setFetchRequest:fetchRequest sectionNameKeyPath:nil];
 }
 
@@ -51,7 +48,7 @@
 
     [[cell textLabel] setText:[todo name]];
 
-    if ([[todo complete] boolValue]) {
+    if ([todo isComplete]) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];

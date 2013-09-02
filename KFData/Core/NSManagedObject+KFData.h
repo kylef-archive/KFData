@@ -8,6 +8,9 @@
 
 #import <CoreData/CoreData.h>
 
+
+@class KFObjectManager;
+
 /**
  KFData NSManagedObject helpers
  */
@@ -22,27 +25,16 @@
  */
 + (NSString*)entityName;
 
-+ (NSArray*)executeFetchRequest:(NSFetchRequest*)fetchRequest
-         inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (instancetype)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
-									  inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (instancetype)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
-									 inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (instancetype)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
-									inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+/** A manager for the current entity
+ A subclass can optionally overide providing a default sort order.
+ @return A managed configured for the entity.
+ @note This method uses `-entityName`.
+ */
++ (KFObjectManager *)managerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
-+ (NSEntityDescription*)entityDescriptionInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-/** Create an instance of the object in the managed object context
- @param managedObjectContext Context where the managed object should be created
- @return An instance of the managed object
+/** Returns a new object in the managed object context.
+ @note This method uses `-entityName` to lookup the entity.
  */
 + (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-+ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-+ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                                withPredicate:(NSPredicate*)predicate;
-+ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                             excludingObjects:(NSSet*)excludedObjects;
 
 @end
