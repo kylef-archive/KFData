@@ -12,11 +12,9 @@
     #import "KFDataStore.h"
 
     #import "KFAttribute.h"
+    #import "KFObjectManager.h"
 
     #import "NSManagedObject+KFData.h"
-    #import "NSManagedObject+Requests.h"
-    #import "NSManagedObject+Finders.h"
-    #import "NSManagedObject+Aggregation.h"
 
     #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
         #import "KFDataViewControllerProtocol.h"

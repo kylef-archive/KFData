@@ -7,7 +7,7 @@
 //
 
 #import "NSManagedObject+KFData.h"
-#import "NSManagedObject+Requests.h"
+#import "KFObjectManager.h"
 
 @implementation NSManagedObject (KFData)
 
@@ -26,113 +26,14 @@
     return entityDescription;
 }
 
-#pragma mark - Fetch request
-
-+ (NSArray*)executeFetchRequest:(NSFetchRequest*)fetchRequest
-         inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
-	NSError* error = nil;
-	NSArray* results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	
-	if (error) {
-		NSLog(@"executeFetchRequest failed with %ld %@", (long)[error code], [error description]);
-	}
-    
-    return results;
++ (KFObjectManager *)managerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
+    return [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
-
-+ (instancetype)executeFetchRequestAndEnsureSingleObject:(NSFetchRequest*)fetchRequest
-									  inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
-	NSArray* results = [self executeFetchRequest:fetchRequest inManagedObjectContext:managedObjectContext];
-	NSAssert([results count] <= 1, @"We should only have one result");
-	
-	if (0 == [results count])
-	{
-		return nil;
-	}
-	return [results objectAtIndex:0];
-}
-
-+ (instancetype)executeFetchRequestAndReturnFirstObject:(NSFetchRequest*)fetchRequest
-									 inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
-	[fetchRequest setFetchLimit:1];
-	
-	return [self executeFetchRequestAndEnsureSingleObject:fetchRequest inManagedObjectContext:managedObjectContext];
-}
-
-+ (instancetype)executeFetchRequestAndReturnLastObject:(NSFetchRequest*)fetchRequest
-									inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
-	NSArray* results = [self executeFetchRequest:fetchRequest inManagedObjectContext:managedObjectContext];
-	
-	return [results lastObject];
-}
-
-#pragma mark - Creation
 
 + (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
-
-    NSManagedObject *newObject = [[self alloc] initWithEntity:entityDescription
-                               insertIntoManagedObjectContext:managedObjectContext];
-
-    return newObject;
+    return [[self alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 }
-
-#pragma mark - Removal
-
-+ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-{
-    return [self removeAllInManagedObjectContext:managedObjectContext withPredicate:nil];
-}
-
-+ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                                withPredicate:(NSPredicate*)predicate
-{
-    NSFetchRequest *fetchRequest = [self requestAllInManagedObjectContext:managedObjectContext];
-    if (predicate) {
-        [fetchRequest setPredicate:predicate];
-    }
-    
-    NSError *error = nil;
-    NSArray *objects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    NSUInteger removedCount = 0;
-    
-    if (error == nil) {
-        removedCount = [objects count];
-        
-        for (NSManagedObject *managedObject in objects) {
-            [managedObjectContext deleteObject:managedObject];
-        }
-    }
-    
-    return removedCount;
-}
-
-+ (NSUInteger)removeAllInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                             excludingObjects:(NSSet*)excludedObjects
-{
-    NSFetchRequest *fetchRequest = [self requestAllInManagedObjectContext:managedObjectContext];
-
-    NSError *error = nil;
-    NSArray *objects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-
-    NSUInteger removedCount = 0;
-
-    if (error == nil) {
-        for (NSManagedObject *managedObject in objects) {
-            if ([excludedObjects containsObject:managedObject] == NO) {
-                [managedObjectContext deleteObject:managedObject];
-                removedCount++;
-            }
-        }
-    }
-
-    return removedCount;
-}
-
 
 @end
