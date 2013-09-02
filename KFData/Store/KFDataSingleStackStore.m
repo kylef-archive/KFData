@@ -56,12 +56,12 @@
 }
 
 - (void)persistentStoreCoordinatorStoresDidChange:(NSNotification *)notification {
-    [_managedObjectContext performBlockAndWait:^{
+    [_managedObjectContext performBlock:^{
         [_managedObjectContext save:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextDidReset object:_managedObjectContext userInfo:[notification userInfo]];
     }];
 
-    [_backgroundManagedObjectContext performBlockAndWait:^{
+    [_backgroundManagedObjectContext performBlock:^{
         [_backgroundManagedObjectContext save:nil];
     }];
 }
