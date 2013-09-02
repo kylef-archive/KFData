@@ -117,11 +117,13 @@ depending on which KFDataStoreConfigurationType you have chosen.
  will actually be two persistent stores.
  */
 
-- (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError *__autoreleasing *)error;
+- (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError **)error;
 
-- (NSPersistentStore *)addMemoryStore:(NSString *)configuration;
+- (NSPersistentStore *)addMemoryStore:(NSString *)configuration error:(NSError **)error;
 
-- (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options;
+- (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options error:(NSError **)error;
+
+- (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey error:(NSError **)error;
 
 #pragma mark -
 

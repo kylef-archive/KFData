@@ -73,19 +73,20 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
 
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES };
     [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options];
+    [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options error:nil];
 
     return dataStore;
 }
 
 + (instancetype)standardMemoryDataStore {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
-    [dataStore addMemoryStore:nil];
+    [dataStore addMemoryStore:nil error:nil];
     return dataStore;
 }
 
 + (instancetype)standardCloudDataStore {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
-    [dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore"];
+    [dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore" error:nil];
     return dataStore;
 }
 
@@ -101,17 +102,17 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"addPersistentStoreWithType:configuration:URL:options:error: must be overidden." userInfo:nil];
 }
 
-- (NSPersistentStore *)addMemoryStore:(NSString *)configuration {
-    return [self addPersistentStoreWithType:NSInMemoryStoreType configuration:configuration URL:nil options:nil error:nil];
+- (NSPersistentStore *)addMemoryStore:(NSString *)configuration error:(NSError **)error {
+    return [self addPersistentStoreWithType:NSInMemoryStoreType configuration:configuration URL:nil options:nil error:error];
 }
 
-- (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options {
+- (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options error:(NSError **)error {
     NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
     NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
-    return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:nil];
+    return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:error];
 }
 
-- (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey {
+- (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey error:(NSError **)error {
     NSParameterAssert(filename != nil);
     NSParameterAssert(contentNameKey != nil);
 
@@ -122,8 +123,7 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
         NSPersistentStoreUbiquitousContentNameKey: contentNameKey,
     };
 
-    NSError *error;
-    NSPersistentStore *persistentStore = [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:&error];
+    NSPersistentStore *persistentStore = [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:error];
 
     return persistentStore;
 }
