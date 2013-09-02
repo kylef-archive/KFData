@@ -1,7 +1,3 @@
-#
-# Note, when this file is touched. Make sure you do "cd Tests && pod update"
-#
-
 Pod::Spec.new do |s|
   s.name = 'KFData'
   s.version = '0.4.1'
