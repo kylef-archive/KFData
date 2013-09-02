@@ -12,6 +12,7 @@
 #import "PSTCollectionView.h"
 #endif
 
+#import "KFDataStore.h"
 #import "KFDataCollectionViewController.h"
 
 @interface KFDataCollectionViewController ()
