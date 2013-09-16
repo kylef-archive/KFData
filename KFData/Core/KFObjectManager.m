@@ -91,42 +91,6 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     return [_resultsCache countByEnumeratingWithState:state objects:buffer count:len];
 }
 
-#pragma mark - Filtering
-
-- (instancetype)exclude:(NSPredicate *)predicate {
-    predicate = [[NSCompoundPredicate alloc] initWithType:NSNotPredicateType subpredicates:@[predicate]];
-
-    if (_predicate) {
-        predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
-    }
-
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
-}
-
-- (instancetype)filter:(NSPredicate *)predicate {
-    if (_predicate) {
-        predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
-    }
-
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
-}
-
-#pragma mark - Sorting
-
-- (instancetype)orderBy:(NSArray *)sortDescriptors {
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
-}
-
-- (instancetype)reverse {
-    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] initWithCapacity:[_sortDescriptors count]];
-
-    for (NSSortDescriptor *sortDescriptor in _sortDescriptors) {
-        [sortDescriptors addObject:[sortDescriptor reversedSortDescriptor]];
-    }
-
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
-}
-
 #pragma mark - Fetching
 
 - (NSFetchRequest *)fetchRequest {
@@ -192,7 +156,68 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     }
 }
 
-#pragma mark - Single objects
+#pragma mark - Deletion
+
+- (NSUInteger)deleteObjects:(NSError **)error {
+    NSArray *array = [self array:error];
+
+    NSUInteger count = 0;
+
+    if (array != nil) {
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+
+        for (NSManagedObject *managedObject in array) {
+            [managedObjectContext deleteObject:managedObject];
+            ++count;
+        }
+    }
+
+    return count;
+}
+
+@end
+
+@implementation KFObjectManager (Sorting)
+
+- (instancetype)orderBy:(NSArray *)sortDescriptors {
+    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
+}
+
+- (instancetype)reverse {
+    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] initWithCapacity:[_sortDescriptors count]];
+
+    for (NSSortDescriptor *sortDescriptor in _sortDescriptors) {
+        [sortDescriptors addObject:[sortDescriptor reversedSortDescriptor]];
+    }
+
+    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
+}
+
+@end
+
+@implementation KFObjectManager (Filtering)
+
+- (instancetype)exclude:(NSPredicate *)predicate {
+    predicate = [[NSCompoundPredicate alloc] initWithType:NSNotPredicateType subpredicates:@[predicate]];
+
+    if (_predicate) {
+        predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
+    }
+
+    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
+}
+
+- (instancetype)filter:(NSPredicate *)predicate {
+    if (_predicate) {
+        predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
+    }
+
+    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
+}
+
+@end
+
+@implementation KFObjectManager (SingleObject)
 
 - (NSManagedObject *)object:(NSError **)error {
     NSManagedObject *managedObject;
@@ -251,27 +276,8 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
         managedObject = [array lastObject];
     }
-
+    
     return managedObject;
-}
-
-#pragma mark - Deletion
-
-- (NSUInteger)deleteObjects:(NSError **)error {
-    NSArray *array = [self array:error];
-
-    NSUInteger count = 0;
-
-    if (array != nil) {
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-
-        for (NSManagedObject *managedObject in array) {
-            [managedObjectContext deleteObject:managedObject];
-            ++count;
-        }
-    }
-
-    return count;
 }
 
 @end

@@ -35,22 +35,6 @@
 /** Returns a boolean indicating if the two object managers are equal. */
 - (BOOL)isEqualToObjectManager:(KFObjectManager *)objectManager;
 
-#pragma mark - Filtering
-
-/** Returns a copy filtered by a predicate */
-- (instancetype)filter:(NSPredicate *)predicate;
-
-/** Returns a copy excluding a predicate */
-- (instancetype)exclude:(NSPredicate *)predicate;
-
-#pragma mark - Sorting
-
-/** Returns a copy and the sort descriptors */
-- (instancetype)orderBy:(NSArray *)sortDescriptors;
-
-/** Returns a copy and reverses any sort descriptors */
-- (instancetype)reverse;
-
 #pragma mark -
 
 /** Returns a fetch request for the manager */
@@ -66,14 +50,41 @@
 
 - (void)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error;
 
-#pragma mark - Single objects
-
-- (NSManagedObject *)object:(NSError **)error;
-- (NSManagedObject *)firstObject:(NSError **)error;
-- (NSManagedObject *)lastObject:(NSError **)error;
-
 #pragma mark - Deletion
 
 - (NSUInteger)deleteObjects:(NSError **)error;
+
+@end
+
+@interface KFObjectManager (Sorting)
+
+/** Returns a copy and the sort descriptors */
+- (instancetype)orderBy:(NSArray *)sortDescriptors;
+
+/** Returns a copy and reverses any sort descriptors */
+- (instancetype)reverse;
+
+@end
+
+@interface KFObjectManager (Filtering)
+
+/** Returns a copy filtered by a predicate */
+- (instancetype)filter:(NSPredicate *)predicate;
+
+/** Returns a copy excluding a predicate */
+- (instancetype)exclude:(NSPredicate *)predicate;
+
+@end
+
+@interface KFObjectManager (SingleObject)
+
+/** Returns a single object matching the filters, if there is more than one. An error will instead be returned. */
+- (NSManagedObject *)object:(NSError **)error;
+
+/** Returns the first object matching the filters and using the sort descriptors */
+- (NSManagedObject *)firstObject:(NSError **)error;
+
+/** Returns the last object matching the filters and using the sort descriptors */
+- (NSManagedObject *)lastObject:(NSError **)error;
 
 @end

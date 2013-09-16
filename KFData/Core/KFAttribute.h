@@ -16,10 +16,14 @@
 
 - (NSExpression *)expression;
 
-- (NSSortDescriptor *)ascending;
-- (NSSortDescriptor *)descending;
-
 - (NSPredicate *)equal:(id)value;
 - (NSPredicate *)notEqual:(id)value;
+
+@end
+
+@interface KFAttribute (Sorting)
+
+- (NSSortDescriptor *)ascending;
+- (NSSortDescriptor *)descending;
 
 @end

@@ -54,16 +54,6 @@
     return [NSExpression expressionForKeyPath:[self key]];
 }
 
-#pragma mark - Sorting
-
-- (NSSortDescriptor *)ascending {
-    return [[NSSortDescriptor alloc] initWithKey:[self key] ascending:YES];
-}
-
-- (NSSortDescriptor *)descending {
-    return [[NSSortDescriptor alloc] initWithKey:[self key] ascending:NO];
-}
-
 #pragma mark - Comparison
 
 - (NSPredicate *)predicateWithRightExpression:(NSExpression *)expression
@@ -96,6 +86,18 @@
                                      modifier:NSDirectPredicateModifier
                                          type:NSNotEqualToPredicateOperatorType
                                       options:0];
+}
+
+@end
+
+@implementation KFAttribute (Sorting)
+
+- (NSSortDescriptor *)ascending {
+    return [[NSSortDescriptor alloc] initWithKey:[self key] ascending:YES];
+}
+
+- (NSSortDescriptor *)descending {
+    return [[NSSortDescriptor alloc] initWithKey:[self key] ascending:NO];
 }
 
 @end
