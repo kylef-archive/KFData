@@ -141,6 +141,10 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"managedObjectContext must be overidden." userInfo:nil];
 }
 
+- (NSManagedObjectContext *)backgroundManagedObjectContext {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"backgroundManagedObjectContext must be overidden." userInfo:nil];
+}
+
 #pragma mark -
 
 - (void)performReadBlock:(void (^) (NSManagedObjectContext *managedObjectContext))readBlock {

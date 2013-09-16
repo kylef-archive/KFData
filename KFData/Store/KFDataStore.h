@@ -148,6 +148,14 @@ depending on which KFDataStoreConfigurationType you have chosen.
  */
 - (NSManagedObjectContext *)managedObjectContext;
 
+/** This method will always return a managed object context which uses a private queue.
+
+ It will always merge data from the main managed object context, however in most
+ cases this context will be reset so you shouldn't save any object outside of
+ the perform block methods.
+ */
+- (NSManagedObjectContext *)backgroundManagedObjectContext;
+
 #pragma mark - Performing Block Operations
 /** @name Performing Block Operations */
 
