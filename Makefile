@@ -37,7 +37,7 @@ test-ios:
 test-podspec:
 	pod spec lint KFData.podspec
 
-test: test-osx test-ios test-podspec
+test: test-osx test-ios
 
 gh-pages: docs
 	cp -r docs/publish/ docs/html
