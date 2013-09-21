@@ -156,6 +156,16 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     }
 }
 
+- (void)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error {
+    NSArray *array = [self array:error];
+
+    if (array != nil) {
+        for (NSManagedObject *managedObject in array) {
+            block(managedObject);
+        }
+    }
+}
+
 #pragma mark - Deletion
 
 - (NSUInteger)deleteObjects:(NSError **)error {

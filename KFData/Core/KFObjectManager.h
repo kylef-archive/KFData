@@ -49,6 +49,7 @@
 #pragma mark - Enumeration
 
 - (void)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error;
+- (void)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error;
 
 #pragma mark - Deletion
 
