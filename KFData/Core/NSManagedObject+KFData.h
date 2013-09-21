@@ -30,11 +30,11 @@
  @return A managed configured for the entity.
  @note This method uses `-entityName`.
  */
-+ (KFObjectManager *)managerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (KFObjectManager *)managerInContext:(NSManagedObjectContext *)managedObjectContext;
 
 /** Returns a new object in the managed object context.
  @note This method uses `-entityName` to lookup the entity.
  */
-+ (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)createInContext:(NSManagedObjectContext*)managedObjectContext;
 
 @end
