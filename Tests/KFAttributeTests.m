@@ -59,4 +59,18 @@
     expect([copiedAttribute key]).to.equal(@"id");
 }
 
+- (void)testEquality {
+    KFAttribute *attribute = [KFAttribute attributeWithKey:@"id"];
+    expect(attribute).to.equal([self attribute]);
+}
+
+- (void)testInequality {
+    expect([self attribute]).notTo.equal(@"id");
+}
+
+- (void)testHash {
+    KFAttribute *attribute = [KFAttribute attributeWithKey:@"id"];
+    expect([[self attribute] hash]).to.equal([attribute hash]);
+}
+
 @end

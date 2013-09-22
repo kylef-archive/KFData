@@ -14,6 +14,12 @@
 
 + (instancetype)attributeWithKey:(NSString *)key;
 
+/** Returns a Boolean value that indicates whether a given attribute is equal to the receiver
+ @param attribute The attribute to compare against the receiver
+ @return YES if attribute is equivalent to the receiver
+ */
+- (BOOL)isEqualToAttribute:(KFAttribute *)attribute;
+
 - (NSExpression *)expression;
 
 - (NSPredicate *)equal:(id)value;

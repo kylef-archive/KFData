@@ -54,6 +54,20 @@
     return [NSExpression expressionForKeyPath:[self key]];
 }
 
+#pragma mark - Equality
+
+- (NSUInteger)hash {
+    return [[self key] hash];
+}
+
+- (BOOL)isEqualToAttribute:(KFAttribute *)attribute {
+    return [[self key] isEqualToString:[attribute key]];
+}
+
+- (BOOL)isEqual:(id)object {
+    return object == self || ([object isKindOfClass:[KFAttribute class]] && [self isEqualToAttribute:object]);
+}
+
 #pragma mark -
 
 // The following methods are implemented so that `[NSPredicate predicateWithFormat:@"%K", attribute]` will work
