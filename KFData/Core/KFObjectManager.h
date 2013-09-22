@@ -32,7 +32,10 @@
 
 #pragma mark - Equality
 
-/** Returns a boolean indicating if the two object managers are equal. */
+/** Returns a Boolean value that indicates whether a given object manager is equal to the receiver
+ @param objectManager The object manager to compare against the receiver
+ @return YES if object manager is equivalent to the receiver
+ */
 - (BOOL)isEqualToObjectManager:(KFObjectManager *)objectManager;
 
 #pragma mark -
@@ -40,19 +43,42 @@
 /** Returns a fetch request for the manager */
 - (NSFetchRequest *)fetchRequest;
 
-/** Counts the amount of objects for the manager */
+/** Returns the amount of objects matching the set predicate
+ @param error If there is a problem fetching the count, upon return contains an instance of NSError that describes the problem.
+ @return The number of objects matching the set predicate
+ */
 - (NSUInteger)count:(NSError **)error;
+
+/** Returns all objects matching the set predicate ordered by any set sort descriptors as an array
+ @param error If there is a problem fetching the objects, upon return contains an instance of NSError that describes the problem.
+ @return An array containing all matched objects
+ */
 - (NSArray *)array:(NSError **)error;
+
+/** Returns all objects matching the set predicate ordered by any set sort descriptors as an ordered set
+ @param error If there is a problem fetching the objects, upon return contains an instance of NSError that describes the problem.
+ @return An ordered set containing all matched objects
+ */
 - (NSSet *)set:(NSError **)error;
+
+/** Returns all objects matching the set predicate ordered by any set sort descriptors as a set
+ @param error If there is a problem fetching the objects, upon return contains an instance of NSError that describes the problem.
+ @return A set containing all matched objects
+ */
 - (NSOrderedSet *)orderedSet:(NSError **)error;
 
 #pragma mark - Enumeration
 
 - (void)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error;
+
 - (void)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error;
 
 #pragma mark - Deletion
 
+/** Delete all objects matching the set predicate
+ @param error If there is a problem deleting the objects, upon return contains an instance of NSError that describes the problem.
+ @return Returns the amount of objects that were deleted
+ */
 - (NSUInteger)deleteObjects:(NSError **)error;
 
 @end
@@ -79,13 +105,22 @@
 
 @interface KFObjectManager (SingleObject)
 
-/** Returns a single object matching the filters, if there is more than one. An error will instead be returned. */
+/** Returns a single object matching the filters, if there is more than one. An error will instead be returned.
+@param error If there is a problem fetching the object or there is more than one object, upon return contains an instance of NSError that describes the problem.
+@return Returns the object matching the set predicate, or nil.
+ */
 - (NSManagedObject *)object:(NSError **)error;
 
-/** Returns the first object matching the filters and using the sort descriptors */
+/** Returns the first object matching the filters ordered by the set sort descriptors.
+ @param error If there is a problem fetching the object, upon return contains an instance of NSError that describes the problem.
+ @return Returns the first object matching the set predicate, or nil.
+ */
 - (NSManagedObject *)firstObject:(NSError **)error;
 
-/** Returns the last object matching the filters and using the sort descriptors */
+/** Returns the last object matching the filters ordered by the set sort descriptors.
+ @param error If there is a problem fetching the object, upon return contains an instance of NSError that describes the problem.
+ @return Returns the last object matching the set predicate, or nil.
+ */
 - (NSManagedObject *)lastObject:(NSError **)error;
 
 @end
