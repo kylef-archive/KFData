@@ -42,6 +42,11 @@
     expect([[self attribute] notEqual:@4]).to.equal([NSPredicate predicateWithFormat:@"id != 4"]);
 }
 
+- (void)testPredicateFromFormat {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == 4", [self attribute]];
+    expect([predicate description]).to.equal([[NSPredicate predicateWithFormat:@"id == 4"] description]);
+}
+
 - (void)testNSCoding {
     NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:[self attribute]];
     KFAttribute *codedAttribute = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];

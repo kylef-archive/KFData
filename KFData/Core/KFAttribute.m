@@ -54,6 +54,26 @@
     return [NSExpression expressionForKeyPath:[self key]];
 }
 
+#pragma mark -
+
+// The following methods are implemented so that `[NSPredicate predicateWithFormat:@"%K", attribute]` will work
+
+- (NSString *)description {
+    return [self key];
+}
+
+- (NSRange)rangeOfString:(NSString *)aString {
+    return [[self key] rangeOfString:aString];
+}
+
+- (NSArray *)componentsSeparatedByString:(NSString *)separator {
+    return [[self key] componentsSeparatedByString:separator];
+}
+
+- (NSUInteger)length {
+    return [[self key] length];
+}
+
 #pragma mark - Comparison
 
 - (NSPredicate *)predicateWithRightExpression:(NSExpression *)expression
