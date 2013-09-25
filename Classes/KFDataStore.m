@@ -40,6 +40,10 @@
     return storesDirectoryURL;
 }
 
++ (instancetype)standardLocalDataStore {
+    return [self standardLocalDataStoreForce:NO options:nil];
+}
+
 + (instancetype)standardLocalDataStoreWithOptions:(NSDictionary *)options {
     return [self standardLocalDataStoreForce:NO options:options];
 }
