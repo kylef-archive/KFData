@@ -24,7 +24,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     expect(objectManager).notTo.beNil();
     expect([objectManager managedObjectContext]).to.equal(managedObjectContext);
@@ -39,7 +39,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == YES"];
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
 
     expect(objectManager).notTo.beNil();
     expect([objectManager managedObjectContext]).to.equal(managedObjectContext);
@@ -56,7 +56,7 @@
     // for some reason, copy on an NSArray isn't actually a copy
     NSArray *sortDescriptors = [@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]] mutableCopy];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
 
     expect([objectManager predicate]).notTo.beIdenticalTo(predicate);
     expect([objectManager sortDescriptors]).notTo.beIdenticalTo(sortDescriptors);
@@ -72,8 +72,8 @@
     // for some reason, copy on an NSArray isn't actually a copy
     NSArray *sortDescriptors = [@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]] mutableCopy];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
-    KFObjectManager *identicalObjectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+    KFObjectManager *identicalObjectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
 
     expect(objectManager).to.equal(identicalObjectManager);
     expect([objectManager hash]).to.equal([identicalObjectManager hash]);
@@ -85,7 +85,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == YES"];
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
     KFObjectManager *copiedManager = [objectManager copy];
 
     expect(copiedManager).to.equal(objectManager);
@@ -95,7 +95,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == 'Kyle'"];
     KFObjectManager *newObjectManager = [objectManager filter:predicate];
@@ -107,7 +107,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == 'Kyle'"];
     KFObjectManager *newObjectManager = [objectManager exclude:predicate];
@@ -119,7 +119,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name == 'Kyle'"];
     KFObjectManager *newObjectManager = [objectManager filter:namePredicate];
@@ -134,7 +134,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name == 'Kyle'"];
     KFObjectManager *newObjectManager = [objectManager filter:namePredicate];
@@ -149,7 +149,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     KFObjectManager *newObjectManager = [objectManager orderBy:sortDescriptors];
@@ -161,7 +161,7 @@
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription];
 
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"age" ascending:NO]];
     KFObjectManager *newObjectManager = [objectManager orderBy:sortDescriptors];
@@ -181,7 +181,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == YES"];
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
-    KFObjectManager *objectManager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+    KFObjectManager *objectManager = [KFObjectManager objectManagerInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
     NSFetchRequest *fetchRequest = [objectManager fetchRequest];
 
     expect([fetchRequest entityName]).to.equal([entityDescription name]);

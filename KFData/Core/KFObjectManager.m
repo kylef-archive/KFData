@@ -21,15 +21,15 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 
 #pragma mark - Creation
 
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription {
-    return [[self alloc] initWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
++ (instancetype)objectManagerInContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription {
+    return [[self alloc] initInContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
 
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
-    return [[self alloc] initWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
++ (instancetype)objectManagerInContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
+    return [[self alloc] initInContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
 }
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
+- (instancetype)initInContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
     NSParameterAssert(managedObjectContext != nil);
     NSParameterAssert(entityDescription != nil);
 
@@ -78,7 +78,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] allocWithZone:zone] initWithManagedObjectContext:[self managedObjectContext] entityDescription:[self entityDescription] predicate:[self predicate] sortDescriptors:[self sortDescriptors]];
+    return [[[self class] allocWithZone:zone] initInContext:[self managedObjectContext] entityDescription:[self entityDescription] predicate:[self predicate] sortDescriptors:[self sortDescriptors]];
 }
 
 #pragma mark - NSFastEnumeration
@@ -190,7 +190,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 @implementation KFObjectManager (Sorting)
 
 - (instancetype)orderBy:(NSArray *)sortDescriptors {
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
+    return [KFObjectManager objectManagerInContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
 }
 
 - (instancetype)reverse {
@@ -200,7 +200,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         [sortDescriptors addObject:[sortDescriptor reversedSortDescriptor]];
     }
 
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
+    return [KFObjectManager objectManagerInContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
 }
 
 @end
@@ -214,7 +214,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
     }
 
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
+    return [KFObjectManager objectManagerInContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
 }
 
 - (instancetype)filter:(NSPredicate *)predicate {
@@ -222,7 +222,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
     }
 
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
+    return [KFObjectManager objectManagerInContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
 }
 
 @end
