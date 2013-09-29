@@ -124,6 +124,46 @@
 
 @end
 
+@implementation KFAttribute (Predicate)
+
+- (NSPredicate *)greaterThan:(id)value {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSGreaterThanPredicateOperatorType
+                                      options:0];
+}
+
+- (NSPredicate *)greaterThanOrEqualTo:(id)value {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSGreaterThanOrEqualToPredicateOperatorType
+                                      options:0];
+}
+
+- (NSPredicate *)lessThan:(id)value {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSLessThanPredicateOperatorType
+                                      options:0];
+}
+
+- (NSPredicate *)lessThanOrEqualTo:(id)value {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSLessThanOrEqualToPredicateOperatorType
+                                      options:0];
+}
+
+@end
+
 @implementation KFAttribute (Sorting)
 
 - (NSSortDescriptor *)ascending {
