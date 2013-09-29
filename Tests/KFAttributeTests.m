@@ -26,6 +26,10 @@
     expect([[self attribute] key]).to.equal(@"id");
 }
 
+- (void)testExpression {
+    expect([[self attribute] expression]).to.equal([NSExpression expressionForKeyPath:@"id"]);
+}
+
 - (void)testCreatingAscendingSortDescriptor {
     expect([[self attribute] ascending]).to.equal([NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES]);
 }
