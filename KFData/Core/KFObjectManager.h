@@ -22,7 +22,10 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readonly) NSEntityDescription *entityDescription;
 
+/** This is a read only property to hold any predicates set on this object. You can use the `filter:` and `exclude:` methods to effect this value on a child */
 @property (nonatomic, copy, readonly) NSPredicate *predicate;
+
+/** This is a read only property to hold any sort descriptors set on this object. You can use the `orderBy:` and `reverse` methods to effect this value on a child */
 @property (nonatomic, copy, readonly) NSArray *sortDescriptors;
 
 #pragma mark - Creation
