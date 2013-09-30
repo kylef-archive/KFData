@@ -3,7 +3,7 @@
 //  KFData
 //
 //  Created by Kyle Fuller on 12/08/2013.
-//  Copyright 2013 Kyle Fuller. All rights reserved.
+//  Copyright 2012-2013  Kyle Fuller. All rights reserved.
 //
 
 #import "KFDataTests.h"

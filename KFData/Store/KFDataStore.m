@@ -3,7 +3,7 @@
 //  KFData
 //
 //  Created by Kyle Fuller on 20/10/2012.
-//  Copyright (c) 2012 Kyle Fuller. All rights reserved.
+//  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
 #import "KFDataStoreInternal.h"
