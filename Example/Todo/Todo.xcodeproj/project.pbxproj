@@ -37,6 +37,7 @@
 		779A78A2168381BE0049B316 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A78A1168381BE0049B316 /* Todo.m */; };
 		779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779A78A4168383C10049B316 /* TDTodoViewController.m */; };
 		779A78A7168384180049B316 /* TDTodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779A78A6168384180049B316 /* TDTodoViewController.xib */; };
+		77BBC2A517FA2AFB00F3248F /* KFDataTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BBC2A417FA2AFB00F3248F /* KFDataTableViewDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		779A78A3168383C10049B316 /* TDTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTodoViewController.h; sourceTree = "<group>"; };
 		779A78A4168383C10049B316 /* TDTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTodoViewController.m; sourceTree = "<group>"; };
 		779A78A6168384180049B316 /* TDTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDTodoViewController.xib; sourceTree = "<group>"; };
+		77BBC2A317FA2AFB00F3248F /* KFDataTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataTableViewDataSource.h; sourceTree = "<group>"; };
+		77BBC2A417FA2AFB00F3248F /* KFDataTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 		77166A7217B6BE08007B122D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				77BBC2A317FA2AFB00F3248F /* KFDataTableViewDataSource.h */,
+				77BBC2A417FA2AFB00F3248F /* KFDataTableViewDataSource.m */,
 				77166A7317B6BE08007B122D /* KFDataCollectionViewController.h */,
 				77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */,
 				77166A7517B6BE08007B122D /* KFDataTableViewController.h */,
@@ -377,6 +382,7 @@
 				77166A8617B6BE08007B122D /* KFDataCollectionViewController.m in Sources */,
 				779A786216837FF60049B316 /* TDAppDelegate.m in Sources */,
 				779A789C168380730049B316 /* TDListViewController.m in Sources */,
+				77BBC2A517FA2AFB00F3248F /* KFDataTableViewDataSource.m in Sources */,
 				779A789F168381790049B316 /* TodoModel.xcdatamodeld in Sources */,
 				7773D6FB17D4D8C0003ABFE9 /* KFObjectManager.m in Sources */,
 				77166A8517B6BE08007B122D /* KFDataStore.m in Sources */,
