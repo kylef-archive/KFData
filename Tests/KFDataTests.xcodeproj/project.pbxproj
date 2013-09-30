@@ -24,6 +24,9 @@
 		778FBFB6176107BA00DE0FFF /* KFAttributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBF4D176106F600DE0FFF /* KFAttributeTests.m */; };
 		77D7B5C617B95A7A005B759C /* KFDataStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */; };
 		77D7B5C717B95A7A005B759C /* KFDataStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */; };
+		77F9E8D517F214540019F29E /* KFDataTableViewDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F9E8D417F214540019F29E /* KFDataTableViewDataSourceTests.m */; };
+		77F9E8D817F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77F9E8D617F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld */; };
+		77F9E8D917F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77F9E8D617F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld */; };
 		AA6AB28264FA4B35A63C832C /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4BF9AD35194D1FA433E5DE /* libPods-ios.a */; };
 		E0D4699C151B41B896C7277D /* libPods-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A15ED1E5CB9641229478211D /* libPods-osx.a */; };
 /* End PBXBuildFile section */
@@ -56,6 +59,8 @@
 		778FBFB0176107B600DE0FFF /* OS_X_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OS_X_Tests.m; sourceTree = "<group>"; };
 		778FBFB2176107B600DE0FFF /* OS X Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OS X Tests-Prefix.pch"; sourceTree = "<group>"; };
 		77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataStoreTests.m; sourceTree = "<group>"; };
+		77F9E8D417F214540019F29E /* KFDataTableViewDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewDataSourceTests.m; sourceTree = "<group>"; };
+		77F9E8D717F21CCA0019F29E /* KFDataTestsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KFDataTestsModel.xcdatamodel; sourceTree = "<group>"; };
 		882BBF03A2AE4DB991E9FFE3 /* Pods-osx.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osx.xcconfig"; path = "Pods/Pods-osx.xcconfig"; sourceTree = SOURCE_ROOT; };
 		A15ED1E5CB9641229478211D /* libPods-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -101,6 +106,7 @@
 		778FBF50176106FA00DE0FFF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				77F9E8D617F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld */,
 				778E2F881764B05B005945BE /* KFDataTests.h */,
 				778FBF4D176106F600DE0FFF /* KFAttributeTests.m */,
 				77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */,
@@ -137,6 +143,7 @@
 			children = (
 				778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */,
 				778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */,
+				77F9E8D417F214540019F29E /* KFDataTableViewDataSourceTests.m */,
 				778FBF851761077800DE0FFF /* iOS_Tests.h */,
 				778FBF861761077800DE0FFF /* iOS_Tests.m */,
 				778FBF801761077800DE0FFF /* Supporting Files */,
@@ -366,7 +373,9 @@
 				77D7B5C617B95A7A005B759C /* KFDataStoreTests.m in Sources */,
 				778FBF991761079A00DE0FFF /* KFAttributeTests.m in Sources */,
 				7773D6F717D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */,
+				77F9E8D817F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld in Sources */,
 				778E2F871764AE51005945BE /* KFDataTableViewControllerTests.m in Sources */,
+				77F9E8D517F214540019F29E /* KFDataTableViewDataSourceTests.m in Sources */,
 				778E2F8A1764B33D005945BE /* KFDataCollectionViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +388,7 @@
 				778FBFB6176107BA00DE0FFF /* KFAttributeTests.m in Sources */,
 				77D7B5C717B95A7A005B759C /* KFDataStoreTests.m in Sources */,
 				7773D6F817D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */,
+				77F9E8D917F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +605,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		77F9E8D617F21CCA0019F29E /* KFDataTestsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				77F9E8D717F21CCA0019F29E /* KFDataTestsModel.xcdatamodel */,
+			);
+			currentVersion = 77F9E8D717F21CCA0019F29E /* KFDataTestsModel.xcdatamodel */;
+			path = KFDataTestsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 778FBF471761066F00DE0FFF /* Project object */;
 }

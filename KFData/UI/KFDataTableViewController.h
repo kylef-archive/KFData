@@ -12,44 +12,33 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class KFObjectManager;
+@class KFDataTableViewDataSource;
+
 /**
  KFDataTableViewController is a generic controller base that manages a table
  view from a NSFetchRequest.
 
  It will automatically insert or update cells when changes have been made to
  the NSFetchRequest.
- 
- Additionally, it will automatically re-fetch when the persistent store
- coordinator changes stores.
 */
 
-@interface KFDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface KFDataTableViewController : UITableViewController
 
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong, readonly) KFDataTableViewDataSource *dataSource;
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+                   fetchRequest:(NSFetchRequest *)fetchRequest
+             sectionNameKeyPath:(NSString *)sectionNameKeyPath
+                      cacheName:(NSString *)cacheName;
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil
-                         bundle:(NSBundle *)nibBundleOrNil
-           managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (void)setObjectManager:(KFObjectManager *)objectManager
+      sectionNameKeyPath:(NSString *)sectionNameKeyPath
+               cacheName:(NSString *)cacheName;
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                                       style:(UITableViewStyle)style;
+- (BOOL)performFetch:(NSError **)error;
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-         managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
-     sectionNameKeyPath:(NSString*)sectionNameKeyPath;
-
-/** Execute the fetch request */
-- (void)performFetch;
-
-- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
-
-/** It is important that you implement this method to return a cell for your managed object. */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

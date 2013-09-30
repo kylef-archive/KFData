@@ -16,14 +16,4 @@
 
 @implementation KFDataTableViewControllerTests
 
-- (void)testInitRaisesException {
-    expect(^{ (void)[[KFDataTableViewController alloc] init]; }).to.raiseAny();
-}
-
-- (void)testInitWithManagedObjectContextSetsProperty {
-    NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
-    KFDataTableViewController *tableViewController = [[KFDataTableViewController alloc] initWithManagedObjectContext:managedObjectContext];
-    expect([tableViewController managedObjectContext]).to.beIdenticalTo(managedObjectContext);
-}
-
 @end

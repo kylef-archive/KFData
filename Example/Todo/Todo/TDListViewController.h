@@ -10,4 +10,8 @@
 
 @interface TDListViewController : KFDataTableViewController
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
+#import "KFDataTableViewDataSource.h"
 #import "TDListViewController.h"
 #import "TDTodoViewController.h"
 #import "Todo.h"
@@ -15,6 +16,14 @@
 @end
 
 @implementation TDListViewController
+
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    if (self = [super init]) {
+        _managedObjectContext = managedObjectContext;
+    }
+
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,8 +37,8 @@
                                                                                action:@selector(addTodo)];
     [[self navigationItem] setRightBarButtonItem:addButton];
 
-    NSFetchRequest *fetchRequest = [[Todo managerWithManagedObjectContext:[self managedObjectContext]] fetchRequest];
-    [self setFetchRequest:fetchRequest sectionNameKeyPath:nil];
+    KFObjectManager *manager = [Todo managerInManagedObjectContext:[self managedObjectContext]];
+    [self setObjectManager:manager sectionNameKeyPath:nil cacheName:nil];
 }
 
 - (void)addTodo {
@@ -42,9 +51,8 @@
 
 #pragma mark -
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Todo *todo = (Todo *)[self objectAtIndexPath:indexPath];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(Todo *)todo atIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[dataSource tableView] dequeueReusableCellWithIdentifier:@"Cell"];
 
     [[cell textLabel] setText:[todo name]];
 
@@ -55,24 +63,6 @@
     }
 
     return cell;
-}
-
-#pragma mark - Delete
-
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Todo *todo = (Todo *)[self objectAtIndexPath:indexPath];
-        NSManagedObjectContext *managedObjectContext = [todo managedObjectContext];
-
-        [managedObjectContext deleteObject:todo];
-        NSError *error;
-        if ([managedObjectContext save:&error] == NO) {
-            NSLog(@"Failed to delete Todo, we might want to tell the user.");
-        }
-    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,7 +76,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - Selection
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Todo *todo = (Todo *)[self objectAtIndexPath:indexPath];
+    Todo *todo = (Todo *)[[self dataSource] objectAtIndexPath:indexPath];
 
     BOOL isComplete = [[todo complete] boolValue] == NO;
     [todo setComplete:@(isComplete)];
