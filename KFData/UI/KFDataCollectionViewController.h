@@ -11,7 +11,6 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "KFDataViewControllerProtocol.h"
 
 #ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
 
@@ -19,8 +18,6 @@
 @class PSTCollectionViewFlowLayout;
 
 #endif
-
-#import "KFDataViewControllerProtocol.h"
 
 
 /**
@@ -35,15 +32,15 @@
  */
 
 #ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-@interface KFDataCollectionViewController : PSTCollectionViewController <KFDataListViewControllerProtocol,
-                                                                         NSFetchedResultsControllerDelegate>
+@interface KFDataCollectionViewController : PSTCollectionViewController <NSFetchedResultsControllerDelegate>
 #else
-@interface KFDataCollectionViewController : UICollectionViewController <KFDataListViewControllerProtocol,
-                                                                        NSFetchedResultsControllerDelegate>
+@interface KFDataCollectionViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
 #endif
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
 #ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView

@@ -6,8 +6,12 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import "KFDataViewController.h"
+@class Todo;
 
-@interface TDTodoViewController : KFDataViewController
+@interface TDTodoViewController : UIViewController
+
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

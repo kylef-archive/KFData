@@ -11,7 +11,6 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "KFDataViewControllerProtocol.h"
 
 /**
  KFDataTableViewController is a generic controller base that manages a table
@@ -24,11 +23,12 @@
  coordinator changes stores.
 */
 
-@interface KFDataTableViewController : UITableViewController <KFDataListViewControllerProtocol,
-                                                              NSFetchedResultsControllerDelegate>
+@interface KFDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil
                          bundle:(NSBundle *)nibBundleOrNil

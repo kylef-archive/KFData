@@ -12,7 +12,6 @@
 		77166A8517B6BE08007B122D /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7117B6BE08007B122D /* KFDataStore.m */; };
 		77166A8617B6BE08007B122D /* KFDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */; };
 		77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7617B6BE08007B122D /* KFDataTableViewController.m */; };
-		77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7817B6BE08007B122D /* KFDataViewController.m */; };
 		77166A8A17B6BE08007B122D /* KFSearchableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */; };
 		7734CE8B17B82A5D00896D59 /* KFDataDualStackStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */; };
 		7734CE8C17B82A5D00896D59 /* KFDataSingleStackStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734CE8917B82A5D00896D59 /* KFDataSingleStackStore.m */; };
@@ -61,9 +60,6 @@
 		77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataCollectionViewController.m; sourceTree = "<group>"; };
 		77166A7517B6BE08007B122D /* KFDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataTableViewController.h; sourceTree = "<group>"; };
 		77166A7617B6BE08007B122D /* KFDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewController.m; sourceTree = "<group>"; };
-		77166A7717B6BE08007B122D /* KFDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewController.h; sourceTree = "<group>"; };
-		77166A7817B6BE08007B122D /* KFDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataViewController.m; sourceTree = "<group>"; };
-		77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewControllerProtocol.h; sourceTree = "<group>"; };
 		77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFSearchableTableViewController.h; sourceTree = "<group>"; };
 		77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFSearchableTableViewController.m; sourceTree = "<group>"; };
 		7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataDualStackStore.m; sourceTree = "<group>"; };
@@ -170,9 +166,6 @@
 				77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */,
 				77166A7517B6BE08007B122D /* KFDataTableViewController.h */,
 				77166A7617B6BE08007B122D /* KFDataTableViewController.m */,
-				77166A7717B6BE08007B122D /* KFDataViewController.h */,
-				77166A7817B6BE08007B122D /* KFDataViewController.m */,
-				77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */,
 				77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */,
 				77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */,
 			);
@@ -384,7 +377,6 @@
 				77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */,
 				7734CE8C17B82A5D00896D59 /* KFDataSingleStackStore.m in Sources */,
 				779A78A2168381BE0049B316 /* Todo.m in Sources */,
-				77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */,
 				779A78A5168383C10049B316 /* TDTodoViewController.m in Sources */,
 				77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */,
 				77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */,

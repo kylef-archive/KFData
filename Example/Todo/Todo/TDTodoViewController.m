@@ -18,6 +18,14 @@
 
 @implementation TDTodoViewController
 
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    if (self = [super init]) {
+        _managedObjectContext = managedObjectContext;
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
