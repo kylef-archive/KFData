@@ -13,15 +13,14 @@
 
 #pragma mark - Entity
 
-+ (NSString*)entityName {
++ (NSString *)entityName {
     NSString *entityName = [[self class] description];
     return entityName;
 }
 
-+ (NSEntityDescription*)entityDescriptionInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
++ (NSEntityDescription *)entityDescriptionInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSString *entityName = [self entityName];
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName
-                                                         inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
 
     return entityDescription;
 }
@@ -31,7 +30,7 @@
     return [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
 
-+ (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
++ (instancetype)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
     return [[self alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 }

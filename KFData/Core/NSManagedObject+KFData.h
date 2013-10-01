@@ -23,7 +23,7 @@
  @note This is generated from the class name, you should overide the method in
   your subclass if your entity is not named after the class.
  */
-+ (NSString*)entityName;
++ (NSString *)entityName;
 
 /** A manager for the current entity
  A subclass can optionally overide providing a default sort order.
@@ -35,6 +35,6 @@
 /** Returns a new object in the managed object context.
  @note This method uses `-entityName` to lookup the entity.
  */
-+ (instancetype)createInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
++ (instancetype)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
