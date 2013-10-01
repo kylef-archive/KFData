@@ -29,6 +29,16 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     return [[self alloc] initWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
 }
 
++ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest {
+    NSParameterAssert(fetchRequest != nil);
+
+    NSEntityDescription *entityDescription = [fetchRequest entity];
+    NSPredicate *predicate = [fetchRequest predicate];
+    NSArray *sortDescriptors = [fetchRequest sortDescriptors];
+
+    return [[self alloc] initWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
+}
+
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
     NSParameterAssert(managedObjectContext != nil);
     NSParameterAssert(entityDescription != nil);

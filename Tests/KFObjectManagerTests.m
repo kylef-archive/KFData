@@ -64,6 +64,25 @@
     expect([objectManager sortDescriptors]).to.equal(sortDescriptors);
 }
 
+- (void)testCreationFromFetchRequest {
+    NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
+    NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == YES"];
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entityDescription];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    KFObjectManager *manager = [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext fetchRequest:fetchRequest];
+    expect([manager managedObjectContext]).to.equal(managedObjectContext);
+    expect([manager predicate]).to.equal(predicate);
+    expect([manager sortDescriptors]).to.equal(sortDescriptors);
+    expect([manager entityDescription]).to.equal(entityDescription);
+}
+
 - (void)testIsEqual {
     NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSEntityDescription *entityDescription = [[NSEntityDescription alloc] init];
