@@ -36,9 +36,16 @@
                                                                                target:self
                                                                                action:@selector(addTodo)];
     [[self navigationItem] setRightBarButtonItem:addButton];
+}
 
+- (KFObjectManager *)objectManagerForSearchQuery:(NSString *)query {
     KFObjectManager *manager = [Todo managerInManagedObjectContext:[self managedObjectContext]];
-    [self setObjectManager:manager sectionNameKeyPath:nil cacheName:nil];
+
+    if (query) {
+        manager = [manager filter:[NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@", [[Todo name] key], query]];
+    }
+
+    return manager;
 }
 
 - (void)addTodo {

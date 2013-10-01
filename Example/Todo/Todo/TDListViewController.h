@@ -6,9 +6,9 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import "KFDataTableViewController.h"
+#import "KFDataSearchTableViewController.h"
 
-@interface TDListViewController : KFDataTableViewController
+@interface TDListViewController : KFDataSearchTableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
