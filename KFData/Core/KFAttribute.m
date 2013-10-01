@@ -104,6 +104,10 @@
                                                       options:options];
 }
 
+@end
+
+@implementation KFAttribute (Predicate)
+
 - (NSPredicate *)equal:(id)value {
     NSExpression *expression = [NSExpression expressionForConstantValue:value];
 
@@ -121,10 +125,6 @@
                                          type:NSNotEqualToPredicateOperatorType
                                       options:0];
 }
-
-@end
-
-@implementation KFAttribute (Predicate)
 
 - (NSPredicate *)greaterThan:(id)value {
     NSExpression *expression = [NSExpression expressionForConstantValue:value];
