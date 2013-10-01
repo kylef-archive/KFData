@@ -21,6 +21,6 @@
         #import "KFDataCollectionViewController.h"
         #import "KFDataTableViewController.h"
         #import "KFDataViewController.h"
-        #import "KFSearchableTableViewController.h"
+        #import "KFDataSearchTableViewController.h"
     #endif
 #endif
