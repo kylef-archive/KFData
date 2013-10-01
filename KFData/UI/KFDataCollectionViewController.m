@@ -8,10 +8,6 @@
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 
-#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-#import "PSTCollectionView.h"
-#endif
-
 #import "KFDataStore.h"
 #import "KFDataCollectionViewController.h"
 
@@ -27,11 +23,7 @@
 #pragma mark -
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-              collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout
-#else
               collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout
-#endif
 {
     if (self = [super initWithCollectionViewLayout:collectionViewLayout]) {
         [self commonInitWithManagedObjectContext:managedObjectContext];
@@ -189,13 +181,8 @@
     [self setSectionUpdates:nil];
     [self setItemUpdates:nil];
 
-#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-    PSTCollectionView *collectionView = [self collectionView];
-#else
     UICollectionView *collectionView = [self collectionView];
-#endif
 
-#ifndef COCOAPODS_POD_AVAILABLE_PSTCollectionView
     // http://openradar.appspot.com/12954582
     __block BOOL shouldReload = NO;
 
@@ -229,7 +216,6 @@
         [collectionView reloadData];
         return;
     }
-#endif
 
     if ([sectionUpdates count]) {
         [collectionView performBatchUpdates:^{

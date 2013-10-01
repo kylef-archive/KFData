@@ -12,13 +12,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-
-#import "PSTCollectionViewController.h"
-@class PSTCollectionViewFlowLayout;
-
-#endif
-
 
 /**
  KFDataCollectionViewController is a generic controller base that manages a
@@ -31,11 +24,8 @@
  coordinator changes stores.
  */
 
-#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-@interface KFDataCollectionViewController : PSTCollectionViewController <NSFetchedResultsControllerDelegate>
-#else
+
 @interface KFDataCollectionViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
-#endif
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -43,11 +33,7 @@
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-#ifdef COCOAPODS_POD_AVAILABLE_PSTCollectionView
-                        collectionViewLayout:(PSTCollectionViewFlowLayout*)collectionViewLayout;
-#else
                         collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;
-#endif
 
 - (instancetype)initWithCoder:(NSCoder *)coder
          managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
