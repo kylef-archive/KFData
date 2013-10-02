@@ -28,7 +28,7 @@
                                                                                action:@selector(addTodo)];
     [[self navigationItem] setRightBarButtonItem:addButton];
 
-    NSFetchRequest *fetchRequest = [[Todo managerInManagedObjectContext:[self managedObjectContext]] fetchRequest];
+    NSFetchRequest *fetchRequest = [[Todo managerWithManagedObjectContext:[self managedObjectContext]] fetchRequest];
     [self setFetchRequest:fetchRequest sectionNameKeyPath:nil];
 }
 

@@ -21,15 +21,15 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 
 #pragma mark - Creation
 
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription {
++ (instancetype)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription {
     return [[self alloc] initWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
 
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
++ (instancetype)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
     return [[self alloc] initWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:predicate sortDescriptors:sortDescriptors];
 }
 
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest {
++ (instancetype)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest {
     NSParameterAssert(fetchRequest != nil);
 
     NSEntityDescription *entityDescription = [fetchRequest entity];
@@ -73,10 +73,10 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         return NO;
     }
 
-    return [self isEqualToObjectManager:object];
+    return [self isEqualToManager:object];
 }
 
-- (BOOL)isEqualToObjectManager:(KFObjectManager *)objectManager {
+- (BOOL)isEqualToManager:(KFObjectManager *)objectManager {
     return (
         [[self managedObjectContext] isEqual:[objectManager managedObjectContext]] &&
         [[self entityDescription] isEqual:[objectManager entityDescription]] &&
@@ -200,7 +200,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 @implementation KFObjectManager (Sorting)
 
 - (instancetype)orderBy:(NSArray *)sortDescriptors {
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
+    return [KFObjectManager managerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
 }
 
 - (instancetype)reverse {
@@ -210,7 +210,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         [sortDescriptors addObject:[sortDescriptor reversedSortDescriptor]];
     }
 
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
+    return [KFObjectManager managerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:_predicate sortDescriptors:sortDescriptors];
 }
 
 @end
@@ -224,7 +224,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
     }
 
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
+    return [KFObjectManager managerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
 }
 
 - (instancetype)filter:(NSPredicate *)predicate {
@@ -232,7 +232,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[_predicate, predicate]];
     }
 
-    return [KFObjectManager objectManagerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
+    return [KFObjectManager managerWithManagedObjectContext:_managedObjectContext entityDescription:_entityDescription predicate:predicate sortDescriptors:_sortDescriptors];
 }
 
 @end

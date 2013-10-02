@@ -11,14 +11,14 @@
 
 @implementation Todo
 
-+ (KFObjectManager *)managerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
-    KFObjectManager *manager = [super managerInManagedObjectContext:managedObjectContext];
++ (KFObjectManager *)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    KFObjectManager *manager = [super managerWithManagedObjectContext:managedObjectContext];
 
     return [manager orderBy:@[[[Todo created] ascending]]];
 }
 
 + (KFObjectManager *)completedManagerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
-    return [[self managerInManagedObjectContext:managedObjectContext] filter:[[self complete] equal:@YES]];
+    return [[self managerWithManagedObjectContext:managedObjectContext] filter:[[self complete] equal:@YES]];
 }
 
 + (KFAttribute *)name {

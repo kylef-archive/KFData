@@ -30,9 +30,9 @@
 
 #pragma mark - Creation
 
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription;
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors;
-+ (instancetype)objectManagerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest;
++ (instancetype)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription;
++ (instancetype)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext entityDescription:(NSEntityDescription *)entityDescription predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors;
++ (instancetype)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest;
 
 #pragma mark - Equality
 
@@ -40,7 +40,7 @@
  @param objectManager The object manager to compare against the receiver
  @return YES if object manager is equivalent to the receiver
  */
-- (BOOL)isEqualToObjectManager:(KFObjectManager *)objectManager;
+- (BOOL)isEqualToManager:(KFObjectManager *)objectManager;
 
 #pragma mark -
 

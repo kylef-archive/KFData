@@ -25,9 +25,9 @@
     return entityDescription;
 }
 
-+ (KFObjectManager *)managerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
++ (KFObjectManager *)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
-    return [KFObjectManager objectManagerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
+    return [KFObjectManager managerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
 
 + (instancetype)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
