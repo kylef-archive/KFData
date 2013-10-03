@@ -12,19 +12,19 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.ios.deployment_target = '5.0'
 
-  s.subspec 'Core' do |corespec|
-    corespec.header_dir = 'KFData'
+  s.default_subspec = 'Core'
 
-    corespec.ios.frameworks = 'CoreData'
-    corespec.ios.source_files = 'KFData/KFData.h', 'KFData/Core/*.{h,m}'
+  s.subspec 'Essentials' do |essentialspec|
+    essentialspec.header_dir = 'KFData'
 
-    corespec.osx.frameworks = 'CoreData'
-    corespec.osx.source_files = 'KFData/Core/*.{h,m}'
+    essentialspec.ios.frameworks = 'CoreData'
+    essentialspec.ios.source_files = 'KFData/KFData.h', 'KFData/Core/*.{h,m}'
+
+    essentialspec.osx.frameworks = 'CoreData'
+    essentialspec.osx.source_files = 'KFData/Core/*.{h,m}'
   end
 
   s.subspec 'Store' do |storespec|
-    storespec.dependency 'KFData/Core'
-
     storespec.header_dir = 'KFData/Store'
 
     storespec.ios.frameworks = 'CoreData'
@@ -39,11 +39,16 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'UI' do |uispec|
-    uispec.dependency 'KFData/Core'
     uispec.header_dir = 'KFData/UI'
     uispec.platform = :ios
     uispec.ios.frameworks = 'UIKit'
     uispec.ios.source_files = 'KFData/UI/*.{h,m}'
+  end
+
+  s.subspec 'Core' do |corespec|
+   corespec.dependency 'KFData/Essentials'
+   corespec.dependency 'KFData/Store'
+   corespec.ios.dependency 'KFData/UI'
   end
 
   s.subspec 'Compatibility' do |cspec|
