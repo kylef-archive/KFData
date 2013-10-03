@@ -45,5 +45,11 @@ Pod::Spec.new do |s|
     uispec.ios.frameworks = 'UIKit'
     uispec.ios.source_files = 'KFData/UI/*.{h,m}'
   end
+
+  s.subspec 'Compatibility' do |cspec|
+    cspec.dependency 'KFData/Core'
+    cspec.header_dir = 'KFData/Compatibility'
+    cspec.source_files = 'KFData/Compatibility/*.{h,m}'
+  end
 end
 
