@@ -58,10 +58,10 @@
     NSPersistentStore *persistentStore;
     NSPersistentStore *backgroundPersistentStore = [_backgroundPersistentStoreCoordinator addPersistentStoreWithType:storeType configuration:configuration URL:storeURL options:options error:error];
 
-    if (error == nil) {
+    if (backgroundPersistentStore != nil) {
         persistentStore = [_persistentStoreCoordinator addPersistentStoreWithType:storeType configuration:configuration URL:storeURL options:options error:error];
 
-        if (error != nil) {
+        if (persistentStore == nil) {
             [_backgroundPersistentStoreCoordinator removePersistentStore:backgroundPersistentStore error:nil];
         }
     }
