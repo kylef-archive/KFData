@@ -124,16 +124,11 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 }
 
 - (NSArray *)array:(NSError **)error {
-    NSArray *array;
-
-    if (_resultsCache) {
-        array = _resultsCache;
-    } else {
-        array = [[self managedObjectContext] executeFetchRequest:[self fetchRequest] error:error];
-        _resultsCache = array;
+    if (_resultsCache == nil) {
+        _resultsCache = [[self managedObjectContext] executeFetchRequest:[self fetchRequest] error:error];
     }
 
-    return array;
+    return _resultsCache;
 }
 
 - (NSSet *)set:(NSError **)error {
