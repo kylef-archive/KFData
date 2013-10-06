@@ -126,7 +126,7 @@ depending on which KFDataStoreConfigurationType you have chosen.
 
 - (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options error:(NSError **)error;
 
-- (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey error:(NSError **)error;
+- (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey error:(NSError **)error NS_AVAILABLE(10_9, 7_0);
 
 #pragma mark -
 
