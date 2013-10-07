@@ -12,6 +12,9 @@
  on a managed object.
  */
 
+
+#define KFAttr(SELECTOR) [KFAttribute attributeWithKey:(NSStringFromSelector(@selector(SELECTOR)))]
+
 @interface KFAttribute : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, strong, readonly) NSString *key;

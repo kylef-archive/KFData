@@ -52,7 +52,17 @@ Your managed objects wont automatically implement these methods. So you will
 either need to manually add them to a subclass, or alternatively you can use
 our Python tool to generate your managed object implementation files.
 Instructions on the Python tool can be found
-[here](https://github.com/kylef/KFData.py).
+[here](https://github.com/kylef/KFData.py), this tool is still in active
+development so it may not be ready just yet.
+
+There is another alternative, you won't get autocompletion or 100% correct
+compile time checks. However we provide a macro which can provide some checks
+providing you have the "Strict selector matching" warning enabled. This is with
+a macro, which can be used as follows:
+
+```objective-c
+NSPredicate *predicate = [KFAttr(name) equal:@"Kyle"];
+```
 
 ### KFObjectManager
 
