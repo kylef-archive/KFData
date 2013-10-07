@@ -104,7 +104,8 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 #pragma mark - Fetching
 
 - (NSFetchRequest *)fetchRequest {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[[self entityDescription] name]];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:_entityDescription];
     [fetchRequest setPredicate:[self predicate]];
     [fetchRequest setSortDescriptors:[self sortDescriptors]];
     return fetchRequest;
