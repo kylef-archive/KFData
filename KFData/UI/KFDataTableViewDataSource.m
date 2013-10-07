@@ -157,7 +157,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
-    return _cellHandler(self, managedObject);
+    return _cellHandler(self, indexPath, managedObject);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

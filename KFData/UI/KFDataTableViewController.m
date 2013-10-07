@@ -37,8 +37,8 @@
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
     __weak KFDataTableViewController *controller = self;
 
-    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSManagedObject *managedObject) {
-        return [controller dataSource:dataSource cellForManagedObject:managedObject];
+    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject) {
+        return [controller dataSource:dataSource cellForManagedObject:managedObject atIndexPath:indexPath];
     }];
 
     if ([self isViewLoaded]) {
@@ -52,8 +52,8 @@
 - (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
     __weak KFDataTableViewController *controller = self;
 
-    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSManagedObject *managedObject) {
-        return [controller dataSource:dataSource cellForManagedObject:managedObject];
+    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject) {
+        return [controller dataSource:dataSource cellForManagedObject:managedObject atIndexPath:indexPath];
     }];
 
     if ([self isViewLoaded]) {
@@ -68,7 +68,7 @@
     return [_dataSource performFetch:error];
 }
 
-- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(NSManagedObject *)managedObject {
+- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"dataSource:cellForManagedObject: must be overidden." userInfo:nil];
 }
 

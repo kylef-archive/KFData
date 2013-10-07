@@ -58,7 +58,7 @@
 
 #pragma mark -
 
-- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(Todo *)todo {
+- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(Todo *)todo atIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[dataSource tableView] dequeueReusableCellWithIdentifier:@"Cell"];
 
     [[cell textLabel] setText:[todo name]];
