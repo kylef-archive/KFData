@@ -15,12 +15,9 @@
 @class KFObjectManager;
 @class KFDataTableViewDataSource;
 
-/**
- KFDataTableViewController is a generic controller base that manages a table
- view from a NSFetchRequest.
-
- It will automatically insert or update cells when changes have been made to
- the NSFetchRequest.
+/** KFDataTableViewController is a generic controller base uses
+ KFDataTableViewDataSource as a data source. Providing helper methods for
+ ease of use.
 */
 
 @interface KFDataTableViewController : UITableViewController
@@ -36,6 +33,10 @@
       sectionNameKeyPath:(NSString *)sectionNameKeyPath
                cacheName:(NSString *)cacheName;
 
+/** Executes the fetch request on the store to get objects and load them into the collection view.
+ @returns YES if successful or NO (and an error) if a problem occurred.
+ An error is returned if the fetch request specified doesn't include a sort descriptor that uses sectionNameKeyPath.'
+ */
 - (BOOL)performFetch:(NSError **)error;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath;

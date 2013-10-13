@@ -15,7 +15,11 @@
 
 @class KFObjectManager;
 
-/** KFDataCollectionViewDataSource is a collection view data source for dealing with a fetch request. */
+/** KFDataCollectionViewDataSource is a collection view data source for dealing
+ with a fetch request. It handles updating the collection view when new managed
+ objects match the fetch request. To use this class, you will need subclass and
+ overide UICollectionViewDataSource methods you want to implement.
+ Such as `collectionView:cellForItemAtIndexPath:` */
 
 @interface KFDataCollectionViewDataSource : NSObject <UICollectionViewDataSource>
 

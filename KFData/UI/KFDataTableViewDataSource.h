@@ -14,8 +14,11 @@
 @class KFObjectManager;
 
 
-/** KFDataTableViewDataSource is a table view data source for dealing with a fetch request.
- It handles updating the table view and also handles deletion of a row from `tableView:commitEditingStyle:forRowAtIndexPath:`.
+/** KFDataTableViewDataSource is a table view data source for dealing with a
+ fetch request. It handles updating the table view and also handles deletion
+ of a row from `tableView:commitEditingStyle:forRowAtIndexPath:`. To use this
+ class, you will need subclass and overide UITableViewDataSource methods you
+ want to implement. Such as `tableView:cellForRowAtIndexPath:`.
  */
 
 @interface KFDataTableViewDataSource : NSObject <UITableViewDataSource>

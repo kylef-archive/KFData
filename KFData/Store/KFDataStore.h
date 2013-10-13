@@ -21,14 +21,14 @@ NSString * const KFDataManagedObjectContextDidReset;
 
 
 typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
-    /***
+    /**
      This is the simplest, we have a single persistent store coordinator with
      two managed object context's, one for the UI and one for any asyncronous
      or background tasks.
      */
     KFDataStoreConfigurationTypeSingleStack,
 
-    /***
+    /**
      This is similar to the single stack configuration, although instead of
      merging changes from the import managed object context. It will instead
      call save on the main and then reset:. It is important that you listen
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
      */
     KFDataStoreConfigurationTypeSingleResetStack,
 
-    /***
+    /**
      This will create a dual persistent coordinator stack. To make use of write
      ahead lock (WAL). We can write into one stack and read from the other
      without blocking.
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
      */
     KFDataStoreConfigurationTypeDualStack,
 
-    /***
+    /**
      This is similar to the dual stack configuration, although instead of
      merging changes from the import managed object context. It will instead
      call save on the main and then reset:. It is important that you listen

@@ -16,9 +16,9 @@
 @class KFObjectManager;
 
 
-/**
- KFDataCollectionViewController is a generic controller base that you can use
- in conjunction with KFDataCollectionViewDataSource.
+/** KFDataCollectionViewController is a generic controller base that uses
+ KFDataCollectionViewDataSource as a data source. Providing helper methods
+ for ease of use.
  */
 
 @interface KFDataCollectionViewController : UICollectionViewController
