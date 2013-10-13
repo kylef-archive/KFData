@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77127719180B37D9007AC8DE /* KFDataCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 77127718180B37D9007AC8DE /* KFDataCollectionViewDataSource.m */; };
 		77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6117B6BE08007B122D /* KFAttribute.m */; };
 		77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A6917B6BE08007B122D /* NSManagedObject+KFData.m */; };
 		77166A8517B6BE08007B122D /* KFDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7117B6BE08007B122D /* KFDataStore.m */; };
 		77166A8617B6BE08007B122D /* KFDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */; };
 		77166A8717B6BE08007B122D /* KFDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7617B6BE08007B122D /* KFDataTableViewController.m */; };
-		77166A8A17B6BE08007B122D /* KFSearchableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */; };
-		77166A8817B6BE08007B122D /* KFDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77166A7817B6BE08007B122D /* KFDataViewController.m */; };
 		7734CE8B17B82A5D00896D59 /* KFDataDualStackStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */; };
 		7734CE8C17B82A5D00896D59 /* KFDataSingleStackStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7734CE8917B82A5D00896D59 /* KFDataSingleStackStore.m */; };
 		777304C517FADBF000C9155E /* KFDataSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777304C417FADBF000C9155E /* KFDataSearchTableViewController.m */; };
@@ -53,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77127717180B37D9007AC8DE /* KFDataCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataCollectionViewDataSource.h; sourceTree = "<group>"; };
+		77127718180B37D9007AC8DE /* KFDataCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataCollectionViewDataSource.m; sourceTree = "<group>"; };
 		77166A6017B6BE08007B122D /* KFAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFAttribute.h; sourceTree = "<group>"; };
 		77166A6117B6BE08007B122D /* KFAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFAttribute.m; sourceTree = "<group>"; };
 		77166A6817B6BE08007B122D /* NSManagedObject+KFData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+KFData.h"; sourceTree = "<group>"; };
@@ -64,11 +65,6 @@
 		77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataCollectionViewController.m; sourceTree = "<group>"; };
 		77166A7517B6BE08007B122D /* KFDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataTableViewController.h; sourceTree = "<group>"; };
 		77166A7617B6BE08007B122D /* KFDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewController.m; sourceTree = "<group>"; };
-		77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFSearchableTableViewController.h; sourceTree = "<group>"; };
-		77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFSearchableTableViewController.m; sourceTree = "<group>"; };
-		77166A7717B6BE08007B122D /* KFDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewController.h; sourceTree = "<group>"; };
-		77166A7817B6BE08007B122D /* KFDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataViewController.m; sourceTree = "<group>"; };
-		77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataViewControllerProtocol.h; sourceTree = "<group>"; };
 		7734CE8817B82A5D00896D59 /* KFDataDualStackStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataDualStackStore.m; sourceTree = "<group>"; };
 		7734CE8917B82A5D00896D59 /* KFDataSingleStackStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataSingleStackStore.m; sourceTree = "<group>"; };
 		7734CE8A17B82A5D00896D59 /* KFDataStoreInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDataStoreInternal.h; sourceTree = "<group>"; };
@@ -179,15 +175,12 @@
 			children = (
 				77BBC2A317FA2AFB00F3248F /* KFDataTableViewDataSource.h */,
 				77BBC2A417FA2AFB00F3248F /* KFDataTableViewDataSource.m */,
+				77127717180B37D9007AC8DE /* KFDataCollectionViewDataSource.h */,
+				77127718180B37D9007AC8DE /* KFDataCollectionViewDataSource.m */,
 				77166A7317B6BE08007B122D /* KFDataCollectionViewController.h */,
 				77166A7417B6BE08007B122D /* KFDataCollectionViewController.m */,
 				77166A7517B6BE08007B122D /* KFDataTableViewController.h */,
 				77166A7617B6BE08007B122D /* KFDataTableViewController.m */,
-				77166A7C17B6BE08007B122D /* KFSearchableTableViewController.h */,
-				77166A7D17B6BE08007B122D /* KFSearchableTableViewController.m */,
-				77166A7717B6BE08007B122D /* KFDataViewController.h */,
-				77166A7817B6BE08007B122D /* KFDataViewController.m */,
-				77166A7917B6BE08007B122D /* KFDataViewControllerProtocol.h */,
 				777304C317FADBF000C9155E /* KFDataSearchTableViewController.h */,
 				777304C417FADBF000C9155E /* KFDataSearchTableViewController.m */,
 			);
@@ -404,6 +397,7 @@
 				77166A7E17B6BE08007B122D /* KFAttribute.m in Sources */,
 				77166A8217B6BE08007B122D /* NSManagedObject+KFData.m in Sources */,
 				777304C517FADBF000C9155E /* KFDataSearchTableViewController.m in Sources */,
+				77127719180B37D9007AC8DE /* KFDataCollectionViewDataSource.m in Sources */,
 				7734CE8B17B82A5D00896D59 /* KFDataDualStackStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

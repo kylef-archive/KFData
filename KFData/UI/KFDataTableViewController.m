@@ -12,10 +12,19 @@
 #import "KFDataStore.h"
 #import "KFDataTableViewDataSource.h"
 
+@interface KFDataTableViewDataSourceController : KFDataTableViewDataSource
+
+@end
+
+@implementation KFDataTableViewDataSourceController
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [(KFDataTableViewController *)[tableView delegate] tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+@end
 
 @interface KFDataTableViewController ()
-
-//@property (nonatomic, strong) KFDataTableViewDataSource *dataSource;
 
 @end
 
@@ -35,11 +44,7 @@
 #pragma mark -
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    __weak KFDataTableViewController *controller = self;
-
-    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject) {
-        return [controller dataSource:dataSource cellForManagedObject:managedObject atIndexPath:indexPath];
-    }];
+    _dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 
     if ([self isViewLoaded]) {
         NSError *error;
@@ -50,11 +55,7 @@
 }
 
 - (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    __weak KFDataTableViewController *controller = self;
-
-    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject) {
-        return [controller dataSource:dataSource cellForManagedObject:managedObject atIndexPath:indexPath];
-    }];
+    _dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 
     if ([self isViewLoaded]) {
         NSError *error;
@@ -68,8 +69,14 @@
     return [_dataSource performFetch:error];
 }
 
-- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"dataSource:cellForManagedObject: must be overidden." userInfo:nil];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSManagedObject *managedObject = [(KFDataTableViewDataSource *)[tableView dataSource] objectAtIndexPath:indexPath];
+    return [self tableView:tableView cellForManagedObject:managedObject atIndexPath:indexPath];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath {
+    NSString *reason = [NSStringFromClass([self class]) stringByAppendingString:@": You must override tableView:cellForManagedObject:atIndexPath:"];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 @end

@@ -38,7 +38,7 @@
 
 - (BOOL)performFetch:(NSError **)error;
 
-- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

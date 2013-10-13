@@ -39,7 +39,7 @@
 }
 
 - (KFObjectManager *)objectManagerForSearchQuery:(NSString *)query {
-    KFObjectManager *manager = [Todo managerInManagedObjectContext:[self managedObjectContext]];
+    KFObjectManager *manager = [Todo managerWithManagedObjectContext:[self managedObjectContext]];
 
     if (query) {
         manager = [manager filter:[NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@", [[Todo name] key], query]];
@@ -58,8 +58,8 @@
 
 #pragma mark -
 
-- (UITableViewCell *)dataSource:(KFDataTableViewDataSource *)dataSource cellForManagedObject:(Todo *)todo atIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[dataSource tableView] dequeueReusableCellWithIdentifier:@"Cell"];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(Todo *)todo atIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
     [[cell textLabel] setText:[todo name]];
 

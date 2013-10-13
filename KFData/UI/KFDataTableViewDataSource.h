@@ -13,7 +13,6 @@
 @class KFDataTableViewDataSource;
 @class KFObjectManager;
 
-typedef UITableViewCell *(^KFDataTableViewCellHandler)(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject);
 
 /** KFDataTableViewDataSource is a table view data source for dealing with a fetch request.
  It handles updating the table view and also handles deletion of a row from `tableView:commitEditingStyle:forRowAtIndexPath:`.
@@ -24,20 +23,17 @@ typedef UITableViewCell *(^KFDataTableViewCellHandler)(KFDataTableViewDataSource
 @property (nonatomic, strong, readonly) UITableView *tableView;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readonly) NSFetchRequest *fetchRequest;
-@property (nonatomic, strong, readonly) KFDataTableViewCellHandler cellHandler;
 
 - (instancetype)initWithTableView:(UITableView *)tableView
              managedObjectContext:(NSManagedObjectContext *)managedObjectContext
                      fetchRequest:(NSFetchRequest *)fetchRequest
                sectionNameKeyPath:(NSString *)sectionNameKeyPath
-                        cacheName:(NSString *)cacheName
-                      cellHandler:(KFDataTableViewCellHandler)cellHandler;
+                        cacheName:(NSString *)cacheName;
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                     objectManager:(KFObjectManager *)objectManager
                sectionNameKeyPath:(NSString *)sectionNameKeyPath
-                        cacheName:(NSString *)cacheName
-                      cellHandler:(KFDataTableViewCellHandler)cellHandler;
+                        cacheName:(NSString *)cacheName;
 
 /** Executes the fetch request on the store to get objects and load them into the table view.
  @returns YES if successful or NO (and an error) if a problem occurred.

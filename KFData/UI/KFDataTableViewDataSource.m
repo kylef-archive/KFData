@@ -20,15 +20,11 @@
 
 - (instancetype)initWithTableView:(UITableView *)tableView
          fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
-                      cellHandler:(KFDataTableViewCellHandler)cellHandler
 {
     NSParameterAssert(tableView != nil);
     NSParameterAssert(fetchedResultsController != nil);
-    NSParameterAssert(cellHandler != nil);
 
     if (self = [super init]) {
-        _cellHandler = cellHandler;
-
         _tableView = tableView;
         [tableView setDataSource:self];
 
@@ -44,19 +40,18 @@
                      fetchRequest:(NSFetchRequest *)fetchRequest
                sectionNameKeyPath:(NSString *)sectionNameKeyPath
                         cacheName:(NSString *)cacheName
-                      cellHandler:(KFDataTableViewCellHandler)cellHandler
 {
     NSParameterAssert(managedObjectContext != nil);
     NSParameterAssert(fetchRequest != nil);
 
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
-    return [self initWithTableView:tableView fetchedResultsController:fetchedResultsController  cellHandler:cellHandler];
+    return [self initWithTableView:tableView fetchedResultsController:fetchedResultsController];
 }
 
-- (instancetype)initWithTableView:(UITableView *)tableView objectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName cellHandler:(KFDataTableViewCellHandler)cellHandler {
+- (instancetype)initWithTableView:(UITableView *)tableView objectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
     NSParameterAssert(objectManager != nil);
 
-    return [self initWithTableView:tableView managedObjectContext:[objectManager managedObjectContext] fetchRequest:[objectManager fetchRequest] sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName cellHandler:cellHandler];
+    return [self initWithTableView:tableView managedObjectContext:[objectManager managedObjectContext] fetchRequest:[objectManager fetchRequest] sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -156,8 +151,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
-    return _cellHandler(self, indexPath, managedObject);
+    NSString *reason = [NSStringFromClass([self class]) stringByAppendingString:@" : You must override tableView:cellForRowAtIndexpath:"];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

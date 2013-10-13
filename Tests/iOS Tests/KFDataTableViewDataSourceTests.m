@@ -39,9 +39,7 @@
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:_managedObjectContext];
     _objectManager = [KFObjectManager managerWithManagedObjectContext:_managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:sortDescriptors];
 
-    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:_tableView managedObjectContext:_managedObjectContext fetchRequest:_fetchRequest sectionNameKeyPath:nil cacheName:nil cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject) {
-        return nil;
-    }];
+    _dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:_tableView managedObjectContext:_managedObjectContext fetchRequest:_fetchRequest sectionNameKeyPath:nil cacheName:nil];
 }
 
 - (void)testInitSetTableViewDataSource {
@@ -61,9 +59,7 @@
 }
 
 - (void)testInitWithManagerSetsManagedObjectContext {
-    KFDataTableViewDataSource *dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:_tableView objectManager:_objectManager sectionNameKeyPath:nil cacheName:nil cellHandler:^UITableViewCell *(KFDataTableViewDataSource *dataSource, NSIndexPath *indexPath, NSManagedObject *managedObject) {
-        return nil;
-    }];
+    KFDataTableViewDataSource *dataSource = [[KFDataTableViewDataSource alloc] initWithTableView:_tableView objectManager:_objectManager sectionNameKeyPath:nil cacheName:nil];
     expect([dataSource managedObjectContext]).to.equal(_managedObjectContext);
 }
 
