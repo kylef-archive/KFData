@@ -6,6 +6,12 @@ Core Data done right for iOS 5+/OS X 10.7+.
 
 ## Overview
 
+KFData is a library for using Core Data, featuring many components which can be
+used separately or together. 1.0 is a major update to this library, and we have
+provided a
+[migration guide](https://github.com/kylef/KFData/wiki/KFData-1.0-Migrations-Guide)
+to help you migrate to the latest version.
+
 ### KFDataStore
 
 `KFDataStore` is a component of KFData which is a wrapper around a Core Data
