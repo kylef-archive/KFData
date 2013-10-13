@@ -12,38 +12,29 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class KFDataCollectionViewDataSource;
+@class KFObjectManager;
+
 
 /**
- KFDataCollectionViewController is a generic controller base that manages a
- collection view from a NSFetchRequest.
-
- It will automatically insert or update cells when changes have been made to
- the NSFetchRequest.
-
- Additionally, it will automatically re-fetch when the persistent store
- coordinator changes stores.
+ KFDataCollectionViewController is a generic controller base that you can use
+ in conjunction with KFDataCollectionViewDataSource.
  */
 
+@interface KFDataCollectionViewController : UICollectionViewController
 
-@interface KFDataCollectionViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
+@property (nonatomic, strong, readonly) KFDataCollectionViewDataSource *dataSource;
 
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+                   fetchRequest:(NSFetchRequest *)fetchRequest
+             sectionNameKeyPath:(NSString *)sectionNameKeyPath
+                      cacheName:(NSString *)cacheName;
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (void)setObjectManager:(KFObjectManager *)objectManager
+      sectionNameKeyPath:(NSString *)sectionNameKeyPath
+               cacheName:(NSString *)cacheName;
 
-- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext*)managedObjectContext
-                        collectionViewLayout:(UICollectionViewLayout*)collectionViewLayout;
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-         managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-- (void)setFetchRequest:(NSFetchRequest*)fetchRequest
-     sectionNameKeyPath:(NSString*)sectionNameKeyPath;
-
-- (void)performFetch;
-
-- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)performFetch:(NSError **)error;
 
 @end
 

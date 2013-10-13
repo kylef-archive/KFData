@@ -16,14 +16,4 @@
 
 @implementation KFDataCollectionViewControllerTests
 
-- (void)testInitRaisesException {
-    expect(^{ (void)[[KFDataCollectionViewController alloc] init]; }).to.raiseAny();
-}
-
-- (void)testInitWithManagedObjectContextSetsProperty {
-    NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] init];
-    KFDataCollectionViewController *collectionViewController = [[KFDataCollectionViewController alloc] initWithManagedObjectContext:managedObjectContext];
-    expect([collectionViewController managedObjectContext]).to.beIdenticalTo(managedObjectContext);
-}
-
 @end
