@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name = 'KFData'
-  s.version = '1.0'
+  s.version = '1.0-rc1'
   s.license = 'BSD'
   s.summary = 'Lightweight Core Data wrapper.'
   s.homepage = 'https://github.com/kylef/KFData'
   s.authors = { 'Kyle Fuller' => 'inbox@kylefuller.co.uk' }
-  s.source = { :git => 'https://github.com/kylef/KFData.git', :tag => '1.0' }
+  s.source = { :git => 'https://github.com/kylef/KFData.git', :tag => s.version.to_s }
 
   s.requires_arc = true
 
