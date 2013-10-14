@@ -5,8 +5,8 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
+#import <KFData/KFObjectManager.h>
 #import "KFDataCollectionViewDataSource.h"
-#import "KFObjectManager.h"
 
 
 @interface KFDataCollectionViewDataSource () <NSFetchedResultsControllerDelegate> {

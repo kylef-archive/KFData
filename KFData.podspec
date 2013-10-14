@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'UI' do |uispec|
+    uispec.dependency 'KFData/Essentials'
     uispec.header_dir = 'KFData/UI'
     uispec.platform = :ios
     uispec.ios.frameworks = 'UIKit'

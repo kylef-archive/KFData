@@ -7,9 +7,10 @@
 //
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
+#import <KFData/KFObjectManager.h>
+
 #import "KFDataSearchTableViewController.h"
 #import "KFDataTableViewDataSource.h"
-#import "KFObjectManager.h"
 
 
 const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
