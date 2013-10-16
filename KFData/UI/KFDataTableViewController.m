@@ -30,38 +30,23 @@
 
 @implementation KFDataTableViewController
 
-#pragma mark - View Lifecycle
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    NSError *error;
-    if ([self dataSource] && ([self performFetch:&error] == NO)) {
-        NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
-    }
-}
-
 #pragma mark -
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
     _dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 
-    if ([self isViewLoaded]) {
-        NSError *error;
-        if ([self performFetch:&error] == NO) {
-            NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
-        }
+    NSError *error;
+    if ([self performFetch:&error] == NO) {
+        NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
     }
 }
 
 - (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
     _dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 
-    if ([self isViewLoaded]) {
-        NSError *error;
-        if ([self performFetch:&error] == NO) {
-            NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
-        }
+    NSError *error;
+    if ([self performFetch:&error] == NO) {
+        NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
     }
 }
 

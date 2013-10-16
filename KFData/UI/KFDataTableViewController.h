@@ -24,11 +24,17 @@
 
 @property (nonatomic, strong, readonly) KFDataTableViewDataSource *dataSource;
 
+/** Set the fetch request to populate the table view
+ @note This must be called after the table view is loaded
+ */
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
                    fetchRequest:(NSFetchRequest *)fetchRequest
              sectionNameKeyPath:(NSString *)sectionNameKeyPath
                       cacheName:(NSString *)cacheName;
 
+/** Set the an object manager to populate the table view
+ @note This must be called after the table view is loaded
+ */
 - (void)setObjectManager:(KFObjectManager *)objectManager
       sectionNameKeyPath:(NSString *)sectionNameKeyPath
                cacheName:(NSString *)cacheName;
