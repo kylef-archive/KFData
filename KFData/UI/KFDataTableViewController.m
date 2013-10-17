@@ -6,11 +6,11 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import "KFDataTableViewController.h"
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "KFDataStore.h"
+#import "KFDataTableViewController.h"
 #import "KFDataTableViewDataSource.h"
+
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 @interface KFDataTableViewDataSourceController : KFDataTableViewDataSource
 

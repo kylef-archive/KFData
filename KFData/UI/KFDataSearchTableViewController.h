@@ -6,7 +6,9 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#import <Availability.h>
+
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 #import "KFDataTableViewController.h"
 

@@ -5,9 +5,10 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import <KFData/KFObjectManager.h>
+#import <KFData/KFData.h>
 #import "KFDataCollectionViewDataSource.h"
 
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 @interface KFDataCollectionViewDataSource () <NSFetchedResultsControllerDelegate> {
     NSMutableArray *_sectionUpdates;
@@ -244,3 +245,5 @@
 }
 
 @end
+
+#endif

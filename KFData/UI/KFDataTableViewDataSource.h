@@ -6,6 +6,10 @@
 //
 //
 
+#import <Availability.h>
+
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
@@ -51,3 +55,5 @@
 - (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
+
+#endif

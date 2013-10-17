@@ -6,10 +6,10 @@
 //
 //
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
-
-#import "KFDataCollectionViewDataSource.h"
 #import "KFDataCollectionViewController.h"
+#import "KFDataCollectionViewDataSource.h"
+
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 @interface KFDataCollectionViewDataSourceController : KFDataCollectionViewDataSource
 
@@ -75,4 +75,3 @@
 @end
 
 #endif
-

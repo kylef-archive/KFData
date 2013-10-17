@@ -6,9 +6,10 @@
 //
 //
 
+#import <KFData/KFData.h>
 #import "KFDataTableViewDataSource.h"
-#import "KFObjectManager.h"
 
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 @interface KFDataTableViewDataSource () <NSFetchedResultsControllerDelegate>
 
@@ -195,3 +196,5 @@
 
 
 @end
+
+#endif
