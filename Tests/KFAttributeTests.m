@@ -7,7 +7,6 @@
 //
 
 #import "KFDataTests.h"
-#import "KFAttribute.h"
 
 
 @interface KFAttributeTests : SenTestCase

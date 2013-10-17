@@ -7,7 +7,6 @@
 //
 
 #import "KFDataTests.h"
-#import "KFObjectManager.h"
 
 
 @interface KFObjectManagerTests : SenTestCase

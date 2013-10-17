@@ -14,4 +14,8 @@
 #define EXP_SHORTHAND YES
 #import "Expecta.h"
 
+#import <KFData/KFData.h>
+#import <KFData/KFDataStore.h>
+#import <KFData/KFDataUI.h>
+
 #endif

@@ -7,8 +7,6 @@
 //
 
 #import "KFDataTests.h"
-#import <KFData/UI/KFDataTableViewDataSource.h>
-#import <KFData/KFObjectManager.h>
 
 
 @interface KFDataTableViewDataSourceTests : SenTestCase {
