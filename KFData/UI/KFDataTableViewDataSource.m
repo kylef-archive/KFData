@@ -13,8 +13,6 @@
 
 @interface KFDataTableViewDataSource () <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-
 @end
 
 @implementation KFDataTableViewDataSource

@@ -15,8 +15,6 @@
     NSMutableArray *_itemUpdates;
 }
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-
 @end
 
 @implementation KFDataCollectionViewDataSource

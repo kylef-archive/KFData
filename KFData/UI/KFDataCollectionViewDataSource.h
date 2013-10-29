@@ -27,6 +27,7 @@
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readonly) NSFetchRequest *fetchRequest;
+@property (nonatomic, strong, readonly) NSFetchedResultsController *fetchedResultsController;
 
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
                   managedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -50,6 +51,8 @@
  @return The managed object for this index path.
  */
 - (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
+
+- (id <NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSUInteger)section;
 
 @end
 
