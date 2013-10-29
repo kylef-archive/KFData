@@ -23,7 +23,7 @@
 
 @interface KFDataTableViewController : UITableViewController
 
-@property (nonatomic, strong, readonly) KFDataTableViewDataSource *dataSource;
+@property (nonatomic, strong) KFDataTableViewDataSource *dataSource;
 
 /** Set the fetch request to populate the table view
  @note This must be called after the table view is loaded

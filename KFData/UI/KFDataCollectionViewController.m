@@ -46,8 +46,12 @@
 
 #pragma mark -
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    _dataSource = [[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+- (void)setDataSource:(KFDataCollectionViewDataSource *)dataSource {
+    if (dataSource) {
+        NSParameterAssert([dataSource collectionView] == [self collectionView]);
+    }
+
+    _dataSource = dataSource;
 
     if ([self isViewLoaded]) {
         NSError *error;
@@ -57,15 +61,12 @@
     }
 }
 
-- (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    _dataSource = [[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
+    [self setDataSource:[[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName]];
+}
 
-    if ([self isViewLoaded]) {
-        NSError *error;
-        if ([self performFetch:&error] == NO) {
-            NSLog(@"KFDataCollectionViewController: Error performing fetch %@", error);
-        }
-    }
+- (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
+    [self setDataSource:[[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName]];
 }
 
 - (BOOL)performFetch:(NSError **)error {

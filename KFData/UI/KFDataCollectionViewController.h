@@ -24,7 +24,7 @@
 
 @interface KFDataCollectionViewController : UICollectionViewController
 
-@property (nonatomic, strong, readonly) KFDataCollectionViewDataSource *dataSource;
+@property (nonatomic, strong) KFDataCollectionViewDataSource *dataSource;
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
                    fetchRequest:(NSFetchRequest *)fetchRequest

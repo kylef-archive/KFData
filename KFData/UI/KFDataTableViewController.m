@@ -32,8 +32,12 @@
 
 #pragma mark -
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    _dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+- (void)setDataSource:(KFDataTableViewDataSource *)dataSource {
+    if (dataSource) {
+        NSParameterAssert([dataSource tableView] == [self tableView]);
+    }
+
+    _dataSource = dataSource;
 
     NSError *error;
     if ([self performFetch:&error] == NO) {
@@ -41,13 +45,12 @@
     }
 }
 
-- (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    _dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
+    [self setDataSource:[[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName]];
+}
 
-    NSError *error;
-    if ([self performFetch:&error] == NO) {
-        NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
-    }
+- (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
+    [self setDataSource:[[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName]];
 }
 
 - (BOOL)performFetch:(NSError **)error {
