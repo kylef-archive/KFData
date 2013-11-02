@@ -151,12 +151,8 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"performReadBlock: must be overidden." userInfo:nil];
 }
 
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock completion:(void(^)(NSError *error))completion {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"performWriteBlock:success:failure: must be overidden." userInfo:nil];
-}
-
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock {
-    [self performWriteBlock:writeBlock success:nil failure:nil];
 }
 
 @end

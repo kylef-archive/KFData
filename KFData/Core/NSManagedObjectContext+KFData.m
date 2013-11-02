@@ -11,20 +11,20 @@
 
 @implementation NSManagedObjectContext (KFData)
 
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
+- (void)performWriteBlock:(void(^)(void))writeBlock completion:(void(^)(NSError *error))completion {
     NSParameterAssert(writeBlock != nil);
 
     [self performBlock:^{
-        writeBlock(self);
+        writeBlock();
 
         if ([self hasChanges]) {
             NSError *error;
             if ([self save:&error]) {
-                if (success) {
-                    success();
+                if (completion) {
+                    completion(nil);
                 }
-            } else if (failure) {
-                failure(error);
+            } else if (completion) {
+                completion(error);
             }
         }
     }];

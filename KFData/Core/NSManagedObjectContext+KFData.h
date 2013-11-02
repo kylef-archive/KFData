@@ -11,6 +11,14 @@
 
 @interface NSManagedObjectContext (KFData)
 
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure;
+/**
+ Asyncronously execute a block and then save changes to the context.
+ Executing a completion block when complete.
+
+ @param writeBlock The block to run on the managed object context.
+ @param completion A block to run once the write block has completed, the error will be nil if it the save was successful.
+ */
+
+- (void)performWriteBlock:(void(^)(void))writeBlock completion:(void(^)(NSError *error))completion;
 
 @end

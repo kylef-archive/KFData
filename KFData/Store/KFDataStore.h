@@ -157,6 +157,7 @@ depending on which KFDataStoreConfigurationType you have chosen.
 - (NSManagedObjectContext *)backgroundManagedObjectContext;
 
 #pragma mark - Performing Block Operations
+
 /** @name Performing Block Operations */
 
 /** Asyncronously execute a read-only block.
@@ -166,24 +167,13 @@ depending on which KFDataStoreConfigurationType you have chosen.
 - (void)performReadBlock:(void (^)(NSManagedObjectContext* managedObjectContext))readBlock;
 
 /**
- Asyncronously execute a block and then save the changes to the persistent store.
-
- @param writeBlock The block to perform
- @see performWriteBlock:success:failure:
-*/
-- (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock;
-
-/**
  Asyncronously execute a block and then save changes to the persistent store.
- Executing a success or failure block after the save.
+ Executing a completion block when complete.
 
  @param writeBlock The block to run on the managed object context.
- @param success A block to run when the write block has been executed, and the managed object context has saved up to it's parent.
- @param failure A block to run when there was a failure to save in the current block, or it's parents.
- @see performWriteBlock:
+ @param completion A block to run once the write block has completed, the error will be nil if it the save was successful.
 */
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext* managedObjectContext))writeBlock
-                  success:(void(^)(void))success
-                  failure:(void(^)(NSError *error))failure;
+
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock completion:(void(^)(NSError *error))completion;
 
 @end

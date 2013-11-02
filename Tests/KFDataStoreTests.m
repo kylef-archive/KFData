@@ -34,7 +34,7 @@
 
 - (void)testUnimplementedPerformWriteBlockRaisesException {
     KFDataStore *store = [[KFDataStore alloc] init];
-    expect(^{ [store performWriteBlock:nil success:nil failure:nil]; }).to.raiseAny();
+    expect(^{ [store performWriteBlock:nil completion:nil]; }).to.raiseAny();
 }
 
 - (void)testUnimplementedPerformReadBlockRaisesException {

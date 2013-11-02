@@ -69,7 +69,7 @@
     return persistentStore;
 }
 
-- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock completion:(void(^)(NSError *error))completion {
     NSParameterAssert(writeBlock != nil);
 
     [_backgroundManagedObjectContext performBlock:^{
@@ -78,11 +78,11 @@
         if ([_backgroundManagedObjectContext hasChanges]) {
             NSError *error;
             if ([_backgroundManagedObjectContext save:&error]) {
-                if (success) {
-                    success();
+                if (completion) {
+                    completion(nil);
                 }
-            } else if (failure) {
-                failure(error);
+            } else if (completion) {
+                completion(error);
             }
         }
     }];
