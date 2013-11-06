@@ -11,8 +11,7 @@
 
 @interface NSManagedObjectContext (KFDataCompatibility)
 
-/** Deprecated because it silently handles failure
- @see performWriteBlock:success:failure: */
 - (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock __deprecated;
 
 @end
+

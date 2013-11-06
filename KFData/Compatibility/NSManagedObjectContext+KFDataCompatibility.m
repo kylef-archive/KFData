@@ -13,7 +13,9 @@
 @implementation NSManagedObjectContext (KFDataCompatibility)
 
 - (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock {
-    [self performWriteBlock:writeBlock success:nil failure:nil];
+    [self performWriteBlock:^{
+        writeBlock(self);
+    } completion:nil];
 }
 
 @end
