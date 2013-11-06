@@ -154,15 +154,17 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     return orderedSet;
 }
 
-- (void)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error {
+- (BOOL)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error {
     NSArray *array = [self array:error];
 
     if (array != nil) {
         [array enumerateObjectsUsingBlock:block];
     }
+
+    return array != nil;
 }
 
-- (void)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error {
+- (BOOL)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error {
     NSArray *array = [self array:error];
 
     if (array != nil) {
@@ -170,6 +172,8 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
             block(managedObject);
         }
     }
+
+    return array != nil;
 }
 
 #pragma mark - Deletion

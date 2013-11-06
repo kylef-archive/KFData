@@ -73,9 +73,19 @@
 
 #pragma mark - Enumeration
 
-- (void)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error;
+/** Enumerate all objects matching the set predicate ordered by any set sort descriptors
+ @param block The block to apply to elements in the array
+ @param error If there is a problem fetching the objects, upon return contains an instance of NSError that describes the problem.
+ @return YES if the operation succeeded.
+ */
+- (BOOL)enumerateObjects:(void (^)(NSManagedObject *object, NSUInteger index, BOOL *stop))block error:(NSError **)error;
 
-- (void)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error;
+/** Enumerate all objects matching the set predicate ordered by any set sort descriptors
+ @param block The block to apply to all objects
+ @param error If there is a problem fetching the objects, upon return contains an instance of NSError that describes the problem.
+ @return YES if the operation succeeded.
+ */
+- (BOOL)each:(void (^)(NSManagedObject *managedObject))block error:(NSError **)error;
 
 #pragma mark - Deletion
 
