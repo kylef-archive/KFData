@@ -256,7 +256,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 
     if (count == 1) {
         managedObject = [array objectAtIndex:0];
-    } if (count > 1) {
+    } if ((count > 1) && error != nil) {
         *error = [NSError errorWithDomain:KFDataErrorDomain code:0 userInfo:@{
             NSLocalizedDescriptionKey: @"Find object in fetch request failed, should only result in a single result.",
         }];
