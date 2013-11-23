@@ -26,11 +26,13 @@
 }
 
 + (KFObjectManager *)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    NSParameterAssert(managedObjectContext != nil);
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
     return [KFObjectManager managerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
 
 + (instancetype)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    NSParameterAssert(managedObjectContext != nil);
     NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
     return [[self alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 }

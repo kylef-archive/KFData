@@ -19,6 +19,6 @@
  @param completion A block to run once the write block has completed, the error will be nil if it the save was successful.
  */
 
-- (void)performWriteBlock:(void(^)(void))writeBlock completion:(void(^)(NSError *error))completion;
+- (void)performWriteBlock:(void(^)(void))writeBlock completion:(void(^)(NSError *error))completion __attribute((nonnull(1)));
 
 @end
