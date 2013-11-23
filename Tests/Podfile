@@ -4,6 +4,7 @@ inhibit_all_warnings!
 
 def import_pods
     pod 'KFData', :path => '../'
+    pod 'KFData/Compatibility', :path => '../'
     pod 'Expecta'
 end
 
