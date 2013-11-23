@@ -13,5 +13,7 @@
 
 - (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock __deprecated;
 
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure __deprecated;
+
 @end
 

@@ -18,4 +18,18 @@
     } completion:nil];
 }
 
+- (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure {
+    [self performWriteBlock:^{
+        writeBlock(self);
+    } completion:^(NSError *error) {
+        if (error) {
+            if (failure) {
+                failure(error);
+            }
+        } else if (success) {
+            success();
+        }
+    }];
+}
+
 @end
