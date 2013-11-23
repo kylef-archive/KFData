@@ -68,7 +68,7 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
     return storesDirectoryURL;
 }
 
-+ (instancetype)standardLocalDataStore {
++ (instancetype)standardLocalDataStore:(NSError **)error {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeDualStack];
 
     NSDictionary *options = @{
@@ -76,20 +76,30 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
         NSInferMappingModelAutomaticallyOption: @YES,
     };
 
-    [dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options error:nil];
+    if ([dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options error:&error] == nil) {
+        dataStore = nil;
+    }
 
     return dataStore;
 }
 
-+ (instancetype)standardMemoryDataStore {
++ (instancetype)standardMemoryDataStore:(NSError **)error {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
-    [dataStore addMemoryStore:nil error:nil];
+
+    if ([dataStore addMemoryStore:nil error:error] == nil) {
+        dataStore = nil;
+    }
+
     return dataStore;
 }
 
-+ (instancetype)standardCloudDataStore {
++ (instancetype)standardCloudDataStore:(NSError **)error {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
-    [dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore" error:nil];
+
+    if ([dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore" error:nil] == nil) {
+        dataStore = nil;
+    }
+
     return dataStore;
 }
 

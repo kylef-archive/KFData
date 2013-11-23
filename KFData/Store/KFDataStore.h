@@ -97,20 +97,29 @@ depending on which KFDataStoreConfigurationType you have chosen.
 /** Creates a standard data store which persists to the document directory.
  This uses the dual stack configuration mode, and it will store data in the
  applications sandbox at `/Documents/DataStores/localStore.sqlite`
- 
+
  It will use automatically migrate persistent stores and infer the mapping
  model while doing so.
+
+ @param error If there is a problem creating the store, upon return contains an instance of NSError that describes the problem.
+ @return The data store configured for local persistence.
 */
 
-+ (instancetype)standardLocalDataStore;
++ (instancetype)standardLocalDataStore:(NSError *)error;
 
-/** Create a in-memory data store, it will use the single stack configuration mode */
+/** Create a in-memory data store, it will use the single stack configuration mode
+ @param error If there is a problem creating the store, upon return contains an instance of NSError that describes the problem.
+ @return The data store configured for memory persistence.
+ */
 
-+ (instancetype)standardMemoryDataStore;
++ (instancetype)standardMemoryDataStore:(NSError *)error;
 
-/** Create a iCloud data store, it will use the single stack configuration mode */
+/** Create a iCloud data store, it will use the single stack configuration mode
+ @param error If there is a problem creating the store, upon return contains an instance of NSError that describes the problem.
+ @return The data store configured for cloud persistence.
+ */
 
-+ (instancetype)standardCloudDataStore;
++ (instancetype)standardCloudDataStore:(NSError *)error;
 
 #pragma mark -
 

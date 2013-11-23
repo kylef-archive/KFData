@@ -67,13 +67,17 @@
 #pragma mark - Test common helpers
 
 - (void)testStandardLocalDataStoreShouldBeDualStack {
-    KFDataStore *store = [KFDataStore standardLocalDataStore];
+    NSError *error;
+    KFDataStore *store = [KFDataStore standardLocalDataStore:error];
     expect(NSStringFromClass([store class])).to.equal(@"KFDataDualStackStore");
+    expect(error).to.beNil();
 }
 
 - (void)testStandardLocalDataStoreShouldBeSingleStack {
-    KFDataStore *store = [KFDataStore standardMemoryDataStore];
+    NSError *error;
+    KFDataStore *store = [KFDataStore standardMemoryDataStore:error];
     expect(NSStringFromClass([store class])).to.equal(@"KFDataSingleStackStore");
+    expect(error).to.beNil();
 }
 
 #pragma mark -
