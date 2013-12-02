@@ -26,6 +26,8 @@
             } else if (completion) {
                 completion(error);
             }
+        } else if (completion) {
+            completion(nil);
         }
     }];
 }
