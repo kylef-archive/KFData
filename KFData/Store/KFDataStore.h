@@ -105,21 +105,21 @@ depending on which KFDataStoreConfigurationType you have chosen.
  @return The data store configured for local persistence.
 */
 
-+ (instancetype)standardLocalDataStore:(NSError *)error;
++ (instancetype)standardLocalDataStore:(NSError **)error;
 
 /** Create a in-memory data store, it will use the single stack configuration mode
  @param error If there is a problem creating the store, upon return contains an instance of NSError that describes the problem.
  @return The data store configured for memory persistence.
  */
 
-+ (instancetype)standardMemoryDataStore:(NSError *)error;
++ (instancetype)standardMemoryDataStore:(NSError **)error;
 
 /** Create a iCloud data store, it will use the single stack configuration mode
  @param error If there is a problem creating the store, upon return contains an instance of NSError that describes the problem.
  @return The data store configured for cloud persistence.
  */
 
-+ (instancetype)standardCloudDataStore:(NSError *)error;
++ (instancetype)standardCloudDataStore:(NSError **)error;
 
 #pragma mark -
 
