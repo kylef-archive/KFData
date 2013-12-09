@@ -1,5 +1,7 @@
 language: objective-c
+language: objective-c
 before_install:
-  - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
-script: "make test"
+    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+    - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
+script: make test
 
