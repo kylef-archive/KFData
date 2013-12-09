@@ -67,7 +67,7 @@ providing you have the "Strict selector matching" warning enabled. This is with
 a macro, which can be used as follows:
 
 ```objective-c
-NSPredicate *predicate = [KFAttr(name) equal:@"Kyle"];
+NSPredicate *predicate = [KFAttributeFromKey(name) equal:@"Kyle"];
 ```
 
 ### KFObjectManager

@@ -13,7 +13,7 @@
  */
 
 
-#define KFAttr(SELECTOR) [KFAttribute attributeWithKey:(NSStringFromSelector(@selector(SELECTOR)))]
+#define KFAttributeFromKey(KEY) [KFAttribute attributeWithKey:(NSStringFromSelector(@selector(KEY)))]
 
 @interface KFAttribute : NSObject <NSSecureCoding, NSCopying>
 
