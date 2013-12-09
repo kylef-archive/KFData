@@ -68,14 +68,14 @@
 
 - (void)testStandardLocalDataStoreShouldBeDualStack {
     NSError *error;
-    KFDataStore *store = [KFDataStore standardLocalDataStore:error];
+    KFDataStore *store = [KFDataStore standardLocalDataStore:&error];
     expect(NSStringFromClass([store class])).to.equal(@"KFDataDualStackStore");
     expect(error).to.beNil();
 }
 
 - (void)testStandardLocalDataStoreShouldBeSingleStack {
     NSError *error;
-    KFDataStore *store = [KFDataStore standardMemoryDataStore:error];
+    KFDataStore *store = [KFDataStore standardMemoryDataStore:&error];
     expect(NSStringFromClass([store class])).to.equal(@"KFDataSingleStackStore");
     expect(error).to.beNil();
 }

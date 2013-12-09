@@ -76,7 +76,7 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
         NSInferMappingModelAutomaticallyOption: @YES,
     };
 
-    if ([dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options error:&error] == nil) {
+    if ([dataStore addLocalStore:kKFDataStoreLocalFilename configuration:nil options:options error:error] == nil) {
         dataStore = nil;
     }
 
@@ -96,7 +96,7 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
 + (instancetype)standardCloudDataStore:(NSError **)error {
     KFDataStore *dataStore = [KFDataStore storeWithConfigurationType:KFDataStoreConfigurationTypeSingleStack];
 
-    if ([dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore" error:nil] == nil) {
+    if ([dataStore addCloudStore:kKFDataStoreCloudFilename configuration:nil contentNameKey:@"cloudStore" error:error] == nil) {
         dataStore = nil;
     }
 
