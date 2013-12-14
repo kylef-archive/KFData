@@ -3,7 +3,7 @@ APPLEDOC ?= appledoc
 APPLEDOC_OPTS = --output docs \
 				--project-company "Kyle Fuller" \
 				--company-id "com.kylefuller" \
-			   	--project-name KFData \
+				--project-name KFData \
 				--project-version "$(VERSION)" \
 				--create-html \
 				--no-repeat-first-par \
@@ -15,7 +15,11 @@ APPLEDOC_OPTS = --output docs \
 				--docset-fallback-url "http://kylef.github.com/KFData/" \
 				--publish-docset \
 				--verbose 2
-XCTOOL := $(shell which xctool)
+XCODEBUILD := $(shell which xcodebuild)
+
+PROJECT_NAME=KFData
+WORKSPACE=$(PROJECT_NAME).xcworkspace
+XCODEBUILD=xcodebuild -workspace $(WORKSPACE)
 
 
 docs: clean
@@ -25,19 +29,17 @@ clean:
 	rm -fr docs
 
 test-osx:
-	xctool -scheme 'OS X Tests' build -sdk macosx -configuration Release
-	xctool -scheme 'OS X Tests' build-tests -sdk macosx -configuration Release
-	xctool -scheme 'OS X Tests' test -test-sdk macosx -sdk macosx -configuration Release
+	@printf "\e[34mRunning OS X Tests\n"
+	@$(XCODEBUILD) -scheme 'OS X Tests' test | xcpretty -tc
 
 test-ios:
-	xctool -scheme 'iOS Tests' build -sdk iphonesimulator -configuration Release
-	xctool -scheme 'iOS Tests' build-tests -sdk iphonesimulator -configuration Release
-	xctool -scheme 'iOS Tests' test -test-sdk iphonesimulator -sdk iphonesimulator -configuration Release
+	@printf "\e[34mRunning iOS Tests\n"
+	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator test | xcpretty -tc
 
 test-podspec:
 	pod spec lint KFData.podspec
 
-test: test-osx test-ios
+test: test-osx test-ios test-podspec
 
 gh-pages: docs
 	cp -r docs/publish/ docs/html
