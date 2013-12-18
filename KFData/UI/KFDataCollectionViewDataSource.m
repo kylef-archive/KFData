@@ -10,7 +10,7 @@
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
-@interface KFDataCollectionViewDataSource () <NSFetchedResultsControllerDelegate> {
+@interface KFDataCollectionViewDataSource () {
     NSMutableArray *_sectionUpdates;
     NSMutableArray *_itemUpdates;
 }

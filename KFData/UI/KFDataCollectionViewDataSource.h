@@ -22,7 +22,7 @@
  overide UICollectionViewDataSource methods you want to implement.
  Such as `collectionView:cellForItemAtIndexPath:` */
 
-@interface KFDataCollectionViewDataSource : NSObject <UICollectionViewDataSource>
+@interface KFDataCollectionViewDataSource : NSObject <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;

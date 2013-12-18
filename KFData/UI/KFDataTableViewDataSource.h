@@ -25,7 +25,7 @@
  want to implement. Such as `tableView:cellForRowAtIndexPath:`.
  */
 
-@interface KFDataTableViewDataSource : NSObject <UITableViewDataSource>
+@interface KFDataTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
