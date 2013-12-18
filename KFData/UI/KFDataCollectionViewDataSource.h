@@ -50,7 +50,7 @@
  @param indexPath to retrieve the object for
  @return The managed object for this index path.
  */
-- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 - (id <NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSUInteger)section;
 

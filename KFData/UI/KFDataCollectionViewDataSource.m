@@ -76,7 +76,7 @@
     return [sections objectAtIndex:section];
 }
 
-- (NSManagedObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+- (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath {
     return [[[self sectionInfoForSection:[indexPath section]] objects] objectAtIndex:[indexPath row]];
 }
 

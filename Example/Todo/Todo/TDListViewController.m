@@ -83,7 +83,7 @@
 #pragma mark - Selection
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Todo *todo = (Todo *)[[self dataSource] objectAtIndexPath:indexPath];
+    Todo *todo = [[self dataSource] objectAtIndexPath:indexPath];
 
     BOOL isComplete = [[todo complete] boolValue] == NO;
     [todo setComplete:@(isComplete)];
