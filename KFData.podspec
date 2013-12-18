@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'KFData'
-  s.version = '1.0.0-RC2'
+  s.version = '1.0.0'
   s.license = 'BSD'
   s.summary = 'Lightweight Core Data wrapper.'
   s.homepage = 'https://github.com/kylef/KFData'
