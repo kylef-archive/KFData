@@ -162,6 +162,33 @@
                                       options:0];
 }
 
+- (NSPredicate *)isNil {
+    NSExpression *expression = [NSExpression expressionForConstantValue:nil];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSEqualToPredicateOperatorType
+                                      options:0];
+}
+
+- (NSPredicate *)isYes {
+    NSExpression *expression = [NSExpression expressionForConstantValue:@YES];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSEqualToPredicateOperatorType
+                                      options:0];
+}
+
+- (NSPredicate *)isNo {
+    NSExpression *expression = [NSExpression expressionForConstantValue:@NO];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSEqualToPredicateOperatorType
+                                      options:0];
+}
+
 @end
 
 @implementation KFAttribute (Sorting)

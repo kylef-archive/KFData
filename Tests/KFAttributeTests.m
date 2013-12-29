@@ -61,6 +61,18 @@
     expect([[self attribute] lessThanOrEqualTo:@4]).to.equal([NSPredicate predicateWithFormat:@"id <= 4"]);
 }
 
+- (void)testIsNilPredicate {
+    expect([[self attribute] isNil]).to.equal([NSPredicate predicateWithFormat:@"id == nil"]);
+}
+
+- (void)testIsYesPredicate {
+    expect([[self attribute] isYes]).to.equal([NSPredicate predicateWithFormat:@"id == YES"]);
+}
+
+- (void)testIsNoPredicate {
+    expect([[self attribute] isNo]).to.equal([NSPredicate predicateWithFormat:@"id == NO"]);
+}
+
 - (void)testPredicateFromFormat {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == 4", [self attribute]];
     expect([predicate description]).to.equal([[NSPredicate predicateWithFormat:@"id == 4"] description]);

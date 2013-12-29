@@ -76,6 +76,23 @@
  */
 - (NSPredicate *)lessThanOrEqualTo:(id)value;
 
+/** Returns a predicate for if the attribute being equal to nil
+ @return The predicate for the attribute being nil.
+ */
+- (NSPredicate *)isNil;
+
+/** Returns a predicate for if the attribute being equal to YES
+ @return The predicate for the attribute being YES.
+ @see isNO
+ */
+- (NSPredicate *)isYes;
+
+/** Returns a predicate for if the attribute being equal to NO
+ @return The predicate for the attribute being NO.
+ @see isYes
+ */
+- (NSPredicate *)isNo;
+
 @end
 
 @interface KFAttribute (Sorting)
