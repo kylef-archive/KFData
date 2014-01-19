@@ -167,6 +167,12 @@
         case UITableViewCellEditingStyleDelete: {
             NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
             [[self managedObjectContext] deleteObject:managedObject];
+
+            NSError *error;
+            if ([[self managedObjectContext] save:&error] == NO) {
+                NSLog(@"%@: Failed to save managed object context after deleting %@", NSStringFromClass([self class]), error);
+            }
+
             break;
         }
 
