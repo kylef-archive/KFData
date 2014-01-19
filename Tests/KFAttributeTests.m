@@ -41,8 +41,16 @@
     expect([[self attribute] equal:@4]).to.equal([NSPredicate predicateWithFormat:@"id == 4"]);
 }
 
-- (void)testCreateUnqualPredicate {
+- (void)testCreateEqualPredicateWithOptions {
+    expect([[self attribute] equal:@4 options:NSCaseInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id ==[c] 4"]);
+}
+
+- (void)testCreateUnequalPredicate {
     expect([[self attribute] notEqual:@4]).to.equal([NSPredicate predicateWithFormat:@"id != 4"]);
+}
+
+- (void)testCreateUnequalPredicateWithOptions {
+    expect([[self attribute] notEqual:@4 options:NSDiacriticInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id !=[d] 4"]);
 }
 
 - (void)testGreaterThanPredicate {

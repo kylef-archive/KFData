@@ -108,22 +108,30 @@
 
 @implementation KFAttribute (Predicate)
 
-- (NSPredicate *)equal:(id)value {
+- (NSPredicate *)equal:(id)value options:(NSComparisonPredicateOptions)options {
     NSExpression *expression = [NSExpression expressionForConstantValue:value];
 
     return [self predicateWithRightExpression:expression
                                      modifier:NSDirectPredicateModifier
                                          type:NSEqualToPredicateOperatorType
-                                      options:0];
+                                      options:options];
 }
 
-- (NSPredicate *)notEqual:(id)value {
+- (NSPredicate *)equal:(id)value {
+    return [self equal:value options:0];
+}
+
+- (NSPredicate *)notEqual:(id)value options:(NSComparisonPredicateOptions)options {
     NSExpression *expression = [NSExpression expressionForConstantValue:value];
 
     return [self predicateWithRightExpression:expression
                                      modifier:NSDirectPredicateModifier
                                          type:NSNotEqualToPredicateOperatorType
-                                      options:0];
+                                      options:options];
+}
+
+- (NSPredicate *)notEqual:(id)value {
+    return [self notEqual:value options:0];
 }
 
 - (NSPredicate *)greaterThan:(id)value {

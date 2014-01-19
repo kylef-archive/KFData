@@ -36,15 +36,31 @@
 
 /** Returns a predicate for an equality comparison against the supplied value
  @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
  @return The predicate for this comparison
- @see notEqual:
+ @see equal:
+ */
+- (NSPredicate *)equal:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for an equality comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see equal:options:
  */
 - (NSPredicate *)equal:(id)value;
 
 /** Returns a predicate for an unequal comparison against the supplied value
  @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
  @return The predicate for this comparison
- @see equal:
+ @see notEqual:
+ */
+- (NSPredicate *)notEqual:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for an unequal comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see notEqual:options:
  */
 - (NSPredicate *)notEqual:(id)value;
 
