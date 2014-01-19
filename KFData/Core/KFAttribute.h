@@ -64,6 +64,66 @@
  */
 - (NSPredicate *)notEqual:(id)value;
 
+/** Returns a predicate for a like comparison against the supplied value
+ @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
+ @return The predicate for this comparison
+ @see like:
+ */
+- (NSPredicate *)like:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for a like comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see like:options:
+ */
+- (NSPredicate *)like:(id)value;
+
+/** Returns a predicate for a matches comparison against the supplied value
+ @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
+ @return The predicate for this comparison
+ @see like:
+ */
+- (NSPredicate *)matches:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for a matches comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see like:options:
+ */
+- (NSPredicate *)matches:(id)value;
+
+/** Returns a predicate for a begins with comparison against the supplied value
+ @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
+ @return The predicate for this comparison
+ @see like:
+ */
+- (NSPredicate *)beginsWith:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for a begins with comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see like:options:
+ */
+- (NSPredicate *)beginsWith:(id)value;
+
+/** Returns a predicate for a ends with comparison against the supplied value
+ @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
+ @return The predicate for this comparison
+ @see like:
+ */
+- (NSPredicate *)endsWith:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for a ends with comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see like:options:
+ */
+- (NSPredicate *)endsWith:(id)value;
+
 /** Returns a predicate for greater than the supplied value
  @param value To compare against the attribute
  @return The predicate for this comparison

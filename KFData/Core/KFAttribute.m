@@ -134,6 +134,58 @@
     return [self notEqual:value options:0];
 }
 
+- (NSPredicate *)beginsWith:(id)value options:(NSComparisonPredicateOptions)options {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSBeginsWithPredicateOperatorType
+                                      options:options];
+}
+
+- (NSPredicate *)beginsWith:(id)value {
+    return [self beginsWith:value options:0];
+}
+
+- (NSPredicate *)endsWith:(id)value options:(NSComparisonPredicateOptions)options {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSEndsWithPredicateOperatorType
+                                      options:options];
+}
+
+- (NSPredicate *)endsWith:(id)value {
+    return [self endsWith:value options:0];
+}
+
+- (NSPredicate *)like:(id)value options:(NSComparisonPredicateOptions)options {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSLikePredicateOperatorType
+                                      options:options];
+}
+
+- (NSPredicate *)like:(id)value {
+    return [self like:value options:0];
+}
+
+- (NSPredicate *)matches:(id)value options:(NSComparisonPredicateOptions)options {
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSMatchesPredicateOperatorType
+                                      options:options];
+}
+
+- (NSPredicate *)matches:(id)value {
+    return [self matches:value options:0];
+}
+
 - (NSPredicate *)greaterThan:(id)value {
     NSExpression *expression = [NSExpression expressionForConstantValue:value];
 

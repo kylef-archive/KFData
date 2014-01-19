@@ -81,6 +81,38 @@
     expect([[self attribute] isNo]).to.equal([NSPredicate predicateWithFormat:@"id == NO"]);
 }
 
+- (void)testLikePredicate {
+    expect([[self attribute] like:@4]).to.equal([NSPredicate predicateWithFormat:@"id LIKE 4"]);
+}
+
+- (void)testLikePredicateWithOptions {
+    expect([[self attribute] like:@4 options:NSDiacriticInsensitivePredicateOption | NSCaseInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id LIKE[cd] 4"]);
+}
+
+- (void)testMatchesPredicate {
+    expect([[self attribute] matches:@4]).to.equal([NSPredicate predicateWithFormat:@"id MATCHES 4"]);
+}
+
+- (void)testPredicateWithOptions {
+    expect([[self attribute] matches:@4 options:NSDiacriticInsensitivePredicateOption | NSCaseInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id MATCHES[cd] 4"]);
+}
+
+- (void)testBeginsWithPredicate {
+    expect([[self attribute] beginsWith:@4]).to.equal([NSPredicate predicateWithFormat:@"id BEGINSWITH 4"]);
+}
+
+- (void)testBeginsWithPredicateWithOptions {
+    expect([[self attribute] beginsWith:@4 options:NSDiacriticInsensitivePredicateOption | NSCaseInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id BEGINSWITH[cd] 4"]);
+}
+
+- (void)testEndsWithPredicate {
+    expect([[self attribute] endsWith:@4]).to.equal([NSPredicate predicateWithFormat:@"id ENDSWITH 4"]);
+}
+
+- (void)testEndsWithPredicateWithOptions {
+    expect([[self attribute] endsWith:@4 options:NSDiacriticInsensitivePredicateOption | NSCaseInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id ENDSWITH[cd] 4"]);
+}
+
 - (void)testPredicateFromFormat {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == 4", [self attribute]];
     expect([predicate description]).to.equal([[NSPredicate predicateWithFormat:@"id == 4"] description]);
