@@ -5,6 +5,7 @@ Pod::Spec.new do |s|
   s.summary = 'Lightweight Core Data wrapper.'
   s.homepage = 'https://github.com/kylef/KFData'
   s.authors = { 'Kyle Fuller' => 'inbox@kylefuller.co.uk' }
+  s.social_media_url = 'https://twitter.com/kylefuller'
   s.source = { :git => 'https://github.com/kylef/KFData.git', :tag => s.version.to_s }
 
   s.requires_arc = true
