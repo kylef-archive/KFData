@@ -152,6 +152,13 @@
  */
 - (NSPredicate *)lessThanOrEqualTo:(id)value;
 
+/** Returns a predicate for attribute being between two values
+ @param minimumValue
+ @param maximumValue
+ @return The predicate for this comparison
+ */
+- (NSPredicate *)between:(id)minimumValue and:(id)maxiumValue;
+
 /** Returns a predicate for if the attribute being equal to nil
  @return The predicate for the attribute being nil.
  */

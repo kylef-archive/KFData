@@ -231,6 +231,18 @@
                                       options:0];
 }
 
+- (NSPredicate *)between:(id)minimumValue and:(id)maxiumValue {
+    NSParameterAssert(minimumValue != nil);
+    NSParameterAssert(maxiumValue != nil);
+
+    NSExpression *expression = [NSExpression expressionForConstantValue:@[minimumValue, maxiumValue]];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSBetweenPredicateOperatorType
+                                      options:0];
+}
+
 - (NSPredicate *)isYes {
     NSExpression *expression = [NSExpression expressionForConstantValue:@YES];
 

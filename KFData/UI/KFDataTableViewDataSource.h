@@ -59,4 +59,21 @@
 
 @end
 
+/** An alternative table view data source which provides custom sorting though
+    a comparitor block. This will fetch the whole set of results into memory
+    and sort them. */
+
+@interface KFDataTableViewSortedDataSource : KFDataTableViewDataSource
+
+- (instancetype)initWithTableView:(UITableView *)tableView
+             managedObjectContext:(NSManagedObjectContext *)managedObjectContext
+                     fetchRequest:(NSFetchRequest *)fetchRequest
+                       comparator:(NSComparator)comparator;
+
+- (instancetype)initWithTableView:(UITableView *)tableView
+                    objectManager:(KFObjectManager *)objectManager
+                       comparator:(NSComparator)comparator;
+
+@end
+
 #endif
