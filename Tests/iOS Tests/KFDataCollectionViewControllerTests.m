@@ -9,7 +9,7 @@
 #import "KFDataTests.h"
 
 
-@interface KFDataCollectionViewControllerTests : SenTestCase
+@interface KFDataCollectionViewControllerTests : XCTestCase
 
 @end
 

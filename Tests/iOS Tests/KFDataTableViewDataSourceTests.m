@@ -9,7 +9,7 @@
 #import "KFDataTests.h"
 
 
-@interface KFDataTableViewDataSourceTests : SenTestCase {
+@interface KFDataTableViewDataSourceTests : XCTestCase {
     UITableView *_tableView;
     NSManagedObjectContext *_managedObjectContext;
     NSFetchRequest *_fetchRequest;

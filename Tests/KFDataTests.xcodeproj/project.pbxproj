@@ -7,20 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		774C6EB718C79E7E00399CBD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C9E7E18C79E0F006FE9DC /* XCTest.framework */; };
 		7773D6F717D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7773D6F617D4C461003ABFE9 /* KFObjectManagerTests.m */; };
 		7773D6F817D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7773D6F617D4C461003ABFE9 /* KFObjectManagerTests.m */; };
 		778E2F871764AE51005945BE /* KFDataTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */; };
 		778E2F8A1764B33D005945BE /* KFDataCollectionViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */; };
-		778FBF7A1761077800DE0FFF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF791761077800DE0FFF /* SenTestingKit.framework */; };
 		778FBF7C1761077800DE0FFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF7B1761077800DE0FFF /* UIKit.framework */; };
 		778FBF7E1761077800DE0FFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF7D1761077800DE0FFF /* Foundation.framework */; };
 		778FBF841761077800DE0FFF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 778FBF821761077800DE0FFF /* InfoPlist.strings */; };
-		778FBF871761077800DE0FFF /* iOS_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBF861761077800DE0FFF /* iOS_Tests.m */; };
 		778FBF991761079A00DE0FFF /* KFAttributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBF4D176106F600DE0FFF /* KFAttributeTests.m */; };
-		778FBFA2176107B600DE0FFF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBF791761077800DE0FFF /* SenTestingKit.framework */; };
 		778FBFA4176107B600DE0FFF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778FBFA3176107B600DE0FFF /* Cocoa.framework */; };
 		778FBFAE176107B600DE0FFF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 778FBFAC176107B600DE0FFF /* InfoPlist.strings */; };
-		778FBFB1176107B600DE0FFF /* OS_X_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBFB0176107B600DE0FFF /* OS_X_Tests.m */; };
 		778FBFB6176107BA00DE0FFF /* KFAttributeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778FBF4D176106F600DE0FFF /* KFAttributeTests.m */; };
 		77D7B5C617B95A7A005B759C /* KFDataStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */; };
 		77D7B5C717B95A7A005B759C /* KFDataStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */; };
@@ -34,6 +31,7 @@
 /* Begin PBXFileReference section */
 		5D4BF9AD35194D1FA433E5DE /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		648982FFB9444486BC22476A /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = SOURCE_ROOT; };
+		775C9E7E18C79E0F006FE9DC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7773D6F617D4C461003ABFE9 /* KFObjectManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFObjectManagerTests.m; sourceTree = "<group>"; };
 		778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewControllerTests.m; sourceTree = "<group>"; };
 		778E2F881764B05B005945BE /* KFDataTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KFDataTests.h; path = "iOS Tests/KFDataTests.h"; sourceTree = "<group>"; };
@@ -45,8 +43,6 @@
 		778FBF7D1761077800DE0FFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		778FBF811761077800DE0FFF /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		778FBF831761077800DE0FFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		778FBF851761077800DE0FFF /* iOS_Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOS_Tests.h; sourceTree = "<group>"; };
-		778FBF861761077800DE0FFF /* iOS_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOS_Tests.m; sourceTree = "<group>"; };
 		778FBF881761077800DE0FFF /* iOS Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS Tests-Prefix.pch"; sourceTree = "<group>"; };
 		778FBFA1176107B600DE0FFF /* OS X Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OS X Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778FBFA3176107B600DE0FFF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -55,8 +51,6 @@
 		778FBFA8176107B600DE0FFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		778FBFAB176107B600DE0FFF /* OS X Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OS X Tests-Info.plist"; sourceTree = "<group>"; };
 		778FBFAD176107B600DE0FFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		778FBFAF176107B600DE0FFF /* OS_X_Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OS_X_Tests.h; sourceTree = "<group>"; };
-		778FBFB0176107B600DE0FFF /* OS_X_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OS_X_Tests.m; sourceTree = "<group>"; };
 		778FBFB2176107B600DE0FFF /* OS X Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OS X Tests-Prefix.pch"; sourceTree = "<group>"; };
 		77D7B5C517B95A7A005B759C /* KFDataStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataStoreTests.m; sourceTree = "<group>"; };
 		77F9E8D417F214540019F29E /* KFDataTableViewDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataTableViewDataSourceTests.m; sourceTree = "<group>"; };
@@ -70,7 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778FBF7A1761077800DE0FFF /* SenTestingKit.framework in Frameworks */,
 				778FBF7C1761077800DE0FFF /* UIKit.framework in Frameworks */,
 				778FBF7E1761077800DE0FFF /* Foundation.framework in Frameworks */,
 				AA6AB28264FA4B35A63C832C /* libPods-ios.a in Frameworks */,
@@ -81,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778FBFA2176107B600DE0FFF /* SenTestingKit.framework in Frameworks */,
+				774C6EB718C79E7E00399CBD /* XCTest.framework in Frameworks */,
 				778FBFA4176107B600DE0FFF /* Cocoa.framework in Frameworks */,
 				E0D4699C151B41B896C7277D /* libPods-osx.a in Frameworks */,
 			);
@@ -127,6 +120,7 @@
 		778FBF781761077800DE0FFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				775C9E7E18C79E0F006FE9DC /* XCTest.framework */,
 				778FBF791761077800DE0FFF /* SenTestingKit.framework */,
 				778FBF7B1761077800DE0FFF /* UIKit.framework */,
 				778FBF7D1761077800DE0FFF /* Foundation.framework */,
@@ -144,8 +138,6 @@
 				778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */,
 				778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */,
 				77F9E8D417F214540019F29E /* KFDataTableViewDataSourceTests.m */,
-				778FBF851761077800DE0FFF /* iOS_Tests.h */,
-				778FBF861761077800DE0FFF /* iOS_Tests.m */,
 				778FBF801761077800DE0FFF /* Supporting Files */,
 			);
 			path = "iOS Tests";
@@ -174,8 +166,6 @@
 		778FBFA9176107B600DE0FFF /* OS X Tests */ = {
 			isa = PBXGroup;
 			children = (
-				778FBFAF176107B600DE0FFF /* OS_X_Tests.h */,
-				778FBFB0176107B600DE0FFF /* OS_X_Tests.m */,
 				778FBFAA176107B600DE0FFF /* Supporting Files */,
 			);
 			path = "OS X Tests";
@@ -369,7 +359,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778FBF871761077800DE0FFF /* iOS_Tests.m in Sources */,
 				77D7B5C617B95A7A005B759C /* KFDataStoreTests.m in Sources */,
 				778FBF991761079A00DE0FFF /* KFAttributeTests.m in Sources */,
 				7773D6F717D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */,
@@ -384,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778FBFB1176107B600DE0FFF /* OS_X_Tests.m in Sources */,
 				778FBFB6176107BA00DE0FFF /* KFAttributeTests.m in Sources */,
 				77D7B5C717B95A7A005B759C /* KFDataStoreTests.m in Sources */,
 				7773D6F817D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */,
@@ -442,8 +430,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -482,8 +471,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -515,7 +505,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -556,7 +549,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -9,7 +9,7 @@
 #ifndef KFDataTests_KFDataTests_h
 #define KFDataTests_KFDataTests_h
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #define EXP_SHORTHAND YES
 #import "Expecta.h"

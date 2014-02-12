@@ -9,7 +9,7 @@
 #import "KFDataTests.h"
 
 
-@interface KFAttributeTests : SenTestCase
+@interface KFAttributeTests : XCTestCase
 
 @property (nonatomic, strong) KFAttribute *attribute;
 

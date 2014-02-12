@@ -9,7 +9,7 @@
 #import "KFDataTests.h"
 
 
-@interface KFObjectManagerTests : SenTestCase
+@interface KFObjectManagerTests : XCTestCase
 
 @end
 
