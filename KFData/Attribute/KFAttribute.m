@@ -17,7 +17,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-    [encoder encodeObject:[self key] forKey:@"key"];
+    [encoder encodeObject:self.key forKey:@"key"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder {
@@ -32,7 +32,7 @@
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    NSString *key = [[self key] copyWithZone:zone];
+    NSString *key = [self.key copyWithZone:zone];
     return [[self class] attributeWithKey:key];
 }
 
@@ -51,17 +51,17 @@
 }
 
 - (NSExpression *)expression {
-    return [NSExpression expressionForKeyPath:[self key]];
+    return [NSExpression expressionForKeyPath:self.key];
 }
 
 #pragma mark - Equality
 
 - (NSUInteger)hash {
-    return [[self key] hash];
+    return [self.key hash];
 }
 
 - (BOOL)isEqualToAttribute:(KFAttribute *)attribute {
-    return [[self key] isEqualToString:[attribute key]];
+    return [self.key isEqualToString:[attribute key]];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -73,19 +73,19 @@
 // The following methods are implemented so that `[NSPredicate predicateWithFormat:@"%K", attribute]` will work
 
 - (NSString *)description {
-    return [self key];
+    return self.key;
 }
 
 - (NSRange)rangeOfString:(NSString *)aString {
-    return [[self key] rangeOfString:aString];
+    return [self.key rangeOfString:aString];
 }
 
 - (NSArray *)componentsSeparatedByString:(NSString *)separator {
-    return [[self key] componentsSeparatedByString:separator];
+    return [self.key componentsSeparatedByString:separator];
 }
 
 - (NSUInteger)length {
-    return [[self key] length];
+    return [self.key length];
 }
 
 #pragma mark - Comparison
@@ -266,11 +266,11 @@
 @implementation KFAttribute (Sorting)
 
 - (NSSortDescriptor *)ascending {
-    return [[NSSortDescriptor alloc] initWithKey:[self key] ascending:YES];
+    return [[NSSortDescriptor alloc] initWithKey:self.key ascending:YES];
 }
 
 - (NSSortDescriptor *)descending {
-    return [[NSSortDescriptor alloc] initWithKey:[self key] ascending:NO];
+    return [[NSSortDescriptor alloc] initWithKey:self.key ascending:NO];
 }
 
 @end

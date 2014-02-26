@@ -42,18 +42,6 @@ Avoid extraneous whitespace in the following situations:
 * Use a single space around an assignment (or any) operator. Never use multiple
   spaces for alignment.
 
-## Dot-notation
-
-Do not use dot notation.
-
-Use:
-
-   [array count]
-
-Instead of:
-
-   array.count
-
 ## Implementation organisation
 
 Methods should be grouped together, with '#pragma mark -' headers, for example

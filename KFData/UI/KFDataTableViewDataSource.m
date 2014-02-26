@@ -25,10 +25,10 @@
 
     if (self = [super init]) {
         _tableView = tableView;
-        [tableView setDataSource:self];
+        tableView.dataSource = self;
 
         _fetchedResultsController = fetchedResultsController;
-        [_fetchedResultsController setDelegate:self];
+        _fetchedResultsController.delegate = self;
     }
 
     return self;
@@ -50,7 +50,7 @@
 - (instancetype)initWithTableView:(UITableView *)tableView objectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
     NSParameterAssert(objectManager != nil);
 
-    return [self initWithTableView:tableView managedObjectContext:[objectManager managedObjectContext] fetchRequest:[objectManager fetchRequest] sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+    return [self initWithTableView:tableView managedObjectContext:objectManager.managedObjectContext fetchRequest:[objectManager fetchRequest] sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -62,42 +62,40 @@
 }
 
 - (BOOL)performFetch:(NSError **)error {
-    BOOL result = [[self fetchedResultsController] performFetch:error];
-    [[self tableView] reloadData];
+    BOOL result = [self.fetchedResultsController performFetch:error];
+    [self.tableView reloadData];
     return result;
 }
 
 #pragma mark -
 
 - (id <NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSUInteger)section {
-    NSArray *sections = [[self fetchedResultsController] sections];
-    return [sections objectAtIndex:section];
+    return self.fetchedResultsController.sections[section];
 }
 
 - (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath {
-    return [[[self sectionInfoForSection:[indexPath section]] objects] objectAtIndex:[indexPath row]];
+    return [self sectionInfoForSection:indexPath.section].objects[indexPath.row];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [[self tableView] beginUpdates];
+    [self.tableView beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller
   didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    UITableView *tableView = [self tableView];
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
 
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
             break;
 
         case NSFetchedResultsChangeDelete:
-            [tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -107,46 +105,42 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    UITableView *tableView = [self tableView];
-
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
 
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
 
         case NSFetchedResultsChangeUpdate: {
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         }
 
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [[self tableView] endUpdates];
+    [self.tableView endUpdates];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSArray *sections = [[self fetchedResultsController] sections];
-    NSUInteger count = [sections count];
+    NSUInteger count = [self.fetchedResultsController.sections count];
 
     return (NSInteger)count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSection:section];
-    NSUInteger count = [sectionInfo numberOfObjects];
-    return (NSInteger)count;
+    return (NSInteger)sectionInfo.numberOfObjects;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,10 +160,10 @@
     switch (editingStyle) {
         case UITableViewCellEditingStyleDelete: {
             NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
-            [[self managedObjectContext] deleteObject:managedObject];
+            [self.managedObjectContext deleteObject:managedObject];
 
             NSError *error;
-            if ([[self managedObjectContext] save:&error] == NO) {
+            if ([self.managedObjectContext save:&error] == NO) {
                 NSLog(@"%@: Failed to save managed object context after deleting %@", NSStringFromClass([self class]), error);
             }
 

@@ -27,23 +27,22 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 - (void)loadView {
     [super loadView];
 
-    if ([self searchBar] == nil) {
-        UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 0, kKFDataSearchTableViewControllerSearchBarHeight)];
-        [self setSearchBar:searchBar];
+    if (self.searchBar == nil) {
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 0, kKFDataSearchTableViewControllerSearchBarHeight)];
     }
 
-	[[self searchBar] setDelegate:self];
+	self.searchBar.delegate = self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[[self tableView] setTableHeaderView:[self searchBar]];
+	self.tableView.tableHeaderView = self.searchBar;
 
 #ifdef __IPHONE_7_0
     if (([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [self automaticallyAdjustsScrollViewInsets]) == NO) {
-        CGRect searchFrame = [[self searchBar] frame];
-        [[self tableView] setContentOffset:CGPointMake(0.0f, searchFrame.size.height) animated:NO];
+        CGRect searchFrame = self.searchBar.frame;
+        [self.tableView setContentOffset:CGPointMake(0.0f, CGRectGetHeight(searchFrame) animated:NO];
     }
 #endif
 }
@@ -51,7 +50,7 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    NSString *query = [[self searchBar] text];
+    NSString *query = self.searchBar.text;
 
     if ([query length] == 0) {
         query = nil;
@@ -71,10 +70,10 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 
     NSAssert(manager != nil, @"objectManagerForSearchQuery: must be overided in %@ to always return non-nil", NSStringFromClass([self class]));
 
-    NSPredicate *predicate = [manager predicate];
-    NSArray *sortDescriptors = [manager sortDescriptors];
+    NSPredicate *predicate = manager.predicate;
+    NSArray *sortDescriptors = manager.sortDescriptors;
 
-    NSFetchRequest *fetchRequest = [[self dataSource] fetchRequest];
+    NSFetchRequest *fetchRequest = [self.dataSource fetchRequest];
 
     // If the fetch request has changed or we don't have a fetch request, update
     if ((fetchRequest == nil) || ([[fetchRequest predicate] isEqual:predicate] == NO) || ([[fetchRequest sortDescriptors] isEqualToArray:sortDescriptors] == NO)) {
@@ -113,7 +112,7 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
-    [searchBar setText:nil];
+    searchBar.text = nil;
     [self updateDataSourceForSearchQuery:nil];
 
     [self objectManagerForSearchQuery:nil];
@@ -128,8 +127,8 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-	if ([[self searchBar] isFirstResponder]) {
-		[[self searchBar] resignFirstResponder];
+	if ([self.searchBar isFirstResponder]) {
+		[self.searchBar resignFirstResponder];
 	}
 }
 

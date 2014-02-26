@@ -19,7 +19,7 @@
 @implementation KFDataTableViewDataSourceController
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [(KFDataTableViewController *)[tableView delegate] tableView:tableView cellForRowAtIndexPath:indexPath];
+    return [(KFDataTableViewController *)tableView.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 @end
@@ -34,7 +34,7 @@
 
 - (void)setDataSource:(KFDataTableViewDataSource *)dataSource {
     if (dataSource) {
-        NSParameterAssert([dataSource tableView] == [self tableView]);
+        NSParameterAssert(dataSource.tableView == self.tableView);
     }
 
     _dataSource = dataSource;
@@ -46,11 +46,11 @@
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    [self setDataSource:[[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName]];
+    self.dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:self.tableView managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    [self setDataSource:[[KFDataTableViewDataSourceController alloc] initWithTableView:[self tableView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName]];
+    self.dataSource = [[KFDataTableViewDataSourceController alloc] initWithTableView:self.tableView objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (BOOL)performFetch:(NSError **)error {

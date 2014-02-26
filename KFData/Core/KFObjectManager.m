@@ -61,7 +61,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 #pragma mark - Equality
 
 - (NSUInteger)hash {
-    return [[self managedObjectContext] hash];
+    return [self.managedObjectContext hash];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -78,17 +78,17 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 
 - (BOOL)isEqualToManager:(KFObjectManager *)objectManager {
     return (
-        [[self managedObjectContext] isEqual:[objectManager managedObjectContext]] &&
+        [self.managedObjectContext isEqual:[objectManager managedObjectContext]] &&
         [[self entityDescription] isEqual:[objectManager entityDescription]] &&
-        [[self predicate] isEqual:[objectManager predicate]] &&
-        [[self sortDescriptors] isEqual:[objectManager sortDescriptors]]
+        [self.predicate isEqual:[objectManager predicate]] &&
+        [self.sortDescriptors isEqual:[objectManager sortDescriptors]]
     );
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] allocWithZone:zone] initWithManagedObjectContext:[self managedObjectContext] entityDescription:[self entityDescription] predicate:[self predicate] sortDescriptors:[self sortDescriptors]];
+    return [[[self class] allocWithZone:zone] initWithManagedObjectContext:self.managedObjectContext entityDescription:self.entityDescription predicate:self.predicate sortDescriptors:self.sortDescriptors];
 }
 
 #pragma mark - NSFastEnumeration
@@ -106,8 +106,8 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 - (NSFetchRequest *)fetchRequest {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:_entityDescription];
-    [fetchRequest setPredicate:[self predicate]];
-    [fetchRequest setSortDescriptors:[self sortDescriptors]];
+    [fetchRequest setPredicate:self.predicate];
+    [fetchRequest setSortDescriptors:self.sortDescriptors];
     return fetchRequest;
 }
 
@@ -118,7 +118,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         count = [_resultsCache count];
     } else {
         NSFetchRequest *fetchRequest = [self fetchRequest];
-        count = [[self managedObjectContext] countForFetchRequest:fetchRequest error:error];
+        count = [self.managedObjectContext countForFetchRequest:fetchRequest error:error];
     }
 
     return count;
@@ -126,7 +126,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
 
 - (NSArray *)array:(NSError **)error {
     if (_resultsCache == nil) {
-        _resultsCache = [[self managedObjectContext] executeFetchRequest:[self fetchRequest] error:error];
+        _resultsCache = [self.managedObjectContext executeFetchRequest:[self fetchRequest] error:error];
     }
 
     return _resultsCache;
@@ -184,7 +184,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     NSUInteger count = 0;
 
     if (array != nil) {
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
 
         for (NSManagedObject *managedObject in array) {
             [managedObjectContext deleteObject:managedObject];
@@ -247,7 +247,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         array = _resultsCache;
     } else {
         NSFetchRequest *fetchRequest = [self fetchRequest];
-        [fetchRequest setFetchBatchSize:1]; // Only request one
+        fetchRequest.fetchBatchSize = 1; // Only request one
 
         array = [self.managedObjectContext executeFetchRequest:fetchRequest error:error];
     }
@@ -255,7 +255,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     NSUInteger count = [array count];
 
     if (count == 1) {
-        managedObject = [array objectAtIndex:0];
+        managedObject = [array firstObject];
     } if ((count > 1) && error != nil) {
         *error = [NSError errorWithDomain:KFDataErrorDomain code:0 userInfo:@{
             NSLocalizedDescriptionKey: @"Find object in fetch request failed, should only result in a single result.",
@@ -269,18 +269,13 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
     NSManagedObject *managedObject;
 
     if (_resultsCache) {
-        if ([_resultsCache count] > 0) {
-            managedObject = [_resultsCache objectAtIndex:0];
-        }
+        managedObject = [_resultsCache firstObject];
     } else {
         NSFetchRequest *fetchRequest = [self fetchRequest];
         [fetchRequest setFetchLimit:1];
 
-        NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
-
-        if ([array count] > 0) {
-            managedObject = [array objectAtIndex:0];
-        }
+        NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:error];
+        managedObject = [array firstObject];
     }
 
     return managedObject;
@@ -293,7 +288,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         managedObject = [_resultsCache lastObject];
     } else {
         NSFetchRequest *fetchRequest = [self fetchRequest];
-        NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest error:error];
+        NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:error];
         managedObject = [array lastObject];
     }
     

@@ -112,8 +112,8 @@
 @implementation KFDataSingleStackStore
 
 - (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification {
-    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
-    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+    NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *backgroundManagedObjectContext = self.backgroundManagedObjectContext;
 
     [mainManagedObjectContext performBlock:^{
         [mainManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
@@ -129,8 +129,8 @@
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
 
-    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
-    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+    NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *backgroundManagedObjectContext = self.backgroundManagedObjectContext;
 
     if ([managedObjectContext isEqual:backgroundManagedObjectContext]) {
         [mainManagedObjectContext performBlock:^{
@@ -150,8 +150,8 @@
 @implementation KFDataSingleResetStackStore
 
 - (void)persistentStoreCoordinatorDidImportChanges:(NSNotification *)notification {
-    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
-    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+    NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *backgroundManagedObjectContext = self.backgroundManagedObjectContext;
 
     [mainManagedObjectContext performBlock:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextWillReset object:mainManagedObjectContext userInfo:[notification userInfo]];
@@ -171,8 +171,8 @@
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
 
-    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
-    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+    NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *backgroundManagedObjectContext = self.backgroundManagedObjectContext;
 
     if ([managedObjectContext isEqual:backgroundManagedObjectContext]) {
         [mainManagedObjectContext performBlock:^{

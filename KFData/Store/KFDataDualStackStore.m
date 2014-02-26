@@ -112,13 +112,13 @@
     NSPersistentStoreCoordinator *backgroundPersistentStoreCoordinator = [self backgroundPersistentStoreCoordinator];
 
     if ([persistentStoreCoordinator isEqual:mainPersistentStoreCoordinator]) {
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
 
         [managedObjectContext performBlock:^{
             [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
         }];
     } else if ([persistentStoreCoordinator isEqual:backgroundPersistentStoreCoordinator]) {
-        NSManagedObjectContext *managedObjectContext = [self backgroundManagedObjectContext];
+        NSManagedObjectContext *managedObjectContext = self.backgroundManagedObjectContext;
 
         [managedObjectContext performBlock:^{
             NSError *error;
@@ -131,8 +131,8 @@
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
 
-    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
-    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+    NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *backgroundManagedObjectContext = self.backgroundManagedObjectContext;
 
     if ([managedObjectContext isEqual:backgroundManagedObjectContext]) {
         [mainManagedObjectContext performBlock:^{
@@ -158,7 +158,7 @@
     NSPersistentStoreCoordinator *backgroundPersistentStoreCoordinator = [self backgroundPersistentStoreCoordinator];
 
     if ([persistentStoreCoordinator isEqual:mainPersistentStoreCoordinator]) {
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
 
         [managedObjectContext performBlock:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextWillReset object:managedObjectContext userInfo:[notification userInfo]];
@@ -169,7 +169,7 @@
 
         }];
     } else if ([persistentStoreCoordinator isEqual:backgroundPersistentStoreCoordinator]) {
-        NSManagedObjectContext *managedObjectContext = [self backgroundManagedObjectContext];
+        NSManagedObjectContext *managedObjectContext = self.backgroundManagedObjectContext;
 
         [managedObjectContext performBlock:^{
             NSError *error;
@@ -182,11 +182,11 @@
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     NSManagedObjectContext *managedObjectContext = [notification object];
 
-    NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
-    NSManagedObjectContext *backgroundManagedObjectContext = [self backgroundManagedObjectContext];
+    NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *backgroundManagedObjectContext = self.backgroundManagedObjectContext;
 
     if ([managedObjectContext isEqual:backgroundManagedObjectContext]) {
-        NSManagedObjectContext *mainManagedObjectContext = [self managedObjectContext];
+        NSManagedObjectContext *mainManagedObjectContext = self.managedObjectContext;
 
         [mainManagedObjectContext performBlock:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:KFDataManagedObjectContextWillReset object:mainManagedObjectContext userInfo:[notification userInfo]];

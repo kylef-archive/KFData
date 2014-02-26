@@ -30,7 +30,7 @@
         [collectionView setDataSource:self];
 
         _fetchedResultsController = fetchedResultsController;
-        [_fetchedResultsController setDelegate:self];
+        _fetchedResultsController.delegate = self;
     }
 
     return self;
@@ -56,28 +56,27 @@
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
-    return [_fetchedResultsController managedObjectContext];
+    return _fetchedResultsController.managedObjectContext;
 }
 
 - (NSFetchRequest *)fetchRequest {
-    return [_fetchedResultsController fetchRequest];
+    return _fetchedResultsController.fetchRequest;
 }
 
 - (BOOL)performFetch:(NSError **)error {
-    BOOL result = [[self fetchedResultsController] performFetch:error];
-    [[self collectionView] reloadData];
+    BOOL result = [self.fetchedResultsController performFetch:error];
+    [self.collectionView reloadData];
     return result;
 }
 
 #pragma mark -
 
 - (id <NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSUInteger)section {
-    NSArray *sections = [[self fetchedResultsController] sections];
-    return [sections objectAtIndex:section];
+    return self.fetchedResultsController.sections[section];
 }
 
 - (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath {
-    return [[[self sectionInfoForSection:[indexPath section]] objects] objectAtIndex:[indexPath row]];
+    return [[self sectionInfoForSection:indexPath.section].objects[indexPath.row];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -214,8 +213,8 @@
                             break;
 
                         case NSFetchedResultsChangeMove: {
-                            NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
-                            NSIndexPath *newIndexPath = [indexPaths objectAtIndex:1];
+                            NSIndexPath *indexPath = indexPaths[0];
+                            NSIndexPath *newIndexPath = indexPaths[1];
                             [collectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
                             break;
                         }
@@ -234,7 +233,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSection:section];
-	return (NSInteger)[sectionInfo numberOfObjects];
+	return (NSInteger)sectionInfo.numberOfObjects;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
