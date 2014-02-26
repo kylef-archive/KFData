@@ -249,7 +249,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         NSFetchRequest *fetchRequest = [self fetchRequest];
         [fetchRequest setFetchBatchSize:1]; // Only request one
 
-        array = [[self managedObjectContext] executeFetchRequest:[self fetchRequest] error:error];
+        array = [self.managedObjectContext executeFetchRequest:fetchRequest error:error];
     }
 
     NSUInteger count = [array count];
