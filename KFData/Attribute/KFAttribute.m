@@ -243,6 +243,17 @@
                                       options:0];
 }
 
+- (NSPredicate *)in:(id<NSFastEnumeration>)set {
+    NSParameterAssert(set != nil);
+
+    NSExpression *expression = [NSExpression expressionForConstantValue:set];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSInPredicateOperatorType
+                                      options:0];
+}
+
 - (NSPredicate *)contains:(id)value options:(NSComparisonPredicateOptions)options {
     NSParameterAssert(value != nil);
 

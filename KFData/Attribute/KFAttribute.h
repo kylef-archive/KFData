@@ -159,6 +159,12 @@
  */
 - (NSPredicate *)between:(id)minimumValue and:(id)maxiumValue;
 
+/** Returns an IN predicate for attribute
+ @param set An enumerable object containing a set ob objects
+ @return The predicate for this comparison
+ */
+- (NSPredicate *)in:(id<NSFastEnumeration>)set;
+
 /** Returns a predicate for a contains with comparison against the supplied value
  @param value To compare against the attribute
  @param options NSComparisonPredicateOptions to apply to the comparison
