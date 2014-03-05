@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong, readonly) NSString *key;
 
++ (instancetype)attributeWithAttributes:(KFAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
+
 + (instancetype)attributeWithKey:(NSString *)key __attribute((nonnull));
 
 /** Returns a Boolean value that indicates whether a given attribute is equal to the receiver

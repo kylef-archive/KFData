@@ -21,6 +21,15 @@
     [self setAttribute:[KFAttribute attributeWithKey:@"id"]];
 }
 
+- (void)testAttributeWithAttributes {
+    KFAttribute *owner = [KFAttribute attributeWithKey:@"owner"];
+    KFAttribute *name = [KFAttribute attributeWithKey:@"name"];
+
+    KFAttribute *ownerName = [KFAttribute attributeWithAttributes:owner, name, nil];
+
+    expect([ownerName key]).to.equal(@"owner.name");
+}
+
 - (void)testKeyPropertySet {
     expect([[self attribute] key]).to.equal(@"id");
 }
