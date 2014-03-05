@@ -117,6 +117,14 @@
     expect([[[self attribute] between:@1 and:@6] description]).to.equal(@"id BETWEEN {1, 6}");
 }
 
+- (void)testContainsPredicateWithOptions {
+    expect([[self attribute] contains:@4 options:NSDiacriticInsensitivePredicateOption | NSCaseInsensitivePredicateOption]).to.equal([NSPredicate predicateWithFormat:@"id CONTAINS[cd] 4"]);
+}
+
+- (void)testContainsPredicate {
+    expect([[self attribute] contains:@4]).to.equal([NSPredicate predicateWithFormat:@"id CONTAINS 4"]);
+}
+
 - (void)testPredicateFromFormat {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == 4", [self attribute]];
     expect([predicate description]).to.equal([[NSPredicate predicateWithFormat:@"id == 4"] description]);

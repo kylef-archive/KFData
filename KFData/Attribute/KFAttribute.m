@@ -243,6 +243,21 @@
                                       options:0];
 }
 
+- (NSPredicate *)contains:(id)value options:(NSComparisonPredicateOptions)options {
+    NSParameterAssert(value != nil);
+
+    NSExpression *expression = [NSExpression expressionForConstantValue:value];
+
+    return [self predicateWithRightExpression:expression
+                                     modifier:NSDirectPredicateModifier
+                                         type:NSContainsPredicateOperatorType
+                                      options:options];
+}
+
+- (NSPredicate *)contains:(id)value {
+    return [self contains:value options:0];
+}
+
 - (NSPredicate *)isYes {
     NSExpression *expression = [NSExpression expressionForConstantValue:@YES];
 

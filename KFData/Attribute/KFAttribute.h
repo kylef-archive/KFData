@@ -159,6 +159,21 @@
  */
 - (NSPredicate *)between:(id)minimumValue and:(id)maxiumValue;
 
+/** Returns a predicate for a contains with comparison against the supplied value
+ @param value To compare against the attribute
+ @param options NSComparisonPredicateOptions to apply to the comparison
+ @return The predicate for this comparison
+ @see contains:
+ */
+- (NSPredicate *)contains:(id)value options:(NSComparisonPredicateOptions)options;
+
+/** Returns a predicate for a contains with comparison against the supplied value
+ @param value To compare against the attribute
+ @return The predicate for this comparison
+ @see contains:options:
+ */
+- (NSPredicate *)contains:(id)value;
+
 /** Returns a predicate for if the attribute being equal to nil
  @return The predicate for the attribute being nil.
  */
