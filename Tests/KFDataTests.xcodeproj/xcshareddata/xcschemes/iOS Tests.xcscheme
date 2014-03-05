@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "778FBF751761077800DE0FFF"
-               BuildableName = "iOS Tests.octest"
+               BuildableName = "iOS Tests.xctest"
                BlueprintName = "iOS Tests"
                ReferencedContainer = "container:KFDataTests.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "241EE3EAE5154BFDAD0AE3A1"
+               BlueprintIdentifier = "50F70C15A59F4B898CEBD4D4"
                BuildableName = "libPods-ios.a"
                BlueprintName = "Pods-ios"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "778FBF751761077800DE0FFF"
-               BuildableName = "iOS Tests.octest"
+               BuildableName = "iOS Tests.xctest"
                BlueprintName = "iOS Tests"
                ReferencedContainer = "container:KFDataTests.xcodeproj">
             </BuildableReference>

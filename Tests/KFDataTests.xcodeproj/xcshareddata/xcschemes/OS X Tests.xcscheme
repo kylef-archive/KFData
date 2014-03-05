@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "778FBFA0176107B600DE0FFF"
-               BuildableName = "OS X Tests.octest"
+               BuildableName = "OS X Tests.xctest"
                BlueprintName = "OS X Tests"
                ReferencedContainer = "container:KFDataTests.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CC24FB95F9AF44D3B2A53F3B"
+               BlueprintIdentifier = "63E5637DA82B4F9E894AC822"
                BuildableName = "libPods-osx.a"
                BlueprintName = "Pods-osx"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "778FBFA0176107B600DE0FFF"
-               BuildableName = "OS X Tests.octest"
+               BuildableName = "OS X Tests.xctest"
                BlueprintName = "OS X Tests"
                ReferencedContainer = "container:KFDataTests.xcodeproj">
             </BuildableReference>
