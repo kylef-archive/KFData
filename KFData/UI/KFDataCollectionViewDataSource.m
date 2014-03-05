@@ -76,7 +76,7 @@
 }
 
 - (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath {
-    return [[self sectionInfoForSection:indexPath.section].objects[indexPath.row];
+    return [self sectionInfoForSection:indexPath.section].objects[indexPath.row];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

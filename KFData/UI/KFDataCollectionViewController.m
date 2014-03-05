@@ -66,7 +66,7 @@
 }
 
 - (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    self.dataSource = [[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheNam]];
+    self.dataSource = [[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (BOOL)performFetch:(NSError **)error {

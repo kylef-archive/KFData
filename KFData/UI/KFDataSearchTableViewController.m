@@ -42,7 +42,7 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 #ifdef __IPHONE_7_0
     if (([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [self automaticallyAdjustsScrollViewInsets]) == NO) {
         CGRect searchFrame = self.searchBar.frame;
-        [self.tableView setContentOffset:CGPointMake(0.0f, CGRectGetHeight(searchFrame) animated:NO];
+        [self.tableView setContentOffset:CGPointMake(0.0f, CGRectGetHeight(searchFrame)) animated:NO];
     }
 #endif
 }
