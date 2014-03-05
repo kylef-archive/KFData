@@ -45,7 +45,7 @@
 
     va_list attributeList;
     va_start(attributeList, attribute);
-    while (attribute = va_arg(attributeList, id)) {
+    while ((attribute = va_arg(attributeList, id))) {
         [attributes addObject:attribute.key];
     }
     va_end(attributeList);
