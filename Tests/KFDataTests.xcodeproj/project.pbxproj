@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		774C6EB718C79E7E00399CBD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C9E7E18C79E0F006FE9DC /* XCTest.framework */; };
+		7769C0C518C7AC8C002FAA38 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C9E7E18C79E0F006FE9DC /* XCTest.framework */; };
 		7773D6F717D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7773D6F617D4C461003ABFE9 /* KFObjectManagerTests.m */; };
 		7773D6F817D4C461003ABFE9 /* KFObjectManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7773D6F617D4C461003ABFE9 /* KFObjectManagerTests.m */; };
 		778E2F871764AE51005945BE /* KFDataTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E2F861764AE51005945BE /* KFDataTableViewControllerTests.m */; };
@@ -37,14 +38,14 @@
 		778E2F881764B05B005945BE /* KFDataTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KFDataTests.h; path = "iOS Tests/KFDataTests.h"; sourceTree = "<group>"; };
 		778E2F891764B33D005945BE /* KFDataCollectionViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDataCollectionViewControllerTests.m; sourceTree = "<group>"; };
 		778FBF4D176106F600DE0FFF /* KFAttributeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFAttributeTests.m; sourceTree = "<group>"; };
-		778FBF761761077800DE0FFF /* iOS Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		778FBF761761077800DE0FFF /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778FBF791761077800DE0FFF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		778FBF7B1761077800DE0FFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		778FBF7D1761077800DE0FFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		778FBF811761077800DE0FFF /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		778FBF831761077800DE0FFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		778FBF881761077800DE0FFF /* iOS Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS Tests-Prefix.pch"; sourceTree = "<group>"; };
-		778FBFA1176107B600DE0FFF /* OS X Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OS X Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		778FBFA1176107B600DE0FFF /* OS X Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OS X Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778FBFA3176107B600DE0FFF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		778FBFA6176107B600DE0FFF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		778FBFA7176107B600DE0FFF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7769C0C518C7AC8C002FAA38 /* XCTest.framework in Frameworks */,
 				778FBF7C1761077800DE0FFF /* UIKit.framework in Frameworks */,
 				778FBF7E1761077800DE0FFF /* Foundation.framework in Frameworks */,
 				AA6AB28264FA4B35A63C832C /* libPods-ios.a in Frameworks */,
@@ -111,8 +113,8 @@
 		778FBF771761077800DE0FFF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				778FBF761761077800DE0FFF /* iOS Tests.octest */,
-				778FBFA1176107B600DE0FFF /* OS X Tests.octest */,
+				778FBF761761077800DE0FFF /* iOS Tests.xctest */,
+				778FBFA1176107B600DE0FFF /* OS X Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,7 +194,6 @@
 				778FBF711761077800DE0FFF /* Sources */,
 				778FBF721761077800DE0FFF /* Frameworks */,
 				778FBF731761077800DE0FFF /* Resources */,
-				778FBF741761077800DE0FFF /* ShellScript */,
 				01597FD3A013417B8B6FF5F2 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -201,7 +202,7 @@
 			);
 			name = "iOS Tests";
 			productName = "iOS Tests";
-			productReference = 778FBF761761077800DE0FFF /* iOS Tests.octest */;
+			productReference = 778FBF761761077800DE0FFF /* iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		778FBFA0176107B600DE0FFF /* OS X Tests */ = {
@@ -212,7 +213,6 @@
 				778FBF9C176107B600DE0FFF /* Sources */,
 				778FBF9D176107B600DE0FFF /* Frameworks */,
 				778FBF9E176107B600DE0FFF /* Resources */,
-				778FBF9F176107B600DE0FFF /* ShellScript */,
 				E993A133000749BE94B63765 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -221,7 +221,7 @@
 			);
 			name = "OS X Tests";
 			productName = "OS X Tests";
-			productReference = 778FBFA1176107B600DE0FFF /* OS X Tests.octest */;
+			productReference = 778FBFA1176107B600DE0FFF /* OS X Tests.xctest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -297,32 +297,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-		};
-		778FBF741761077800DE0FFF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		778FBF9F176107B600DE0FFF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		98B619A0C5DF48DDB2EDA89B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -429,11 +403,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
-					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SDKROOT)/Developer/Library/Frameworks\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -452,7 +422,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -470,11 +440,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
-					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SDKROOT)/Developer/Library/Frameworks\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS Tests/iOS Tests-Prefix.pch";
@@ -486,7 +452,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -505,10 +471,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -529,7 +492,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -549,10 +512,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -565,7 +525,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
