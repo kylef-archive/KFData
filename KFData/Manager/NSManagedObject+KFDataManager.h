@@ -1,5 +1,5 @@
 //
-//  NSManagedObject+KFData.h
+//  NSManagedObject+KFDataManager.h
 //  KFData
 //
 //  Created by Kyle Fuller on 26/11/2012.
@@ -15,7 +15,7 @@
  KFData NSManagedObject helpers
  */
 
-@interface NSManagedObject (KFData)
+@interface NSManagedObject (KFDataManager)
 
 /**
  The entity name for the managed object.

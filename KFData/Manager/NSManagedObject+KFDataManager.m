@@ -1,15 +1,15 @@
 //
-//  NSManagedObject+KFData.m
+//  NSManagedObject+KFDataManager.m
 //  KFData
 //
 //  Created by Kyle Fuller on 26/11/2012.
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import "NSManagedObject+KFData.h"
+#import "NSManagedObject+KFDataManager.h"
 #import "KFObjectManager.h"
 
-@implementation NSManagedObject (KFData)
+@implementation NSManagedObject (KFDataManager)
 
 #pragma mark - Entity
 

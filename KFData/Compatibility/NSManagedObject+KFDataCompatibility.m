@@ -7,7 +7,7 @@
 //
 
 #import "NSManagedObject+KFDataCompatibility.h"
-#import "NSManagedObject+KFData.h"
+#import "NSManagedObject+KFDataManager.h"
 #import "KFObjectManager.h"
 
 @interface KFObjectManager (KFDataCompatibility)

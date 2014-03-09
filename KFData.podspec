@@ -21,6 +21,11 @@ Pod::Spec.new do |s|
     attribute_spec.osx.source_files = 'KFData/Attribute/*.{h,m}'
   end
 
+  s.subspec 'Manager' do |manager_spec|
+   manager_spec.ios.source_files = 'KFData/Manager/*.{h,m}'
+   manager_spec.osx.source_files = 'KFData/Manager/*.{h,m}'
+  end
+
   s.subspec 'Core' do |corespec|
     corespec.ios.frameworks = 'CoreData'
     corespec.ios.source_files = 'KFData/KFData.h', 'KFData/Core/*.{h,m}'
@@ -52,6 +57,7 @@ Pod::Spec.new do |s|
    essentialsspec.dependency 'KFData/Core'
    essentialsspec.dependency 'KFData/Store'
    essentialsspec.dependency 'KFData/Attribute'
+   essentialsspec.dependency 'KFData/Manager'
    essentialsspec.ios.dependency 'KFData/UI'
   end
 
