@@ -18,7 +18,7 @@
     return entityName;
 }
 
-+ (NSEntityDescription *)entityDescriptionInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
++ (NSEntityDescription *)kf_entityDescriptionInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSString *entityName = [self entityName];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
 
@@ -27,13 +27,13 @@
 
 + (KFObjectManager *)managerWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSParameterAssert(managedObjectContext != nil);
-    NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entityDescription = [self kf_entityDescriptionInManagedObjectContext:managedObjectContext];
     return [KFObjectManager managerWithManagedObjectContext:managedObjectContext entityDescription:entityDescription predicate:nil sortDescriptors:nil];
 }
 
 + (instancetype)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSParameterAssert(managedObjectContext != nil);
-    NSEntityDescription *entityDescription = [self entityDescriptionInManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entityDescription = [self kf_entityDescriptionInManagedObjectContext:managedObjectContext];
     return [[self alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 }
 
