@@ -11,6 +11,6 @@
 
     #import "KFAttribute.h"
     #import "KFObjectManager.h"
-    #import "NSManagedObject+KFData.h"
+    #import "NSManagedObject+KFDataManager.h"
     #import "NSManagedObjectContext+KFData.h"
 #endif
