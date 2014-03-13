@@ -29,6 +29,8 @@
 
         _fetchedResultsController = fetchedResultsController;
         _fetchedResultsController.delegate = self;
+
+        _allowRowEditing = YES; // YES is the default of not overriding tableView:canEditRowAtIndexPath: (see UITableViewDataSource documentation)
     }
 
     return self;
@@ -188,7 +190,9 @@
 //    return index;
 //}
 
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.allowRowEditing;
+}
 //- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
 //- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
 

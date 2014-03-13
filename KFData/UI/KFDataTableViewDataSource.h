@@ -32,6 +32,15 @@
 @property (nonatomic, strong, readonly) NSFetchRequest *fetchRequest;
 @property (nonatomic, strong, readonly) NSFetchedResultsController *fetchedResultsController;
 
+/** By default all rows are assumed to be editable. Set this to NO to disable 
+ the default. You are still able to override tableView:canEditRowAtIndexPath: 
+ in your subclass to provide customised editing logic.
+ @warning This is a 'global' setting. Setting this to NO will disable row 
+ editing for all rows. Do not call super if you want to provide custom edit
+ logic.
+ */
+@property (nonatomic, assign) BOOL allowRowEditing;
+
 - (instancetype)initWithTableView:(UITableView *)tableView
              managedObjectContext:(NSManagedObjectContext *)managedObjectContext
                      fetchRequest:(NSFetchRequest *)fetchRequest
