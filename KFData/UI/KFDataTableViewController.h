@@ -48,6 +48,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath;
 
+/** Overiding point for setting a custom data source class for setManagedObjectContext:fetchRequest:sectionNameKeyPath:cacheName: and setObjectManager:sectionNameKeyPath:cacheName:
+ @return By default, this method returns KFDataTableViewDataSource
+ */
+- (Class)dataSourceClass;
+
 @end
 
 #endif

@@ -46,6 +46,10 @@
 
 #pragma mark -
 
+- (Class)dataSourceClass {
+    return [KFDataCollectionViewDataSource class];
+}
+
 - (void)setDataSource:(KFDataCollectionViewDataSource *)dataSource {
     if (dataSource) {
         NSParameterAssert(dataSource.collectionView == self.collectionView);
@@ -62,11 +66,11 @@
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext fetchRequest:(NSFetchRequest *)fetchRequest sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    self.dataSource = [[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+    self.dataSource = [[[self dataSourceClass] alloc] initWithCollectionView:[self collectionView] managedObjectContext:managedObjectContext fetchRequest:fetchRequest sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (void)setObjectManager:(KFObjectManager *)objectManager sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)cacheName {
-    self.dataSource = [[KFDataCollectionViewDataSourceController alloc] initWithCollectionView:[self collectionView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
+    self.dataSource = [[[self dataSourceClass] alloc] initWithCollectionView:[self collectionView] objectManager:objectManager sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
 - (BOOL)performFetch:(NSError **)error {

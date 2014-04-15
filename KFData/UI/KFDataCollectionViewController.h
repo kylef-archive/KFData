@@ -37,6 +37,11 @@
 
 - (BOOL)performFetch:(NSError **)error;
 
+/** Overiding point for setting a custom data source class for setManagedObjectContext:fetchRequest:sectionNameKeyPath:cacheName: and setObjectManager:sectionNameKeyPath:cacheName:
+ @return By default, this method returns KFDataCollectionViewDataSource
+ */
+- (Class)dataSourceClass;
+
 @end
 
 #endif
