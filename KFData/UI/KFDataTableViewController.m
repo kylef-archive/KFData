@@ -45,7 +45,7 @@
 
     NSError *error;
     if ([self performFetch:&error] == NO) {
-        NSString *reason = [NSString stringWithFormat:@"%@: Problem performing fetch (%@)", NSStringFromClass(self), [error localizedDescription]];
+        NSString *reason = [NSString stringWithFormat:@"%@: Problem performing fetch (%@)", NSStringFromClass([self class]), [error localizedDescription]];
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:@{ NSUnderlyingErrorKey: error }];
     }
 }
