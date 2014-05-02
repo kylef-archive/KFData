@@ -29,7 +29,7 @@ clean:
 
 test-osx:
 	@printf "\e[34m=> Running OS X Tests\033[0m\n"
-	@$(XCODEBUILD) -scheme 'OS X Tests' test | xcpretty -c | sed "s/^/ /"
+	@$(XCODEBUILD) -scheme 'OS X Tests' test | xcpretty -c | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
 
 test-ios:
 	@printf "\e[34m=> Running iOS Tests\033[0m\n"
