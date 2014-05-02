@@ -46,22 +46,20 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
     return store;
 }
 
-+ (NSURL*)storesDirectoryURL {
+/** Determine the base URL for data stores, this creates the directory if it doesn't already exist
+ @param error Output error if returned URL is nil
+ @return store directory URL or nil if there was a failure creating the directory
+ */
++ (NSURL *)storesDirectoryURL:(NSError **)error {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSURL *storesDirectoryURL = [NSURL fileURLWithPath:documentsDirectory];
-    storesDirectoryURL = [storesDirectoryURL URLByAppendingPathComponent:@"DataStores"];
+    NSURL *storesDirectoryURL = [[NSURL fileURLWithPath:documentsDirectory] URLByAppendingPathComponent:@"DataStores"];
 
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     if ([fileManager fileExistsAtPath:[storesDirectoryURL path]] == NO) {
-        NSError *error;
-
-        BOOL createSuccess = [fileManager createDirectoryAtURL:storesDirectoryURL
-                                   withIntermediateDirectories:YES
-                                                    attributes:nil
-                                                         error:&error];
+        BOOL createSuccess = [fileManager createDirectoryAtURL:storesDirectoryURL withIntermediateDirectories:YES attributes:nil error:error];
 
         if (createSuccess == NO) {
-            NSLog(@"KFData: Unable to create application sandbox stores directory: %@\n\tError: %@", storesDirectoryURL, error);
+            storesDirectoryURL = nil;
         }
     }
 
@@ -120,9 +118,15 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
 }
 
 - (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options error:(NSError **)error {
-    NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
-    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
-    return [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:error];
+    NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL:error];
+    NSPersistentStore *persistentStore;
+
+    if (storesDirectoryURL) {
+        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
+        persistentStore = [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:error];
+    }
+
+    return persistentStore;
 }
 
 - (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey error:(NSError **)error {
