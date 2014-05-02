@@ -37,7 +37,7 @@ test-ios:
 
 test-podspec:
 	@printf "\e[34m=> Linting podspec\033[0m\n"
-	@pod spec lint KFData.podspec | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
+	@pod lib lint KFData.podspec | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
 
 test: test-osx test-ios test-podspec
 
