@@ -29,11 +29,11 @@ clean:
 
 test-osx:
 	@printf "\e[34m=> Running OS X Tests\033[0m\n"
-	@$(XCODEBUILD) -scheme 'OS X Tests' test | xcpretty -tc | sed "s/^/ /"
+	@$(XCODEBUILD) -scheme 'OS X Tests' test | xcpretty -c | sed "s/^/ /"
 
 test-ios:
 	@printf "\e[34m=> Running iOS Tests\033[0m\n"
-	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator test 2>/dev/null | xcpretty -tc | sed "s/^/ /"
+	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator test 2>/dev/null | xcpretty -c | sed "s/^/ /"
 
 test-podspec:
 	@printf "\e[34m=> Linting podspec\033[0m\n"
