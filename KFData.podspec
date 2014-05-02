@@ -63,6 +63,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Compatibility' do |cspec|
     cspec.dependency 'KFData/Core'
+    cspec.dependency 'KFData/Manager'
     cspec.header_dir = 'KFData/Compatibility'
     cspec.source_files = 'KFData/Compatibility/*.{h,m}'
   end
