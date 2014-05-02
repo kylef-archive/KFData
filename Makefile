@@ -33,11 +33,11 @@ test-osx:
 
 test-ios:
 	@printf "\e[34m=> Running iOS Tests\033[0m\n"
-	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator -destination 'name=iPhone Retina (4-inch)' test 2>/dev/null | xcpretty -c | sed "s/^/ /"
+	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator -destination 'name=iPhone Retina (4-inch)' test 2>/dev/null | xcpretty -c | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
 
 test-podspec:
 	@printf "\e[34m=> Linting podspec\033[0m\n"
-	@pod spec lint KFData.podspec | sed "s/^/ /"
+	@pod spec lint KFData.podspec | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
 
 test: test-osx test-ios test-podspec
 
