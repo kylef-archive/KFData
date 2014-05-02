@@ -133,14 +133,18 @@ static NSString * const kKFDataStoreCloudFilename = @"cloudStore.sqlite";
     NSParameterAssert(filename != nil);
     NSParameterAssert(contentNameKey != nil);
 
-    NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL];
-    NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
+    NSPersistentStore *persistentStore;
 
-    NSDictionary *options = @{
-        NSPersistentStoreUbiquitousContentNameKey: contentNameKey,
-    };
+    NSURL *storesDirectoryURL = [KFDataStore storesDirectoryURL:error];
+    if (storesDirectoryURL) {
+        NSURL *storeURL = [storesDirectoryURL URLByAppendingPathComponent:filename];
 
-    NSPersistentStore *persistentStore = [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:error];
+        NSDictionary *options = @{
+            NSPersistentStoreUbiquitousContentNameKey: contentNameKey,
+        };
+
+        persistentStore = [self addPersistentStoreWithType:NSSQLiteStoreType configuration:configuration URL:storeURL options:options error:error];
+    }
 
     return persistentStore;
 }
