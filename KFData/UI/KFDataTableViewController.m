@@ -45,7 +45,8 @@
 
     NSError *error;
     if ([self performFetch:&error] == NO) {
-        NSLog(@"KFDataTableViewController: Error performing fetch %@", error);
+        NSString *reason = [NSString stringWithFormat:@"%@: Problem performing fetch (%@)", NSStringFromClass(self), [error localizedDescription]];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:@{ NSUnderlyingErrorKey: error }];
     }
 }
 

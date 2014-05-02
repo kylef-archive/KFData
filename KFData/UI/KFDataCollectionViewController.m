@@ -40,7 +40,8 @@
 
     NSError *error;
     if (self.dataSource && ([self performFetch:&error] == NO)) {
-        NSLog(@"KFDataCollectionViewController: Error performing fetch %@", error);
+        NSString *reason = [NSString stringWithFormat:@"%@: Problem performing fetch (%@)", NSStringFromClass(self), [error localizedDescription]];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:@{ NSUnderlyingErrorKey: error }];
     }
 }
 
@@ -57,11 +58,10 @@
 
     _dataSource = dataSource;
 
-    if ([self isViewLoaded]) {
-        NSError *error;
-        if ([self performFetch:&error] == NO) {
-            NSLog(@"KFDataCollectionViewController: Error performing fetch %@", error);
-        }
+    NSError *error;
+    if ([self performFetch:&error] == NO) {
+        NSString *reason = [NSString stringWithFormat:@"%@: Problem performing fetch (%@)", NSStringFromClass(self), [error localizedDescription]];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:@{ NSUnderlyingErrorKey: error }];
     }
 }
 
