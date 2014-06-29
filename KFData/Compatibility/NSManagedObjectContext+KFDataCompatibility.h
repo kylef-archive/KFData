@@ -8,11 +8,13 @@
 
 #import <CoreData/CoreData.h>
 
-
+/// This extension provides compatibility with KFData pre 1.0
 @interface NSManagedObjectContext (KFDataCompatibility)
 
+/// Replaced by performWriteBlock:completion:
 - (void)performWriteBlock:(void (^)(NSManagedObjectContext* managedObjectContext))writeBlock __deprecated;
 
+/// Replaced by performWriteBlock:completion:
 - (void)performWriteBlock:(void(^)(NSManagedObjectContext *managedObjectContext))writeBlock success:(void(^)(void))success failure:(void(^)(NSError *error))failure __deprecated;
 
 @end
