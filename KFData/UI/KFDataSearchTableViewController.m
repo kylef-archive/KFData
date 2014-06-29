@@ -31,13 +31,13 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
         self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 0, kKFDataSearchTableViewControllerSearchBarHeight)];
     }
 
-	self.searchBar.delegate = self;
+    self.searchBar.delegate = self;
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
 
-	self.tableView.tableHeaderView = self.searchBar;
+    self.tableView.tableHeaderView = self.searchBar;
 
 #ifdef __IPHONE_7_0
     if (([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [self automaticallyAdjustsScrollViewInsets]) == NO) {
@@ -94,7 +94,7 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-	[searchBar setShowsCancelButton:YES animated:YES];
+    [searchBar setShowsCancelButton:YES animated:YES];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
@@ -119,17 +119,17 @@ const CGFloat kKFDataSearchTableViewControllerSearchBarHeight = 44.0f;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	if ([searchBar isFirstResponder]) {
-		[searchBar resignFirstResponder];
-	}
+    if ([searchBar isFirstResponder]) {
+        [searchBar resignFirstResponder];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-	if ([self.searchBar isFirstResponder]) {
-		[self.searchBar resignFirstResponder];
-	}
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
 }
 
 @end

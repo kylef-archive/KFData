@@ -12,7 +12,7 @@
 
 /**
  Represents a lazy Core Data lookup for a set of objects.
- 
+
  This object is immutable, any changes will normally be done to a copy. Such
  as with the `-filter:`, `-exclude:`, `-orderBy:` and `-reverse` methods.
  */

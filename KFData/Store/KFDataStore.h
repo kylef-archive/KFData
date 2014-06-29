@@ -13,7 +13,7 @@
 /**
  When using a main managed object context from a KFDataStore, it is important that you listen for this notification.
  When this notification is fired, you should discard any managed object's you received previous because the managed object context was reset.
- 
+
  This notification will be fired on the main thread.
  */
 NSString * const KFDataManagedObjectContextWillReset;
@@ -46,10 +46,10 @@ typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
      This will create a dual persistent coordinator stack. To make use of write
      ahead lock (WAL). We can write into one stack and read from the other
      without blocking.
-     
+
      It is important that you do not share managed object ID's between
      asyncronous blocks and UI blocks. Instead you should use -URIRepresentation.
-     
+
      You should not keep object's alive outside of the asyncronous blocks. They
      will become invalid after the block is executed.
      */
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
      call save on the main and then reset:. It is important that you listen
      for the KFDataStoreManagedObjectContextWasReset notification and reload
      your userinterface when this happens.
-     
+
      It is useful to do when your background context is used for importing a
      large amount of data and you do not wish to trigger multiple changes with
      a fetched results controller. Instead you can perform a refetch on the
@@ -73,7 +73,7 @@ typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {
 /**
  KFDataStore is a wrapper around a Core Data stack. You would normally create a
  single instance of KFDataStore to use with a single managed object model.
- 
+
  This class is a class cluster and the internal implementation can differ
 depending on which KFDataStoreConfigurationType you have chosen.
 */

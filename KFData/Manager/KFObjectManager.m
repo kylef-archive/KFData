@@ -291,7 +291,7 @@ NSString * const KFDataErrorDomain = @"KFDataErrorDomain";
         NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:error];
         managedObject = [array lastObject];
     }
-    
+
     return managedObject;
 }
 

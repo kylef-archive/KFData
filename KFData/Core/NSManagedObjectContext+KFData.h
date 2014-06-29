@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 
 
+/// Provides helper methods for executing a block on a context and saving
 @interface NSManagedObjectContext (KFData)
 
 /**
