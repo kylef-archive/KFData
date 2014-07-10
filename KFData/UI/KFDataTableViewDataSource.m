@@ -53,6 +53,10 @@
     return [self initWithTableView:tableView managedObjectContext:objectManager.managedObjectContext fetchRequest:[objectManager fetchRequest] sectionNameKeyPath:sectionNameKeyPath cacheName:cacheName];
 }
 
+- (instancetype)initWithTableView:(UITableView *)tableView objectManager:(KFObjectManager *)objectManager {
+    return [self initWithTableView:tableView objectManager:objectManager sectionNameKeyPath:nil cacheName:nil];
+}
+
 - (NSManagedObjectContext *)managedObjectContext {
     return [_fetchedResultsController managedObjectContext];
 }

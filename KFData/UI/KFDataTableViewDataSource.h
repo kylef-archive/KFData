@@ -43,6 +43,9 @@
                sectionNameKeyPath:(NSString *)sectionNameKeyPath
                         cacheName:(NSString *)cacheName;
 
+- (instancetype)initWithTableView:(UITableView *)tableView
+                    objectManager:(KFObjectManager *)objectManager;
+
 /** Executes the fetch request on the store to get objects and load them into the table view.
  @returns YES if successful or NO (and an error) if a problem occurred.
  An error is returned if the fetch request specified doesn't include a sort descriptor that uses sectionNameKeyPath.'
