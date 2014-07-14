@@ -12,33 +12,24 @@
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
-@interface KFDataTableViewDataSourceController : KFDataTableViewDataSource
-
-@end
-
-@implementation KFDataTableViewDataSourceController
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [(KFDataTableViewController *)tableView.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
-}
-
-@end
-
-@interface KFDataTableViewController ()
-
-@end
-
 @implementation KFDataTableViewController
 
 #pragma mark -
 
 - (Class)dataSourceClass {
-    return [KFDataTableViewDataSourceController class];
+    return [KFDataTableViewDataSource class];
 }
 
 - (void)setDataSource:(KFDataTableViewDataSource *)dataSource {
     if (dataSource) {
         NSParameterAssert(dataSource.tableView == self.tableView);
+    }
+
+    if (dataSource.cellForManagedObject == nil) {
+        __weak KFDataTableViewController *weakViewController = self;
+        dataSource.cellForManagedObject = (^UITableViewCell*(UITableView *tableView, NSIndexPath *indexPath, NSManagedObject *managedObject) {
+            return [weakViewController tableView:tableView cellForManagedObject:managedObject atIndexPath:indexPath];
+        });
     }
 
     _dataSource = dataSource;
@@ -63,13 +54,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *managedObject = [(KFDataTableViewDataSource *)[tableView dataSource] objectAtIndexPath:indexPath];
-    return [self tableView:tableView cellForManagedObject:managedObject atIndexPath:indexPath];
+    NSString *reason = [NSString stringWithFormat:@"%@: You must override %@ or %@", NSStringFromClass([self class]), NSStringFromSelector(@selector(tableView:cellForManagedObject:atIndexPath:)), NSStringFromSelector(@selector(tableView:cellForRowAtIndexPath:))];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject atIndexPath:(NSIndexPath *)indexPath {
-    NSString *reason = [NSStringFromClass([self class]) stringByAppendingString:@": You must override tableView:cellForManagedObject:atIndexPath:"];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+    return [self tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 @end
