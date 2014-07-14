@@ -148,8 +148,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *reason = [NSStringFromClass([self class]) stringByAppendingString:@" : You must override tableView:cellForRowAtIndexpath:"];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+    if (self.cellForManagedObject == nil) {
+        NSString *reason = [NSString stringWithFormat:@"%@: You must override %@ or set %@", NSStringFromClass([self class]), NSStringFromSelector(@selector(tableView:cellForRowAtIndexPath:)), NSStringFromSelector(@selector(cellForManagedObject))];
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+    }
+
+    NSManagedObject *managedObject = [self objectAtIndexPath:indexPath];
+    return self.cellForManagedObject(tableView, indexPath, managedObject);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

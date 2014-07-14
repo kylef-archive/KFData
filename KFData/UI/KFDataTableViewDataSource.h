@@ -31,6 +31,7 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong, readonly) NSFetchRequest *fetchRequest;
 @property (nonatomic, strong, readonly) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, copy) UITableViewCell *(^cellForManagedObject)(UITableView *tableView, NSIndexPath *indexPath, NSManagedObject *managedObject);
 
 - (instancetype)initWithTableView:(UITableView *)tableView
              managedObjectContext:(NSManagedObjectContext *)managedObjectContext
