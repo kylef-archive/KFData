@@ -80,8 +80,10 @@ depending on which KFDataStoreConfigurationType you have chosen.
 
 @interface KFDataStore : NSObject
 
+/// Returns a store with the configuration type
 + (instancetype)storeWithConfigurationType:(KFDataStoreConfigurationType)configurationType;
 
+/// Returns a store with the configuration type and managed object model
 + (instancetype)storeWithConfigurationType:(KFDataStoreConfigurationType)configurationType managedObjectModel:(NSManagedObjectModel*)managedObjectModel;
 
 #pragma mark -
@@ -131,10 +133,13 @@ depending on which KFDataStoreConfigurationType you have chosen.
 
 - (NSPersistentStore *)addPersistentStoreWithType:(NSString *)storeType configuration:(NSString *)configuration URL:(NSURL *)storeURL options:(NSDictionary *)options error:(NSError **)error;
 
+/// Adds an in memory store to the data store
 - (NSPersistentStore *)addMemoryStore:(NSString *)configuration error:(NSError **)error;
 
+/// Adds a local store to the data store
 - (NSPersistentStore *)addLocalStore:(NSString *)filename configuration:(NSString *)configuration options:(NSDictionary *)options error:(NSError **)error;
 
+/// Adds a cloud store to the data store
 - (NSPersistentStore *)addCloudStore:(NSString *)filename configuration:(NSString *)configuration contentNameKey:(NSString *)contentNameKey error:(NSError **)error;
 
 #pragma mark -

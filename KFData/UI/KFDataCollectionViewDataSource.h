@@ -24,9 +24,13 @@
 
 @interface KFDataCollectionViewDataSource : NSObject <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
+/// The collection view the data source was initialized with
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
+/// The managed object context the data source was initialized with
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+/// The fetch request the data source was initialized with
 @property (nonatomic, strong, readonly) NSFetchRequest *fetchRequest;
+/// A fetched results controller created to managed the query
 @property (nonatomic, strong, readonly) NSFetchedResultsController *fetchedResultsController;
 
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
@@ -52,6 +56,10 @@
  */
 - (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+/** Retreive the section info for a section
+ @param section to retrieve the section info for
+ @return The section info for the given section
+ */
 - (id <NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSUInteger)section;
 
 @end

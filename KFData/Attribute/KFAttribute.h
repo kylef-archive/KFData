@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+#define KFAttributeFromKey(KEY) [KFAttribute attributeWithKey:(NSStringFromSelector(@selector(KEY)))]
+
 /** A helper class to generate predicates and sort descriptors for attributes
  on a managed object.
  */
-
-
-#define KFAttributeFromKey(KEY) [KFAttribute attributeWithKey:(NSStringFromSelector(@selector(KEY)))]
-
 @interface KFAttribute : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, strong, readonly) NSString *key;
 
+/// Returns an attribute from multiple other attributes
 + (instancetype)attributeWithAttributes:(KFAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
 
+/// Returns an attribute with key
 + (instancetype)attributeWithKey:(NSString *)key __attribute((nonnull));
 
 /** Returns a Boolean value that indicates whether a given attribute is equal to the receiver

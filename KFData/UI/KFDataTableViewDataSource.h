@@ -27,9 +27,13 @@
 
 @interface KFDataTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
+/// The table view the data source was initialized with
 @property (nonatomic, strong, readonly) UITableView *tableView;
+/// The managed object context the data source was initialized with
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+/// The fetch request the data source was initialized with
 @property (nonatomic, strong, readonly) NSFetchRequest *fetchRequest;
+/// A fetched results controller created to managed the query
 @property (nonatomic, strong, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, copy) UITableViewCell *(^cellForManagedObject)(UITableView *tableView, NSIndexPath *indexPath, NSManagedObject *managedObject);
 
@@ -59,6 +63,10 @@
  */
 - (id <NSObject>)objectAtIndexPath:(NSIndexPath *)indexPath;
 
+/** Retreive the section info for a section
+ @param section to retrieve the section info for
+ @return The section info for the given section
+ */
 - (id <NSFetchedResultsSectionInfo>)sectionInfoForSection:(NSUInteger)section;
 
 @end

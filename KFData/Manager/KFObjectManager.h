@@ -19,7 +19,10 @@
 
 @interface KFObjectManager : NSObject <NSFastEnumeration, NSCopying>
 
+/// The managed object context for the object manager
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+
+/// The entity descriptor for the object
 @property (nonatomic, strong, readonly) NSEntityDescription *entityDescription;
 
 /** This is a read only property to hold any predicates set on this object. You can use the `filter:` and `exclude:` methods to effect this value on a child */
@@ -97,6 +100,7 @@
 
 @end
 
+/// Methods to sort an object manager
 @interface KFObjectManager (Sorting)
 
 /** Returns a copy and the sort descriptors */
@@ -107,6 +111,7 @@
 
 @end
 
+/// Filtering related methods of KFObjectManager
 @interface KFObjectManager (Filtering)
 
 /** Returns a copy filtered by a predicate */
@@ -117,6 +122,7 @@
 
 @end
 
+/// Fetching single objects in KFObjectManager
 @interface KFObjectManager (SingleObject)
 
 /** Returns a single object matching the filters, if there is more than one. An error will instead be returned.
