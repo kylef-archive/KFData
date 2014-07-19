@@ -1,6 +1,6 @@
 # KFData
 
-[![Build Status](https://travis-ci.org/kylef/KFData.png?branch=master)](https://travis-ci.org/kylef/KFData)
+[![Build Status](http://img.shields.io/travis/kylef/KFData.svg?style=flat)](https://travis-ci.org/kylef/KFData)
 
 Core Data done right for iOS 5+/OS X 10.7+.
 
