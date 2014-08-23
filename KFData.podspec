@@ -17,13 +17,15 @@ Pod::Spec.new do |s|
   s.header_dir = 'KFData'
 
   s.subspec 'Attribute' do |attribute_spec|
+    attribute_spec.dependency 'QueryKit'
     attribute_spec.ios.source_files = 'KFData/Attribute/*.{h,m}'
     attribute_spec.osx.source_files = 'KFData/Attribute/*.{h,m}'
   end
 
   s.subspec 'Manager' do |manager_spec|
-   manager_spec.ios.source_files = 'KFData/Manager/*.{h,m}'
-   manager_spec.osx.source_files = 'KFData/Manager/*.{h,m}'
+    manager_spec.dependency 'QueryKit'
+    manager_spec.ios.source_files = 'KFData/Manager/*.{h,m}'
+    manager_spec.osx.source_files = 'KFData/Manager/*.{h,m}'
   end
 
   s.subspec 'Core' do |corespec|
