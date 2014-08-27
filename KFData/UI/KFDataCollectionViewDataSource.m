@@ -5,7 +5,7 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import <KFData/KFData.h>
+#import <KFData/KFObjectManager.h>
 #import "KFDataCollectionViewDataSource.h"
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)

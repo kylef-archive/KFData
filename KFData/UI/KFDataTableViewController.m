@@ -6,7 +6,6 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import "KFDataStore.h"
 #import "KFDataTableViewController.h"
 #import "KFDataTableViewDataSource.h"
 

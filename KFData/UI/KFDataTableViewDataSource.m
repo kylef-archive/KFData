@@ -6,7 +6,7 @@
 //
 //
 
-#import <KFData/KFData.h>
+#import <KFData/KFObjectManager.h>
 #import "KFDataTableViewDataSource.h"
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)

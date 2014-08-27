@@ -6,7 +6,7 @@
 //  Copyright (c) 2012-2013 Kyle Fuller. All rights reserved.
 //
 
-#import <KFData/KFData.h>
+#import <KFData/KFObjectManager.h>
 #import "KFDataSearchTableViewController.h"
 #import "KFDataTableViewDataSource.h"
 
