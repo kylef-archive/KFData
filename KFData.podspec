@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'KFData'
-  s.version = '1.0.3'
+  s.version = '1.0.4'
   s.license = 'BSD'
   s.summary = 'Lightweight Core Data wrapper.'
   s.homepage = 'https://github.com/kylef/KFData'
@@ -17,13 +17,13 @@ Pod::Spec.new do |s|
   s.header_dir = 'KFData'
 
   s.subspec 'Attribute' do |attribute_spec|
-    attribute_spec.dependency 'QueryKit'
+    attribute_spec.dependency 'QueryKit', '~> 0.8.3'
     attribute_spec.ios.source_files = 'KFData/Attribute/*.{h,m}'
     attribute_spec.osx.source_files = 'KFData/Attribute/*.{h,m}'
   end
 
   s.subspec 'Manager' do |manager_spec|
-    manager_spec.dependency 'QueryKit'
+    manager_spec.dependency 'QueryKit', '~> 0.8.3'
     manager_spec.ios.source_files = 'KFData/Manager/*.{h,m}'
     manager_spec.osx.source_files = 'KFData/Manager/*.{h,m}'
   end
