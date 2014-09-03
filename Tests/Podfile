@@ -3,6 +3,7 @@ workspace '../KFData'
 inhibit_all_warnings!
 
 def import_pods
+    pod 'QueryKit'
     pod 'KFData', :path => '../'
     pod 'KFData/Compatibility', :path => '../'
     pod 'Expecta'
