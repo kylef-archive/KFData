@@ -29,7 +29,7 @@
     expect([objectManager managedObjectContext]).to.equal(managedObjectContext);
     expect([objectManager entityDescription]).to.equal(entityDescription);
     expect([objectManager predicate]).to.beNil();
-    expect([objectManager sortDescriptors]).to.beNil();
+    expect([objectManager sortDescriptors]).to.equal(@[]);
 }
 
 - (void)testCreationWithPredicateAndSortDescriptors {
