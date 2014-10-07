@@ -98,6 +98,8 @@
             [_sectionUpdates addObject:userInfo];
             break;
         }
+        default:
+            break;
     }
 }
 
@@ -185,6 +187,9 @@
 
                         case NSFetchedResultsChangeDelete: {
                             [collectionView deleteSections:indexSet];
+                            break;
+
+                        default:
                             break;
                         }
                     }
