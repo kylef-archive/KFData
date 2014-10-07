@@ -98,6 +98,9 @@
             [_sectionUpdates addObject:userInfo];
             break;
         }
+        case NSFetchedResultsChangeMove:
+        case NSFetchedResultsChangeUpdate:
+            break;
     }
 }
 
@@ -187,6 +190,10 @@
                             [collectionView deleteSections:indexSet];
                             break;
                         }
+
+                        case NSFetchedResultsChangeMove:
+                        case NSFetchedResultsChangeUpdate:
+                            break;
                     }
                 }];
             }

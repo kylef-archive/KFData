@@ -101,6 +101,10 @@
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
             break;
+
+        case NSFetchedResultsChangeUpdate:
+        case NSFetchedResultsChangeMove:
+            break;
     }
 }
 
