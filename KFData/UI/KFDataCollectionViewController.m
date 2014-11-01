@@ -48,7 +48,7 @@
 #pragma mark -
 
 - (Class)dataSourceClass {
-    return [KFDataCollectionViewDataSource class];
+    return [KFDataCollectionViewDataSourceController class];
 }
 
 - (void)setDataSource:(KFDataCollectionViewDataSource *)dataSource {
