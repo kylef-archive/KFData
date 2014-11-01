@@ -33,61 +33,10 @@ KFDataStore *dataStore = [KFDataStore standardCloudDataStore];
 }];
 ```
 
-### KFAttribute
+### KFAttribute and KFObjectManager
 
-Writing predicates and sort descriptors can often become cumbersome and hard
-to manage. Since you need a string of the key value path of any attribute you
-are trying to use. If you change the name or remove the attribute you will not
-get compile time checks that "name" was removed from the Person entity.
-
-To solve this problem KFData has created a class to deal with this. You can use
-it as follows:
-
-``` objective-c
-NSPredicate *kylePredicate = [[Person name] equal:@"Kyle"];
-// This will create a predicate which would be `"name == 'Kyle'"`.
-```
-
-You can even use the attribute in predicate formats:
-
-``` objective-c
-[NSPredicate predicateWithFormat:@"%K == %@", [Person name], @"Kyle"];
-```
-
-Your managed objects wont automatically implement these methods. So you will
-either need to manually add them to a subclass, or alternatively you can use
-our Python tool to generate your managed object implementation files.
-Instructions on the Python tool can be found
-[here](https://github.com/kylef/KFData.py), this tool is still in active
-development so it may not be ready just yet.
-
-There is another alternative, you won't get autocompletion or 100% correct
-compile time checks. However we provide a macro which can provide some checks
-providing you have the "Strict selector matching" warning enabled. This is with
-a macro, which can be used as follows:
-
-```objective-c
-NSPredicate *predicate = [KFAttributeFromKey(name) equal:@"Kyle"];
-```
-
-### KFObjectManager
-
-KFData also provides a helper class to create fetch requests and perform
-various methods.
-
-For example, to iterate over all people with an age greater than 21 you can do
-the following:
-
-``` objective-c
-NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K > 21", [Person age]];
-KFObjectManager *manager = [[Person managedInManagedObjectContext:context] filter:predicate];
-
-NSLog(@"All people over 21:");
-
-for (Person *person in manager) {
-    NSLog(@"- %@", person);
-}
-```
+KFData used to provide two classes KFAttribute and KFObjectManager which are
+now superseded by [QueryKit](https://github.com/QueryKit/QueryKit).
 
 ## Installation
 
