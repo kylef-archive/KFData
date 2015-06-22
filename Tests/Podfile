@@ -1,6 +1,7 @@
 xcodeproj 'KFDataTests'
 workspace '../KFData'
 inhibit_all_warnings!
+use_frameworks!
 
 def import_pods
     pod 'QueryKit'
@@ -10,7 +11,7 @@ def import_pods
 end
 
 target :ios do
-    platform :ios, '5.0'
+    platform :ios, '8.0'
     link_with 'iOS Tests'
     import_pods
 end

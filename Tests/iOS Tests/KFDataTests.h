@@ -12,10 +12,15 @@
 #import <XCTest/XCTest.h>
 
 #define EXP_SHORTHAND YES
-#import "Expecta.h"
+#import <Expecta/Expecta.h>
 
 #import <KFData/KFData.h>
 #import <KFData/KFDataStore.h>
-#import <KFData/KFDataUI.h>
+
+#import <Availability.h>
+
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+  #import <KFData/KFDataUI.h>
+#endif
 
 #endif

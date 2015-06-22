@@ -28,8 +28,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63E5637DA82B4F9E894AC822"
-               BuildableName = "libPods-osx.a"
+               BlueprintIdentifier = "1A1946A05BE79DB5FB9A4891"
+               BuildableName = "Pods_osx.framework"
                BlueprintName = "Pods-osx"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
@@ -63,6 +63,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "778FBFA0176107B600DE0FFF"
+            BuildableName = "OS X Tests.xctest"
+            BlueprintName = "OS X Tests"
+            ReferencedContainer = "container:KFDataTests.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
