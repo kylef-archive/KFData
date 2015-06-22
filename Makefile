@@ -29,15 +29,15 @@ clean:
 
 test-osx:
 	@printf "\e[34m=> Running OS X Tests\033[0m\n"
-	@$(XCODEBUILD) -scheme 'OS X Tests' test | xcpretty -c | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
+	@$(XCODEBUILD) -scheme 'OS X Tests' test
 
 test-ios:
 	@printf "\e[34m=> Running iOS Tests\033[0m\n"
-	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator -destination 'name=iPhone Retina (4-inch)' test 2>/dev/null | xcpretty -c | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
+	@$(XCODEBUILD) -scheme 'iOS Tests' -sdk iphonesimulator -destination 'name=iPhone Retina (4-inch)' test
 
 test-podspec:
 	@printf "\e[34m=> Linting podspec\033[0m\n"
-	@pod lib lint KFData.podspec | sed "s/^/ /" ; exit ${PIPESTATUS[0]}
+	@pod lib lint KFData.podspec
 
 test: test-osx test-ios test-podspec
 
