@@ -1,24 +1,19 @@
-xcodeproj 'KFDataTests'
+project 'KFDataTests'
 workspace '../KFData'
 inhibit_all_warnings!
 use_frameworks!
 
-def import_pods
-    pod 'QueryKit'
-    pod 'KFData', :path => '../'
-    pod 'KFData/Compatibility', :path => '../'
-    pod 'Expecta'
-end
+abstract_target 'KFData' do
+  pod 'QueryKit'
+  pod 'KFData', :path => '../'
+  pod 'KFData/Compatibility', :path => '../'
+  pod 'Expecta'
 
-target :ios do
+  target 'iOS Tests' do
     platform :ios, '8.0'
-    link_with 'iOS Tests'
-    import_pods
-end
+  end
 
-target :osx do
+  target 'OS X Tests' do
     platform :osx, '10.7'
-    link_with 'OS X Tests'
-    import_pods
+  end
 end
-
