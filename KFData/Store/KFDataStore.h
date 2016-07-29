@@ -16,8 +16,8 @@
 
  This notification will be fired on the main thread.
  */
-NSString * const KFDataManagedObjectContextWillReset;
-NSString * const KFDataManagedObjectContextDidReset;
+extern NSString * const KFDataManagedObjectContextWillReset;
+extern NSString * const KFDataManagedObjectContextDidReset;
 
 
 typedef NS_ENUM(NSUInteger, KFDataStoreConfigurationType) {

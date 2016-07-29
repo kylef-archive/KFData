@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     corespec.ios.source_files = 'KFData/KFData.h', 'KFData/Core/*.{h,m}'
 
     corespec.osx.frameworks = 'CoreData'
-    corespec.osx.source_files = 'KFData/Core/*.{h,m}'
+    corespec.osx.source_files = 'KFData/KFData.h', 'KFData/Core/*.{h,m}'
   end
 
   s.subspec 'Store' do |storespec|
@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
   s.subspec 'UI' do |uispec|
     uispec.dependency 'KFData/Manager'
     uispec.platform = :ios
-    uispec.ios.frameworks = 'UIKit'
+    uispec.ios.frameworks = 'UIKit', 'CoreData'
     uispec.ios.source_files = 'KFData/UI/*.{h,m}'
   end
 
