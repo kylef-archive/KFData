@@ -13,9 +13,17 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@class KFDataCollectionViewDataSource;
+#import "KFDataCollectionViewDataSource.h"
+
 @class KFObjectManager;
 
+/** KFDataCollectionViewDataSourceController is a simple data source that routes the calls for collectionView:cellForItemAtIndexPath: and collectionView:viewForSupplementaryElementOfKind:atIndexPath:
+ to the collection view delegate. It is an easy method of providing the cell construction methods without the need for a custom data source class.
+ */
+
+@interface KFDataCollectionViewDataSourceController : KFDataCollectionViewDataSource
+
+@end
 
 /** KFDataCollectionViewController is a generic controller base that uses
  KFDataCollectionViewDataSource as a data source. Providing helper methods
